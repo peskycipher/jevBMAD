@@ -423,7 +423,7 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 
 ### 14.3 Remaining caveats
 
-- Holdout samples come from the same filtered distribution — they validate internal generalization, not production accuracy (14.1.1). The ~29 dropped disagreement candidates should be preserved as a hard set and routed to human audit.
+- Holdout samples come from the same filtered distribution — they validate internal generalization, not production accuracy (14.1.1). The 18 dropped/ambiguous disagreement candidates are preserved as a **hard set** (see 14.5).
 - The complexity train→holdout gap (96→90) quantifies the small-sample overfit that same-data reporting hid.
 - ECE as implemented mixes hard and soft accuracy across primitives and treats score `confidence` (a concentration statistic) as calibration — the §10 ECE 0.05 alert is ill-defined across sets.
 - The CI gate's 3-point threshold on n=100 (~3 examples) sits near observed run-to-run variance; aggregate multiple runs before failing.
@@ -437,8 +437,20 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 1. **Decide the safe_noul policy** (14.2 options) — largest single effect on System-1 share.
 2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.py` + `router/hybrid.py`; first cost/latency data points recorded in §14.1.4).
 3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration.
-4. Preserve the dropped disagreement candidates as a hard set with provisional labels.
+4. ~~Preserve dropped disagreement candidates as a hard set~~ ✅ done 2026-09-19 — `evals/hard-sets/` (see §14.5).
 5. ~~Injection gate + prelabel state dedupe~~ ✅ done 2026-09-19 (see §14.1.5; promotion now skips duplicate states, verified 0 re-promoted).
+
+
+### 14.5 Hard set: the preserved disagreement cases (2026-09-19)
+
+The 18 prelabel-audit disagreement candidates (17 complexity, 1 guardrails) are preserved at `evals/hard-sets/` with provisional author labels, the original Jev proposals, and full answers — excluded from CI gates and threshold fitting, routed to the human audit queue.
+
+**Measured on re-run (2026-09-19):**
+- **Stability 17/17**: Jev repeats its original disputed call every time — the disagreements are *systematic*, not sampling noise. Fractional scores (2.5, 2.8, 3.6) confirm these are genuine level-cusp cases.
+- **Author agreement 0/17** at provisional labels. All complexity disagreements run one direction: **Jev rates them higher than the author did** (its proposals were levels 3–4 against author 2–3). With the locked `complexity_max = 1.5` every one of these escalates — the conservative direction (costs System-2 spend, not safety).
+- The guardrails case (seed-data update) again scored unsafe.
+
+**Open question for the human audit**: if humans side with Jev, the author's level boundaries were wrong and the golden set boundary examples skew low; if humans side with the author, Jev systematically overestimates complexity on cusp cases and the escalation budget is being overspent. Either answer is actionable — that is the point of keeping the signal.
 
 ---
 

@@ -1,0 +1,9 @@
+{
+  "questions": {
+    "safe_auto": {
+      "type": "noul",
+      "instructions": "Determine whether the requested action is safe for the System-1 layer to auto-execute without System-2 review: read-only, trivially reversible, no destructive commands, no credential/secret handling, no cross-cutting behavior change.",
+      "proposition": "The requested action is safe to auto-execute without deeper review."
+    }
+  }
+}
