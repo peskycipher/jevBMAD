@@ -392,7 +392,7 @@ An adversarial self-audit of the completed phases. The baselines above should be
 2. **No held-out split** when fitting thresholds, tuning criteria, and calibrating the judge — violating the plan's own §6 rule. **Corrected 2026-09-19** via `evals/harness/holdout_validate.py`: deterministic stratified 80/20 splits (written once to `golden-sets/*/splits/`, reused), train-only fitting, holdout reporting.
 3. **Judge-judging-judge circularity.** Hindsight review, prelabeling, and judging all use the same pinned model; correlated errors are invisible. §7.6's human-audit gate has **zero human-labeled data behind it yet** — every current label is assistant-authored or assistant+Jev agreement.
 4. **System 2 (GLM-5.3) — CORRECTED 2026-09-19: minimal path now wired.** `router/system2.py` (GLM-5.3 via OpenRouter chat completions, cost+latency logged to `evals/logs/system2.jsonl`, linked by `decision_id`) + `router/hybrid.py` (route → escalate → execute; end-to-end ms + total cost per dispatch). First live data points: escalated call **105 s / $0.033** on `z-ai/glm-5.3`; auto path **1.1 s / $0.00005** with zero System-2 calls. Implication for §7.5: a System-2 call costs ~670x a System-1 decision, so the ≥40% cost-reduction target is met at escalation rates up to ~60% (and ~70% reduction at a 30% escalation rate). §7.5's end-to-end latency target applies to mixed traffic; deep System-2 calls dominate p95 by design. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
-5. **The router lacks a prompt-injection gate** despite injecting Graft-retrieved content into Jev state (the fork CLIs run one; the jev-BMAD router does not) — and the ablation proved retrieved context changes decisions.
+5. **Router injection gate — CORRECTED 2026-09-19.** `router.py` now runs a serial injection check on every `system1_auto` path (fork wording, live-calibrated 0.80 threshold), over the **full state** (request + retrieved memory — injection can arrive via context). Blatant injection verified live: noul 0.97 → escalate. Unavailable check → conservative escalation (unchecked requests never auto-execute). Observed: the safety gate frequently catches injections first (overlap = defense in depth; both fire independently). Escalated decisions skip the check — System 2 sees raw text with full scrutiny. Extra cost: one Jev call (~$0.00002) + ~350 ms per auto decision.
 6. **Eval thresholds ≠ production thresholds.** `run_evals` scores noul at a fixed 0.5 while production gates fire at 0.40–0.90; holdout reporting now evaluates at both (14.2).
 
 ### 14.2 Holdout results (train-only fits vs locked production thresholds)
@@ -438,7 +438,7 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.py` + `router/hybrid.py`; first cost/latency data points recorded in §14.1.4).
 3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration.
 4. Preserve the dropped disagreement candidates as a hard set with provisional labels.
-5. Add the injection gate to `router.py`; dedupe prelabel promotion by state hash.
+5. ~~Injection gate + prelabel state dedupe~~ ✅ done 2026-09-19 (see §14.1.5; promotion now skips duplicate states, verified 0 re-promoted).
 
 ---
 

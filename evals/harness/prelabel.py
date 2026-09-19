@@ -60,15 +60,17 @@ def generate(set_name: str, candidates_path: Path) -> None:
 def promote(set_name: str) -> None:
     set_dir = GOLDEN / set_name
     golden_path = set_dir / f"{set_name}.golden.jsonl"
-    existing_ids = {json.loads(l)["id"] for l in golden_path.read_text().splitlines() if l.strip()}
+    _existing = [json.loads(l) for l in golden_path.read_text().splitlines() if l.strip()]
+    existing_ids = {r["id"] for r in _existing}
+    existing_states = {r["state"] for r in _existing}  # dedupe by content, not just id
     queue = [json.loads(l) for l in QUEUE.read_text().splitlines() if l.strip()]
     promoted = 0
     with open(golden_path, "a", encoding="utf-8") as f:
         for row in queue:
             if row.get("set") != set_name or not row.get("approved"):
                 continue
-            if row["id"] in existing_ids:
-                continue
+            if row["id"] in existing_ids or row["state"] in existing_states:
+                continue  # id or duplicate content already in the set
             labels = row.get("final_labels") or row["proposed_labels"]
             f.write(json.dumps({"id": row["id"], "state": row["state"],
                                 "labels": labels,
