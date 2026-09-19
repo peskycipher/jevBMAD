@@ -7,7 +7,7 @@ Kahneman's dual-process theory, operationalized:
 - **Harness**: pi.dev · **Memory**: Graft (code, live) + Mem0 (semantic, pluggable) · **Process**: BMAD-Method
 - **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
-**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Experimental, local-only, not pushed. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5, incl. §14 known limitations).
+**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Experimental, local-only, not pushed. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.2, incl. §14 known limitations).
 
 ## How it works
 
@@ -24,6 +24,8 @@ request ──▶ router.py: ONE batched Jev call
 
 ## Repo map
 
+### Router core
+
 | Path | What it is |
 |---|---|
 | `router/router.py` | System-1 router: batched gates, tiered safety bands, injection gate, full logging |
@@ -33,10 +35,23 @@ request ──▶ router.py: ONE batched Jev call
 | `router/judge.py` | §7.7 story-review rubric (3 gates + 4 dims + failure taxonomy), Jev-as-judge |
 | `router/memory.py` | Unified retrieval: Graft CLI (live) + Mem0 REST (activates with `MEM0_API_KEY`) |
 | `router/thresholds.lockfile.json` | Fitted thresholds + model pin; fitted on train splits only |
+
+### Evaluation
+
+| Path | What it is |
+|---|---|
 | `evals/` | Golden sets, harness, results, audit queues — see [`evals/README.md`](evals/README.md) |
 | `docs/` | Expanded documentation: architecture, evaluation methodology, reference, runbooks, decision log — see [`docs/index.md`](docs/index.md) |
 | `docs/implementation.md` | The plan, phase records, baselines, findings, §14 limitations |
 | `.github/workflows/evals.yml` | CI regression gate (accuracy drop > 3 pts or model drift fails) |
+
+### BMad integration
+
+| Path | What it is |
+|---|---|
+| `modules/bmad-jev/` | Installable BMad module — `jev-setup`, `bmad-jev-decide`, `bmad-jev-gates`, `bmad-jev-review` skills ([README](modules/bmad-jev/README.md)) |
+| `_bmad/` | BMad Method config (TOML-based), manifests, and the canonical Jev adapter scripts (`jev_adapter.py`, `jev_recommend.py`, `jev_policy.py`) |
+| `.agents/skills/` | All installed BMad skills, rendered for the pi harness (BMM plan/ship pipeline + BMad Builder factory + the jev module) |
 
 ## Quickstart
 

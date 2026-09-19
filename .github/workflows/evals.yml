@@ -10,11 +10,15 @@ on:
     paths:
       - "evals/**"
       - "router/**"
+      - "modules/**"
+      - "_bmad/**"
       - ".github/workflows/evals.yml"
   pull_request:
     paths:
       - "evals/**"
       - "router/**"
+      - "modules/**"
+      - "_bmad/**"
 
 jobs:
   eval-gate:

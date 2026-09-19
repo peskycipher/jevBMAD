@@ -29,7 +29,8 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
 ## Install
 
 Install via the BMad installer from any Git host or local path, or run the
-`jev-setup` skill in-project after copying this folder to `.claude/skills/`.
+`jev-setup` skill in-project after copying this folder to the host's skill
+directory (`.claude/skills/` for Claude Code, `.agents/skills/` for pi).
 
 ## Provenance
 
