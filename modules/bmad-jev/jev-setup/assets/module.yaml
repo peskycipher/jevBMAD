@@ -1,0 +1,9 @@
+code: jev
+name: "Jev BMad Hybrid"
+description: "System-1/System-2 decision layer for BMad: typed, calibrated Jev decisions (choice/score/noul) with conservative escalation, batched phase-readiness gates, and Jev-as-judge story review"
+module_version: 1.0.0
+default_selected: false
+module_greeting: >
+  Jev BMad Hybrid is ready. Fast, calibrated System-1 decisions with
+  conservative escalation — evaluation-first, audit-logged, and never
+  force-fitting an answer.

@@ -1,0 +1,27 @@
+{
+  "name": "jev-bmad-hybrid",
+  "owner": {
+    "name": "jevBMAD"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/jevBMAD",
+  "repository": "https://github.com/jevBMAD",
+  "keywords": ["bmad", "jev", "decisions", "system1-system2", "phase-gates", "jev-as-judge", "ai-agents"],
+  "plugins": [
+    {
+      "name": "jev-bmad-hybrid",
+      "source": "./",
+      "description": "System-1/System-2 decision layer for BMad: typed, calibrated Jev decisions (choice/score/noul) with conservative escalation, batched phase-readiness gates, and Jev-as-judge story review.",
+      "version": "1.0.0",
+      "author": {
+        "name": "jevBMAD"
+      },
+      "skills": [
+        "./jev-setup",
+        "./bmad-jev-decide",
+        "./bmad-jev-gates",
+        "./bmad-jev-review"
+      ]
+    }
+  ]
+}
