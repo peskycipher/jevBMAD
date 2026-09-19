@@ -100,3 +100,4 @@
 {"id": "routing-pre-1789822953-69", "state": "User: 'Is there any documentation about the deployment pipeline? Point me to it.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
 {"id": "routing-pre-1789822953-70", "state": "User: 'The API returns 200 with an empty body for deleted resources instead of 404. Fix the status codes.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
 {"id": "routing-pre-1789822954-71", "state": "User: 'Add a print stylesheet so the reports page prints cleanly.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-031", "state": "User: 'Add a typo fix to the README.'", "labels": {"intent": "docs_config"}, "priority": "medium", "source": "online-sample hindsight audit (over-escalation confirmed; root cause intent=other fixed by docs_config label in Phase 2; re-route verified auto)"}

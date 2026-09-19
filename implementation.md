@@ -458,6 +458,8 @@ The 18 prelabel-audit disagreement candidates (17 complexity, 1 guardrails) are 
 
 **§14.4 item 3 status: closed for this batch** (with the caveat above). All five §14.4 items are now done.
 
+**First completed online-sample → golden-set cycle (§7.3, 2026-09-19):** the hindsight queue's over-escalation verdict on "Add a typo fix to the README" was confirmed — root cause was the `intent=other` fallback under pre-Phase-2 criteria, fixed by the `docs_config` label. Re-route of the identical request now returns `system1_auto`/`docs_config`; the case is locked in as golden example `routing-031` (routing set n=103). The online loop — sample → hindsight judge → audit → criteria fix → golden set — has now run end-to-end once.
+
 ---
 
 ## 10. Key Configuration Defaults
