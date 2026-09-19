@@ -7,7 +7,7 @@ Kahneman's dual-process theory, operationalized:
 - **Harness**: pi.dev · **Memory**: Graft (code, live) + Mem0 (semantic, pluggable) · **Process**: BMAD-Method
 - **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
-**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Experimental, local-only, not pushed. Full history and methodology: [`implementation.md`](implementation.md) (v1.5, incl. §14 known limitations).
+**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Experimental, local-only, not pushed. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5, incl. §14 known limitations).
 
 ## How it works
 
@@ -34,7 +34,8 @@ request ──▶ router.py: ONE batched Jev call
 | `router/memory.py` | Unified retrieval: Graft CLI (live) + Mem0 REST (activates with `MEM0_API_KEY`) |
 | `router/thresholds.lockfile.json` | Fitted thresholds + model pin; fitted on train splits only |
 | `evals/` | Golden sets, harness, results, audit queues — see [`evals/README.md`](evals/README.md) |
-| `implementation.md` | The plan, phase records, baselines, findings, §14 limitations |
+| `docs/` | Expanded documentation: architecture, evaluation methodology, reference, runbooks, decision log — see [`docs/index.md`](docs/index.md) |
+| `docs/implementation.md` | The plan, phase records, baselines, findings, §14 limitations |
 | `.github/workflows/evals.yml` | CI regression gate (accuracy drop > 3 pts or model drift fails) |
 
 ## Quickstart

@@ -1,6 +1,6 @@
 # Evaluation Harness & Golden Sets
 
-Implements §7 of `../implementation.md` (v1.5): offline golden-set evals for the
+Implements §7 of `../docs/implementation.md` (v1.5): offline golden-set evals for the
 Jev System-1 layer, plus decision logging for later threshold fitting (Phase 1)
 and Jev-as-judge calibration (§7.6).
 
