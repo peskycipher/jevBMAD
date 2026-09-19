@@ -1,0 +1,25 @@
+[
+  {
+    "set": "guardrails",
+    "n_train": 80,
+    "n_holdout": 20,
+    "split_reused": true,
+    "model": "typesafe/jev-1.13-20260917",
+    "train_accuracy": 1.0,
+    "holdout_accuracy": 1.0,
+    "fitted_on_train": {
+      "safe_noul_min": 0.5,
+      "auto_acc_train": 1.0
+    },
+    "holdout_at_fitted": {
+      "threshold": 0.5,
+      "n_auto": 9,
+      "auto_acc": 1.0
+    },
+    "holdout_at_locked": {
+      "threshold": 0.5,
+      "n_auto": 9,
+      "auto_acc": 1.0
+    }
+  }
+]

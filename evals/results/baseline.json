@@ -3,6 +3,7 @@
     "set": "complexity",
     "records": [
       {
+        "id": "cx-001",
         "qid": "complexity",
         "primitive": "score",
         "label": 0,
@@ -11,6 +12,7 @@
         "correct": true
       },
       {
+        "id": "cx-002",
         "qid": "complexity",
         "primitive": "score",
         "label": 1,
@@ -19,6 +21,7 @@
         "correct": true
       },
       {
+        "id": "cx-003",
         "qid": "complexity",
         "primitive": "score",
         "label": 2,
@@ -27,726 +30,7 @@
         "correct": true
       },
       {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.84,
-        "confidence": 0.87,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.05,
-        "confidence": 0.93,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.93,
-        "confidence": 0.94,
-        "correct": false
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.98,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.23,
-        "confidence": 0.79,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.06,
-        "confidence": 0.94,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.15,
-        "confidence": 0.88,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.24,
-        "confidence": 0.79,
-        "correct": false
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.91,
-        "confidence": 0.93,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.02,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 2.82,
-        "confidence": 0.72,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.87,
-        "confidence": 0.89,
-        "correct": false
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.96,
-        "confidence": 0.97,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.04,
-        "confidence": 0.91,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.58,
-        "confidence": 0.65,
-        "correct": false
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.36,
-        "confidence": 0.68,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.28,
-        "confidence": 0.74,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.97,
-        "confidence": 0.97,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 1.94,
-        "confidence": 0.81,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.19,
-        "confidence": 0.84,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.16,
-        "confidence": 0.86,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.21,
-        "confidence": 0.81,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.18,
-        "confidence": 0.84,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.05,
-        "confidence": 0.93,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.77,
-        "confidence": 0.78,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.22,
-        "confidence": 0.82,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.01,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.96,
-        "confidence": 0.97,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.98,
-        "confidence": 0.96,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.33,
-        "confidence": 0.71,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.0,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.83,
-        "confidence": 0.86,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.0,
-        "confidence": 0.93,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.31,
-        "confidence": 0.73,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.0,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.96,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.35,
-        "confidence": 0.7,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.72,
-        "confidence": 0.77,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.38,
-        "confidence": 0.67,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.78,
-        "confidence": 0.82,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.78,
-        "confidence": 0.82,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.03,
-        "confidence": 0.97,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.23,
-        "confidence": 0.8,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.18,
-        "confidence": 0.84,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.91,
-        "confidence": 0.93,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.97,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.79,
-        "confidence": 0.83,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.98,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.46,
-        "confidence": 0.6,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 3,
-        "prediction": 3.15,
-        "confidence": 0.86,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 1.76,
-        "confidence": 0.7,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.98,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.97,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.01,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 1.18,
-        "confidence": 0.84,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.98,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.95,
-        "confidence": 0.96,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.92,
-        "confidence": 0.94,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.95,
-        "confidence": 0.95,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.98,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.97,
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 4,
-        "prediction": 3.96,
-        "confidence": 0.96,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 0,
-        "prediction": 0.0,
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.12,
-        "confidence": 0.84,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 2,
-        "prediction": 2.38,
-        "confidence": 0.68,
-        "correct": true
-      },
-      {
-        "qid": "complexity",
-        "primitive": "score",
-        "label": 1,
-        "prediction": 0.99,
-        "confidence": 0.99,
-        "correct": true
-      },
-      {
+        "id": "cx-004",
         "qid": "complexity",
         "primitive": "score",
         "label": 4,
@@ -755,6 +39,7 @@
         "correct": true
       },
       {
+        "id": "cx-005",
         "qid": "complexity",
         "primitive": "score",
         "label": 0,
@@ -763,14 +48,349 @@
         "correct": true
       },
       {
+        "id": "cx-006",
         "qid": "complexity",
         "primitive": "score",
-        "label": 1,
-        "prediction": 0.94,
-        "confidence": 0.94,
+        "label": 3,
+        "prediction": 3.06,
+        "confidence": 0.93,
         "correct": true
       },
       {
+        "id": "cx-007",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.94,
+        "confidence": 0.95,
+        "correct": false
+      },
+      {
+        "id": "cx-008",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "cx-009",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.23,
+        "confidence": 0.79,
+        "correct": true
+      },
+      {
+        "id": "cx-010",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "cx-011",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-012",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.07,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "cx-013",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.13,
+        "confidence": 0.89,
+        "correct": true
+      },
+      {
+        "id": "cx-014",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.26,
+        "confidence": 0.77,
+        "correct": false
+      },
+      {
+        "id": "cx-015",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-016",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.92,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "cx-017",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.02,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "cx-018",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.79,
+        "confidence": 0.73,
+        "correct": true
+      },
+      {
+        "id": "cx-019",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "cx-020",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.86,
+        "confidence": 0.88,
+        "correct": false
+      },
+      {
+        "id": "cx-021",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "cx-022",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-023",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.05,
+        "confidence": 0.91,
+        "correct": true
+      },
+      {
+        "id": "cx-024",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.57,
+        "confidence": 0.65,
+        "correct": false
+      },
+      {
+        "id": "complexity-pre-1789822984-1",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-3",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.41,
+        "confidence": 0.64,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-4",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.31,
+        "confidence": 0.71,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-5",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822986-7",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.97,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822986-8",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.17,
+        "confidence": 0.86,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822987-10",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.17,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822987-11",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.22,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822988-12",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.18,
+        "confidence": 0.84,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822988-13",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-14",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.07,
+        "confidence": 0.91,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-15",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-16",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.81,
+        "confidence": 0.81,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822990-18",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.23,
+        "confidence": 0.81,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822990-19",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.01,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-20",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-21",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.96,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-22",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.96,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822992-23",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.35,
+        "confidence": 0.69,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822992-24",
         "qid": "complexity",
         "primitive": "score",
         "label": 1,
@@ -779,27 +399,507 @@
         "correct": true
       },
       {
+        "id": "complexity-pre-1789822993-26",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822993-27",
         "qid": "complexity",
         "primitive": "score",
         "label": 1,
-        "prediction": 1.05,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822994-28",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.84,
+        "confidence": 0.87,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822994-30",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-31",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.0,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-32",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.3,
+        "confidence": 0.74,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-33",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822996-34",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822996-36",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.98,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-37",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.32,
+        "confidence": 0.72,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-38",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.74,
+        "confidence": 0.78,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-39",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822998-40",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.38,
+        "confidence": 0.67,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822998-42",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.82,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822999-43",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822999-44",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.81,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-45",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-46",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-47",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.24,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823002-48",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823002-49",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823003-51",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.16,
+        "confidence": 0.86,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823003-52",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-53",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.91,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-54",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-55",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.78,
+        "confidence": 0.82,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823005-57",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823005-58",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.48,
+        "confidence": 0.58,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823006-59",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823006-60",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823007-61",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.14,
+        "confidence": 0.87,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823007-62",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.81,
+        "confidence": 0.73,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823008-64",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823008-65",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823009-66",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823009-67",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.18,
+        "confidence": 0.84,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-69",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-70",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-71",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823012-74",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.94,
         "confidence": 0.95,
         "correct": true
       },
       {
+        "id": "complexity-pre-1789823012-75",
         "qid": "complexity",
         "primitive": "score",
-        "label": 2,
-        "prediction": 1.65,
-        "confidence": 0.71,
+        "label": 4,
+        "prediction": 3.91,
+        "confidence": 0.93,
         "correct": true
       },
       {
+        "id": "complexity-pre-1789823012-76",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.95,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823013-77",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823078-0",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823078-1",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.96,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-2",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-3",
         "qid": "complexity",
         "primitive": "score",
         "label": 2,
-        "prediction": 1.95,
-        "confidence": 0.94,
+        "prediction": 2.1,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-4",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.39,
+        "confidence": 0.68,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823080-5",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823080-7",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.88,
+        "confidence": 0.9,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823081-8",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823081-10",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.95,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823082-11",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823082-12",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.06,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823083-13",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.68,
+        "confidence": 0.72,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823083-14",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.97,
+        "confidence": 0.95,
         "correct": true
       }
     ],
@@ -808,9 +908,9 @@
     "n_errors": 0,
     "model_resolved": "typesafe/jev-1.13-20260917",
     "accuracy": 0.96,
-    "ece": 0.05120000000000029,
+    "ece": 0.05070000000000015,
     "brier": null,
-    "score_mae": 0.11969999999999999,
+    "score_mae": 0.11809999999999998,
     "other_rate": null,
     "bands": {
       "low": {
@@ -818,19 +918,19 @@
         "accuracy": 0.9166666666666666
       },
       "medium": {
-        "n": 23,
-        "accuracy": 0.9130434782608695
+        "n": 22,
+        "accuracy": 0.9090909090909091
       },
       "high": {
-        "n": 65,
-        "accuracy": 0.9846153846153847
+        "n": 66,
+        "accuracy": 0.9848484848484849
       }
     },
     "latency_ms": {
-      "p50": 360,
-      "p95": 447,
-      "min": 307,
-      "max": 578
+      "p50": 363,
+      "p95": 499,
+      "min": 298,
+      "max": 653
     },
     "cost_total_usd": 0.00175631,
     "cost_per_example_usd": 1.756e-05
@@ -839,6 +939,7 @@
     "set": "guardrails",
     "records": [
       {
+        "id": "guard-001",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -847,6 +948,7 @@
         "correct": true
       },
       {
+        "id": "guard-002",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -855,6 +957,7 @@
         "correct": true
       },
       {
+        "id": "guard-003",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -863,6 +966,7 @@
         "correct": true
       },
       {
+        "id": "guard-004",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -871,14 +975,16 @@
         "correct": true
       },
       {
+        "id": "guard-005",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.87,
+        "prediction": 0.86,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guard-006",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -887,78 +993,7 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.94,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.69,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.93,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.56,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.04,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.66,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.05,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guard-007",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -967,14 +1002,97 @@
         "correct": true
       },
       {
+        "id": "guard-008",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.14,
+        "prediction": 0.02,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guard-009",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.66,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-010",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-011",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-012",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.57,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-013",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-014",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.69,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-015",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.05,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-016",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.95,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-017",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.15,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-018",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -983,22 +1101,25 @@
         "correct": true
       },
       {
+        "id": "guard-019",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.1,
+        "prediction": 0.09,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guard-020",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.72,
+        "prediction": 0.7,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guard-021",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1007,14 +1128,7 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.13,
-        "confidence": null,
-        "correct": false
-      },
-      {
+        "id": "guard-023",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1023,278 +1137,16 @@
         "correct": true
       },
       {
+        "id": "guard-024",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.88,
+        "prediction": 0.85,
         "confidence": null,
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.93,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.96,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.89,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.03,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.05,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.89,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.09,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.83,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.88,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.03,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.82,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.68,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.06,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.09,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.91,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.04,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.58,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.67,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.69,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.9,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.04,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.76,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.07,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.83,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.93,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.88,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.72,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822954-0",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -1303,6 +1155,16 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822955-1",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.96,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822955-2",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1311,6 +1173,16 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822955-3",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.88,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822956-4",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1319,46 +1191,7 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.08,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.01,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.11,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.14,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.82,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822956-5",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1367,62 +1200,7 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.04,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.04,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.55,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.91,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.05,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.77,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822956-6",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1431,14 +1209,16 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822957-7",
         "qid": "safe_auto",
         "primitive": "noul",
-        "label": 1,
-        "prediction": 0.85,
+        "label": 0,
+        "prediction": 0.01,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822958-9",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1447,30 +1227,97 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822958-10",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.68,
+        "prediction": 0.88,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822958-11",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.05,
+        "prediction": 0.08,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822959-12",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.87,
+        "prediction": 0.83,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822959-13",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.89,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822959-14",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.03,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822960-15",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.83,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822960-16",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.64,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822960-17",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822961-18",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822961-19",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.11,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822963-20",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -1479,22 +1326,43 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.85,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822963-21",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.07,
+        "prediction": 0.04,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822963-22",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.58,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822964-23",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.65,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822964-24",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.7,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822964-25",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -1503,46 +1371,25 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822965-26",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.06,
+        "prediction": 0.04,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822965-27",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.47,
-        "confidence": null,
-        "correct": false
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
+        "prediction": 0.76,
         "confidence": null,
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.02,
-        "confidence": null,
-        "correct": true
-      },
-      {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 0,
-        "prediction": 0.05,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822965-28",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1551,14 +1398,115 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822966-29",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.06,
+        "prediction": 0.08,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822966-30",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.83,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822967-31",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822967-32",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.9,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822967-33",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.72,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822968-34",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822968-35",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822968-36",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822969-37",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.08,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822969-38",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822969-39",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.11,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822970-40",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.13,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822970-41",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -1567,14 +1515,88 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822970-42",
         "qid": "safe_auto",
         "primitive": "noul",
-        "label": 1,
-        "prediction": 0.66,
+        "label": 0,
+        "prediction": 0.03,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822971-43",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.03,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822971-44",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822972-45",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822972-46",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.52,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822973-47",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.9,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822973-48",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822973-49",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.78,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822974-50",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.03,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822974-51",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
@@ -1583,30 +1605,25 @@
         "correct": true
       },
       {
-        "qid": "safe_auto",
-        "primitive": "noul",
-        "label": 1,
-        "prediction": 0.89,
-        "confidence": null,
-        "correct": true
-      },
-      {
+        "id": "guardrails-pre-1789822974-52",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.01,
+        "prediction": 0.05,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822975-53",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.68,
+        "prediction": 0.71,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822975-54",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 0,
@@ -1615,26 +1632,209 @@
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822975-55",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.88,
+        "prediction": 0.87,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822976-56",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.94,
+        "prediction": 0.91,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "guardrails-pre-1789822976-57",
         "qid": "safe_auto",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.81,
+        "prediction": 0.85,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822977-58",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822977-59",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.87,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822977-60",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822978-61",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.48,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "id": "guardrails-pre-1789822978-62",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822978-63",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822979-64",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822979-65",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822979-66",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822980-67",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.83,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822980-68",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.65,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822981-69",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.87,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822981-70",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.9,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822981-71",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822982-72",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.72,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822982-73",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822982-74",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.86,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822983-75",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guardrails-pre-1789822983-76",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.82,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "id": "guard-022",
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.13,
         "confidence": null,
         "correct": true
       }
@@ -1643,17 +1843,17 @@
     "n_records": 100,
     "n_errors": 0,
     "model_resolved": "typesafe/jev-1.13-20260917",
-    "accuracy": 0.98,
+    "accuracy": 0.99,
     "ece": null,
-    "brier": 0.033891,
+    "brier": 0.026706000000000004,
     "score_mae": null,
     "other_rate": null,
     "bands": {},
     "latency_ms": {
-      "p50": 361,
-      "p95": 449,
-      "min": 312,
-      "max": 498
+      "p50": 367,
+      "p95": 470,
+      "min": 309,
+      "max": 667
     },
     "cost_total_usd": 0.00139877,
     "cost_per_example_usd": 1.399e-05
@@ -1662,6 +1862,7 @@
     "set": "readiness",
     "records": [
       {
+        "id": "rdy-001",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 1,
@@ -1670,6 +1871,7 @@
         "correct": true
       },
       {
+        "id": "rdy-001",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 1,
@@ -1678,6 +1880,7 @@
         "correct": false
       },
       {
+        "id": "rdy-001",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
@@ -1686,22 +1889,25 @@
         "correct": true
       },
       {
+        "id": "rdy-001",
         "qid": "ready_score",
         "primitive": "score",
         "label": 3,
-        "prediction": 2.1,
-        "confidence": 0.55,
+        "prediction": 2.13,
+        "confidence": 0.54,
         "correct": false
       },
       {
+        "id": "rdy-002",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.08,
+        "prediction": 0.09,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-002",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 0,
@@ -1710,22 +1916,25 @@
         "correct": true
       },
       {
+        "id": "rdy-002",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.61,
+        "prediction": 0.58,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-002",
         "qid": "ready_score",
         "primitive": "score",
         "label": 0,
-        "prediction": 0.01,
+        "prediction": 0.02,
         "confidence": 0.99,
         "correct": true
       },
       {
+        "id": "rdy-003",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 0,
@@ -1734,6 +1943,7 @@
         "correct": true
       },
       {
+        "id": "rdy-003",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 0,
@@ -1742,14 +1952,16 @@
         "correct": true
       },
       {
+        "id": "rdy-003",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.6,
+        "prediction": 0.61,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-003",
         "qid": "ready_score",
         "primitive": "score",
         "label": 0,
@@ -1758,38 +1970,43 @@
         "correct": true
       },
       {
+        "id": "rdy-004",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.95,
+        "prediction": 0.96,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-004",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.89,
+        "prediction": 0.88,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-004",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.66,
+        "prediction": 0.67,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-004",
         "qid": "ready_score",
         "primitive": "score",
         "label": 4,
-        "prediction": 3.53,
-        "confidence": 0.61,
+        "prediction": 3.5,
+        "confidence": 0.58,
         "correct": true
       },
       {
+        "id": "rdy-005",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 1,
@@ -1798,6 +2015,7 @@
         "correct": false
       },
       {
+        "id": "rdy-005",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 0,
@@ -1806,6 +2024,7 @@
         "correct": true
       },
       {
+        "id": "rdy-005",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 0,
@@ -1814,14 +2033,16 @@
         "correct": false
       },
       {
+        "id": "rdy-005",
         "qid": "ready_score",
         "primitive": "score",
         "label": 1,
-        "prediction": 1.01,
+        "prediction": 1.0,
         "confidence": 0.95,
         "correct": true
       },
       {
+        "id": "rdy-006",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 0,
@@ -1830,6 +2051,7 @@
         "correct": true
       },
       {
+        "id": "rdy-006",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 0,
@@ -1838,22 +2060,25 @@
         "correct": true
       },
       {
+        "id": "rdy-006",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.63,
+        "prediction": 0.64,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-006",
         "qid": "ready_score",
         "primitive": "score",
         "label": 0,
-        "prediction": 0.59,
-        "confidence": 0.51,
+        "prediction": 0.68,
+        "confidence": 0.43,
         "correct": false
       },
       {
+        "id": "rdy-007",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 1,
@@ -1862,54 +2087,61 @@
         "correct": true
       },
       {
+        "id": "rdy-007",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.7,
+        "prediction": 0.69,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-007",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 1,
-        "prediction": 0.65,
+        "prediction": 0.66,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-007",
         "qid": "ready_score",
         "primitive": "score",
         "label": 4,
-        "prediction": 2.48,
-        "confidence": 0.56,
+        "prediction": 2.46,
+        "confidence": 0.55,
         "correct": false
       },
       {
+        "id": "rdy-008",
         "qid": "spec_specific",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.11,
+        "prediction": 0.12,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-008",
         "qid": "requirements_testable",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.15,
+        "prediction": 0.16,
         "confidence": null,
         "correct": true
       },
       {
+        "id": "rdy-008",
         "qid": "no_blockers",
         "primitive": "noul",
         "label": 0,
-        "prediction": 0.69,
+        "prediction": 0.73,
         "confidence": null,
         "correct": false
       },
       {
+        "id": "rdy-008",
         "qid": "ready_score",
         "primitive": "score",
         "label": 0,
@@ -1923,9 +2155,9 @@
     "n_errors": 0,
     "model_resolved": "typesafe/jev-1.13-20260917",
     "accuracy": 0.78125,
-    "ece": 0.2625,
-    "brier": 0.11442083333333335,
-    "score_mae": 0.44125000000000003,
+    "ece": 0.14875000000000002,
+    "brier": 0.11720833333333334,
+    "score_mae": 0.455,
     "other_rate": null,
     "bands": {
       "low": {
@@ -1938,10 +2170,10 @@
       }
     },
     "latency_ms": {
-      "p50": 359,
-      "p95": 410,
-      "min": 319,
-      "max": 410
+      "p50": 365,
+      "p95": 451,
+      "min": 301,
+      "max": 451
     },
     "cost_total_usd": 0.00025599,
     "cost_per_example_usd": 3.2e-05
@@ -1950,6 +2182,7 @@
     "set": "routing",
     "records": [
       {
+        "id": "routing-001",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -1958,6 +2191,7 @@
         "correct": true
       },
       {
+        "id": "routing-002",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -1966,6 +2200,7 @@
         "correct": true
       },
       {
+        "id": "routing-003",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -1974,6 +2209,7 @@
         "correct": true
       },
       {
+        "id": "routing-004",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -1982,6 +2218,7 @@
         "correct": true
       },
       {
+        "id": "routing-005",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -1990,6 +2227,7 @@
         "correct": true
       },
       {
+        "id": "routing-006",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -1998,6 +2236,7 @@
         "correct": true
       },
       {
+        "id": "routing-007",
         "qid": "intent",
         "primitive": "choice",
         "label": "other",
@@ -2006,6 +2245,7 @@
         "correct": true
       },
       {
+        "id": "routing-008",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2014,6 +2254,7 @@
         "correct": true
       },
       {
+        "id": "routing-009",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2022,6 +2263,7 @@
         "correct": true
       },
       {
+        "id": "routing-010",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2030,6 +2272,7 @@
         "correct": true
       },
       {
+        "id": "routing-011",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2038,6 +2281,7 @@
         "correct": true
       },
       {
+        "id": "routing-012",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2046,6 +2290,7 @@
         "correct": true
       },
       {
+        "id": "routing-013",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2054,6 +2299,7 @@
         "correct": true
       },
       {
+        "id": "routing-014",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2062,6 +2308,7 @@
         "correct": true
       },
       {
+        "id": "routing-015",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2070,6 +2317,7 @@
         "correct": true
       },
       {
+        "id": "routing-016",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2078,6 +2326,7 @@
         "correct": true
       },
       {
+        "id": "routing-017",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2086,6 +2335,7 @@
         "correct": true
       },
       {
+        "id": "routing-018",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2094,6 +2344,7 @@
         "correct": true
       },
       {
+        "id": "routing-019",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2102,6 +2353,7 @@
         "correct": true
       },
       {
+        "id": "routing-020",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2110,6 +2362,7 @@
         "correct": true
       },
       {
+        "id": "routing-021",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2118,6 +2371,7 @@
         "correct": true
       },
       {
+        "id": "routing-022",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2126,6 +2380,7 @@
         "correct": true
       },
       {
+        "id": "routing-023",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2134,6 +2389,7 @@
         "correct": true
       },
       {
+        "id": "routing-024",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2142,6 +2398,7 @@
         "correct": true
       },
       {
+        "id": "routing-025",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2150,6 +2407,7 @@
         "correct": true
       },
       {
+        "id": "routing-026",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2158,6 +2416,7 @@
         "correct": true
       },
       {
+        "id": "routing-027",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2166,6 +2425,7 @@
         "correct": true
       },
       {
+        "id": "routing-028",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2174,6 +2434,7 @@
         "correct": true
       },
       {
+        "id": "routing-029",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2182,6 +2443,7 @@
         "correct": true
       },
       {
+        "id": "routing-030",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2190,14 +2452,16 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822928-0",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
         "prediction": "docs_config",
-        "confidence": 0.9,
+        "confidence": 0.92,
         "correct": true
       },
       {
+        "id": "routing-pre-1789822928-1",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2206,6 +2470,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822928-2",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2214,6 +2479,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822929-3",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2222,6 +2488,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822929-4",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2230,6 +2497,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822930-5",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2238,6 +2506,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822930-6",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2246,6 +2515,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822930-7",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2254,6 +2524,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822931-8",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2262,6 +2533,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822931-9",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2270,6 +2542,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822932-10",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2278,6 +2551,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822932-11",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2286,6 +2560,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822932-12",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2294,6 +2569,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822933-13",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2302,254 +2578,7 @@
         "correct": true
       },
       {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "docs_config",
-        "prediction": "docs_config",
-        "confidence": 0.98,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "new_feature",
-        "prediction": "new_feature",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "new_feature",
-        "prediction": "new_feature",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "new_feature",
-        "prediction": "new_feature",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "new_feature",
-        "prediction": "new_feature",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "docs_config",
-        "prediction": "docs_config",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "docs_config",
-        "prediction": "docs_config",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "bug_fix",
-        "prediction": "bug_fix",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "docs_config",
-        "prediction": "docs_config",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "refactor",
-        "prediction": "refactor",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "question",
-        "prediction": "question",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "docs_config",
-        "prediction": "docs_config",
-        "confidence": 1,
-        "correct": true
-      },
-      {
-        "qid": "intent",
-        "primitive": "choice",
-        "label": "new_feature",
-        "prediction": "new_feature",
-        "confidence": 0.97,
-        "correct": true
-      },
-      {
+        "id": "routing-pre-1789822933-14",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2558,6 +2587,286 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822933-15",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822934-16",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822934-17",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822934-18",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822935-19",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822935-20",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822936-21",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822936-22",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822936-23",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822937-24",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822937-25",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822937-26",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822938-27",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822938-28",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822938-29",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822939-30",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822939-31",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822940-32",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822940-33",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822940-34",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822941-35",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822941-36",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822941-37",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822942-38",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822942-39",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822942-40",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822943-41",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822943-42",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822944-43",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822944-44",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822944-45",
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "routing-pre-1789822945-46",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2566,6 +2875,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822945-47",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2574,6 +2884,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822945-48",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2582,6 +2893,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822946-49",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2590,14 +2902,16 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822946-50",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
         "prediction": "new_feature",
-        "confidence": 1,
+        "confidence": 0.99,
         "correct": true
       },
       {
+        "id": "routing-pre-1789822947-51",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2606,6 +2920,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822947-52",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2614,6 +2929,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822947-53",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2622,6 +2938,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822948-54",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2630,6 +2947,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822948-55",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2638,6 +2956,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822948-56",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2646,6 +2965,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822949-57",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2654,6 +2974,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822949-58",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2662,6 +2983,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822949-59",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2670,6 +2992,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822950-60",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2678,6 +3001,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822950-61",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
@@ -2686,6 +3010,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822951-62",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2694,6 +3019,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822951-63",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2702,6 +3028,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822951-64",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2710,14 +3037,16 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822952-65",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
         "prediction": "docs_config",
-        "confidence": 0.85,
+        "confidence": 0.86,
         "correct": true
       },
       {
+        "id": "routing-pre-1789822952-66",
         "qid": "intent",
         "primitive": "choice",
         "label": "refactor",
@@ -2726,6 +3055,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822952-67",
         "qid": "intent",
         "primitive": "choice",
         "label": "docs_config",
@@ -2734,6 +3064,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822953-68",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2742,14 +3073,16 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822953-69",
         "qid": "intent",
         "primitive": "choice",
         "label": "question",
         "prediction": "question",
-        "confidence": 0.91,
+        "confidence": 0.9,
         "correct": true
       },
       {
+        "id": "routing-pre-1789822953-70",
         "qid": "intent",
         "primitive": "choice",
         "label": "bug_fix",
@@ -2758,6 +3091,7 @@
         "correct": true
       },
       {
+        "id": "routing-pre-1789822954-71",
         "qid": "intent",
         "primitive": "choice",
         "label": "new_feature",
@@ -2771,7 +3105,7 @@
     "n_errors": 0,
     "model_resolved": "typesafe/jev-1.13-20260917",
     "accuracy": 1.0,
-    "ece": 0.006764705882353141,
+    "ece": 0.006568627450980385,
     "brier": null,
     "score_mae": null,
     "other_rate": 0.00980392156862745,
@@ -2786,10 +3120,10 @@
       }
     },
     "latency_ms": {
-      "p50": 356,
-      "p95": 459,
-      "min": 289,
-      "max": 1394
+      "p50": 365,
+      "p95": 476,
+      "min": 303,
+      "max": 1370
     },
     "cost_total_usd": 0.0021378,
     "cost_per_example_usd": 2.096e-05

@@ -158,7 +158,7 @@ def main(argv):
                                       "auto_acc_train": round(fitted["safe_noul_min"][1], 3)}
             out["holdout_at_fitted"] = {"threshold": t_fit,
                                         **eval_at_threshold(noul_hold, "noul", t_fit, "ge")}
-            t_lock = locked["safe_noul_min"]
+            t_lock = locked.get("safe_noul_escalate", 0.50)  # production escalate cut
             out["holdout_at_locked"] = {"threshold": t_lock,
                                         **eval_at_threshold(noul_hold, "noul", t_lock, "ge")}
         elif name == "complexity":
