@@ -9,16 +9,21 @@ Warns (exit 0, dashboard alerts pick these up per §7.3):
   - ECE > ece_alert_threshold (default 0.05) — calibration drift is an
     alerting signal; hard-fail only with --strict
 
+Unit tests (evals/harness/tests/) run first and do not need an API key —
+the gate fails there before touching the golden sets.
+
 Usage:
   python3 evals/harness/ci_gate.py                 # run + gate
   python3 evals/harness/ci_gate.py --update-baseline   # refresh baseline
-Skips with exit 0 + notice when OPENROUTER_API_KEY is unset (CI without secrets).
+Skips golden sets with exit 0 + notice when OPENROUTER_API_KEY is unset
+(CI without secrets); unit tests still run.
 """
 from __future__ import annotations
 
 import json
 import os
 import sys
+import unittest
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -34,6 +39,17 @@ CI_REGRESSION_THRESHOLD = 0.03  # §10
 ECE_ALERT_THRESHOLD = 0.05       # §10
 
 
+def run_unit_tests() -> bool:
+    """Discover and run evals/harness/tests/ (no API key required)."""
+    tests_dir = HERE / "tests"
+    if not tests_dir.is_dir():
+        print("  unit tests: skipped (no tests/ directory)")
+        return True
+    suite = unittest.TestLoader().discover(str(tests_dir))
+    result = unittest.TextTestRunner(stream=sys.stderr, verbosity=1).run(suite)
+    return result.wasSuccessful()
+
+
 def run_all() -> list:
     sets_dir = HERE.parent / "golden-sets"
     set_dirs = sorted(d for d in sets_dir.iterdir()
@@ -42,6 +58,10 @@ def run_all() -> list:
 
 
 def main(argv):
+    if not run_unit_tests():
+        print("CI GATE: FAIL (unit tests)")
+        return 1
+
     if not os.environ.get("OPENROUTER_API_KEY"):
         print("CI GATE: SKIP (OPENROUTER_API_KEY not set)")
         return 0
