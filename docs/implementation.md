@@ -2,7 +2,7 @@
 **Jev AI (System 1) + GLM-5.3 (System 2) + pi.dev Harness + Mem0 + Graft**  
 Integrated with the BMAD-Method Workflow
 
-**Version:** 1.5.2  
+**Version:** 1.5.3  
 **Date:** 2026-09-19  
 **Status:** Ready for Implementation  
 
@@ -16,6 +16,7 @@ Integrated with the BMAD-Method Workflow
 - v1.5.1: Pinned System-1 model to `typesafe/jev-1.13-20260917` (reproducibility now required: silent upstream model bumps would invalidate fitted thresholds)
 - v1.5.1: Lockfile fitted key renamed `safe_noul_min` → `safe_noul_escalate` to match the consumed threshold names
 - v1.5.2: CLI entrypoints (router, hybrid, judge, bmad_gates) harden the degradation contract: machine-readable `reason_kind` (`missing_api_key` / `provider_error` / `internal_error`), usage errors reported as `bad_request` (exit 2), broken-pipe-safe emission, argv artifact for bmad_gates without stdin blocking
+- v1.5.3: Repo published (`v0.1.0` tag); unit tests wired into `ci_gate` (run keyless, before golden sets) and CI triggers widened to `modules/**` + `_bmad/**`; §7.6 independent human audit specified — blind-labeling protocol (freeze-before-label, ordering gate, judge-environment isolation, split sessions), stories committed (`_bmad-output/specs/spec-s76-independent-audit/`); the §7.6 gate is now planned work, not a named TODO
 
 ---
 
@@ -438,7 +439,7 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 
 1. **Decide the safe_noul policy** (14.2 options) — largest single effect on System-1 share.
 2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.py` + `router/hybrid.py`; first cost/latency data points recorded in §14.1.4).
-3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration.
+3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration. — **specced 2026-09-19**: `_bmad-output/specs/spec-s76-independent-audit/` (blind-labeling protocol, stories; gate-agreement claim only this batch, ECE deferred to n≥50).
 4. ~~Preserve dropped disagreement candidates as a hard set~~ ✅ done 2026-09-19 — `evals/hard-sets/` (see §14.5).
 5. ~~Injection gate + prelabel state dedupe~~ ✅ done 2026-09-19 (see §14.1.5; promotion now skips duplicate states, verified 0 re-promoted).
 

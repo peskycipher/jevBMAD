@@ -7,7 +7,7 @@ Kahneman's dual-process theory, operationalized:
 - **Harness**: pi.dev · **Memory**: Graft (code, live) + Mem0 (semantic, pluggable) · **Process**: BMAD-Method
 - **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
-**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Experimental, local-only, not pushed. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.2, incl. §14 known limitations).
+**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
 
 ## How it works
 
@@ -57,6 +57,7 @@ request ──▶ router.py: ONE batched Jev call
 
 ```bash
 export OPENROUTER_API_KEY=sk-...          # required for everything live
+python3 -m unittest discover -s evals/harness/tests   # contract tests — no key needed
 
 python3 router/hybrid.py "What does the router do?"       # full loop demo
 python3 router/router.py "Drop the users table"           # routing decision only

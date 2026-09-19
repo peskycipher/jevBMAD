@@ -16,6 +16,7 @@ evals/
     jev_client.py        # OpenRouter Decisions API client + JSONL logging
     metrics.py           # accuracy, ECE, Brier, per-band reports
     run_evals.py        # CLI runner over a golden set
+    tests/               # unit tests (entrypoint degradation, model/lockfile consistency) — run keyless
   results/               # eval run reports (versioned JSON)
   logs/                  # full decision logs (one JSON line per API call)
 ```
