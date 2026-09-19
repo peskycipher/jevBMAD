@@ -23,7 +23,7 @@ LOCKFILE = Path(__file__).resolve().parent.parent.parent / "router" / "threshold
 
 TARGET_AUTO_ACC = 0.95   # accuracy required among auto-executed examples
 MIN_EXAMPLES = 100        # §10 calibration.min_labeled_examples
-DEFAULTS = {"intent_conf_min": 0.75, "safe_noul_min": 0.90, "complexity_max": 1.5}
+DEFAULTS = {"intent_conf_min": 0.75, "safe_noul_escalate": 0.50, "complexity_max": 1.5}
 
 
 def sweep_confidence(recs, target=TARGET_AUTO_ACC):
@@ -89,7 +89,7 @@ def main(argv):
     fitted = {}
     sweepers = {
         "routing": ("intent_conf_min", sweep_confidence),
-        "guardrails": ("safe_noul_min", sweep_noul),
+        "guardrails": ("safe_noul_escalate", sweep_noul),
         "complexity": ("complexity_max", sweep_score),
     }
     for set_name, (key, fn) in sweepers.items():

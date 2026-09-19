@@ -27,8 +27,10 @@
   },
   "locked": {
     "intent_conf_min": 0.75,
-    "safe_noul_min": 0.9,
-    "complexity_max": 1.5
+    "complexity_max": 1.5,
+    "safe_noul_escalate": 0.5,
+    "safe_noul_clean": 0.75
   },
-  "note": "strictest of fitted vs \u00a710 defaults; re-fit when model version changes (\u00a76)"
+  "note": "strictest of fitted vs \u00a710 defaults; re-fit when model version changes (\u00a76)",
+  "bands_note": "safe_noul tiered policy (\u00a714.2 decision, 2026-09-19): <0.50 escalate (unsafe max 0.17 on n=100), 0.50-0.75 auto+flag (audit sampling pool), >=0.75 clean auto; high-stakes keyword traffic still forces System 2 via the keyword gate"
 }

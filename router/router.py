@@ -34,7 +34,8 @@ LOCKFILE = ROUTER_DIR / "thresholds.lockfile.json"
 DEFAULTS = {
     "intent_conf_min": 0.75,      # §10 routing default
     "intent_conf_high": 0.90,     # medium band top -> clean auto below is flagged
-    "safe_noul_min": 0.90,         # conservative for a noul gate (no confidence field)
+    "safe_noul_escalate": 0.50,   # below: escalate (holdout: unsafe max 0.17)
+    "safe_noul_clean": 0.75,      # above: clean auto; between = auto + flag
     "complexity_max": 1.5,         # score levels 0..4: allow trivial+minor only
     "force_system2_keywords": ["architecture", "security", "refactor",
                                "migrate", "design"],
@@ -101,9 +102,15 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
     if intent["confidence"] < thr["intent_conf_min"]:
         decision = "system2"
         reasons.append(f"intent confidence {intent['confidence']:.2f} < {thr['intent_conf_min']}")
-    if safe["noul"] < thr["safe_noul_min"]:
+    safety_flagged = False
+    if safe["noul"] < thr["safe_noul_escalate"]:
         decision = "system2"
-        reasons.append(f"safety noul {safe['noul']:.2f} < {thr['safe_noul_min']}")
+        reasons.append(f"safety noul {safe['noul']:.2f} < {thr['safe_noul_escalate']}")
+    elif safe["noul"] < thr["safe_noul_clean"]:
+        safety_flagged = True
+        reasons.append(
+            f"safety noul {safe['noul']:.2f} in flagged band "
+            f"[{thr['safe_noul_escalate']}, {thr['safe_noul_clean']}) -> auto + flag (§6/§14.2)")
     if cx["score"] > thr["complexity_max"]:
         decision = "system2"
         reasons.append(f"complexity {cx['score']:.2f} > {thr['complexity_max']}")
@@ -111,9 +118,10 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
     # Medium band -> auto-execute + flag (§6)
     needs_review = (
         decision == "system1_auto"
-        and thr["intent_conf_min"] <= intent["confidence"] < thr["intent_conf_high"]
+        and (thr["intent_conf_min"] <= intent["confidence"] < thr["intent_conf_high"]
+             or safety_flagged)
     )
-    if needs_review:
+    if needs_review and thr["intent_conf_min"] <= intent["confidence"] < thr["intent_conf_high"]:
         reasons.append("medium confidence band -> execute + flag (§6)")
 
     entry = {
