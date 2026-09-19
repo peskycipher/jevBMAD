@@ -27,7 +27,7 @@ EVALS_DIR = ROUTER_DIR.parent / "evals" / "golden-sets"
 sys.path.insert(0, str(ROUTER_DIR))
 sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
 
-from jev_client import call_jev  # noqa: E402
+from jev_client import call_jev, JevError  # noqa: E402
 import memory  # noqa: E402
 
 LOCKFILE = ROUTER_DIR / "thresholds.lockfile.json"
@@ -203,8 +203,20 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
 
 
 if __name__ == "__main__":
+    def _degrade(reason_kind: str, reason: str) -> None:
+        """Defined unavailable status — JSON, never a traceback (adapter contract)."""
+        try:
+            print(json.dumps({"status": "unavailable", "reason_kind": reason_kind,
+                              "reason": reason[:300], "decision": "unavailable"},
+                             indent=2))
+        except BrokenPipeError:
+            pass
+
     req = " ".join(sys.argv[1:]) or "What does the retry helper do in http_client.py?"
     try:
         print(json.dumps(route(req), indent=2))
-    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
-        print(json.dumps({"status": "unavailable", "reason": str(e)[:300], "decision": "unavailable"}, indent=2))
+    except JevError as e:
+        _degrade("missing_api_key" if "API_KEY" in str(e).upper() else "provider_error",
+                 str(e))
+    except Exception as e:  # noqa: BLE001 — internal bugs degrade too, never traceback
+        _degrade("internal_error", f"{type(e).__name__}: {e}")

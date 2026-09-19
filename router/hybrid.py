@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
 from router import route  # noqa: E402
 import memory  # noqa: E402
 from system2 import System2Error, execute  # noqa: E402
+from jev_client import JevError  # noqa: E402
 
 
 def dispatch(request_text: str, project_root: str = ".", use_memory: bool = True) -> dict:
@@ -75,17 +76,27 @@ def dispatch(request_text: str, project_root: str = ".", use_memory: bool = True
 
 
 if __name__ == "__main__":
+    def _degrade(reason_kind: str, reason: str) -> None:
+        """Defined unavailable status — JSON, never a traceback (adapter contract)."""
+        try:
+            print(json.dumps({"status": "unavailable", "reason_kind": reason_kind,
+                              "reason": reason[:300],
+                              "routing_decision": "unavailable"}, indent=2))
+        except BrokenPipeError:
+            pass
+
     req = " ".join(sys.argv[1:]) or "Refactor the router package into a cleaner module layout."
     try:
         result = dispatch(req)
-    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
-        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
-                          "routing_decision": "unavailable"}, indent=2))
-        raise SystemExit(0)
-    summary = {k: result[k] for k in ("decision_id", "end_to_end_ms", "cost_usd")}
-    summary["routing_decision"] = result["routing"]["decision"]
-    if result["system2"] and result["system2"]["status"] == "ok":
-        summary["system2_model"] = result["system2"]["model"]
-        summary["system2_latency_ms"] = result["system2"]["latency_ms"]
-        summary["response_preview"] = result["system2"]["text"][:200]
-    print(json.dumps(summary, indent=2))
+        summary = {k: result[k] for k in ("decision_id", "end_to_end_ms", "cost_usd")}
+        summary["routing_decision"] = result["routing"]["decision"]
+        if result["system2"] and result["system2"]["status"] == "ok":
+            summary["system2_model"] = result["system2"]["model"]
+            summary["system2_latency_ms"] = result["system2"]["latency_ms"]
+            summary["response_preview"] = result["system2"]["text"][:200]
+        print(json.dumps(summary, indent=2))
+    except JevError as e:
+        _degrade("missing_api_key" if "API_KEY" in str(e).upper() else "provider_error",
+                 str(e))
+    except Exception as e:  # noqa: BLE001 — internal bugs degrade too, never traceback
+        _degrade("internal_error", f"{type(e).__name__}: {e}")

@@ -57,8 +57,31 @@ class EntrypointDegradationTest(unittest.TestCase):
                     self.fail(f"{label} did not emit JSON on stdout: {proc.stdout!r}")
                 self.assertIn("unavailable", json.dumps(data).lower(),
                               f"{label} should report an unavailable/disabled status")
+                self.assertIn("reason_kind", data,
+                              f"{label} should carry a machine-readable reason_kind")
                 self.assertEqual(proc.returncode, 0,
                                  f"{label} should exit 0 on a defined unavailable status")
+
+
+# usage errors are caller mistakes, not provider outages: bad_request, exit 2
+USAGE_CASES = [
+    ("judge.py no args", [sys.executable, "router/judge.py"], None),
+    ("bmad_gates.py empty input", [sys.executable, "router/bmad_gates.py"], ""),
+]
+
+
+class UsageDegradationTest(unittest.TestCase):
+    def test_usage_errors_report_bad_request_exit_2(self):
+        for label, argv, stdin_text in USAGE_CASES:
+            with self.subTest(entrypoint=label):
+                _, proc = run(label, argv, stdin_text)
+                self.assertNotIn("Traceback", proc.stderr,
+                                 f"{label} leaked a traceback:\n{proc.stderr}")
+                data = json.loads(proc.stdout)
+                self.assertEqual(data["status"], "bad_request",
+                                 f"{label} should report a caller error, not an outage")
+                self.assertEqual(data["reason_kind"], "usage")
+                self.assertEqual(proc.returncode, 2)
 
 
 if __name__ == "__main__":

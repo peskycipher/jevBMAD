@@ -2,7 +2,7 @@
 **Jev AI (System 1) + GLM-5.3 (System 2) + pi.dev Harness + Mem0 + Graft**  
 Integrated with the BMAD-Method Workflow
 
-**Version:** 1.5.1  
+**Version:** 1.5.2  
 **Date:** 2026-09-19  
 **Status:** Ready for Implementation  
 
@@ -13,7 +13,9 @@ Integrated with the BMAD-Method Workflow
 - v1.3: Full integration of Jev primitives, structured criteria, API details, and best practices  
 - v1.4: Added comprehensive evaluation (evals) framework, metrics, offline/online evaluation strategy, and integration into all phases
 - v1.5: Jev-as-judge replaces most human-in-the-loop labeling/review; System-2 output rubric added (§7.7); Choice `other` → System-2 fallback; default model set to `~typesafe/jev-latest`
-- v1.5.1: Pinned System-1 model to `typesafe/jev-1.13-20260917` (reproducibility now required: silent upstream model bumps would invalidate fitted thresholds); lockfile fitted key renamed `safe_noul_min` → `safe_noul_escalate` to match the consumed threshold names
+- v1.5.1: Pinned System-1 model to `typesafe/jev-1.13-20260917` (reproducibility now required: silent upstream model bumps would invalidate fitted thresholds)
+- v1.5.1: Lockfile fitted key renamed `safe_noul_min` → `safe_noul_escalate` to match the consumed threshold names
+- v1.5.2: CLI entrypoints (router, hybrid, judge, bmad_gates) harden the degradation contract: machine-readable `reason_kind` (`missing_api_key` / `provider_error` / `internal_error`), usage errors reported as `bad_request` (exit 2), broken-pipe-safe emission, argv artifact for bmad_gates without stdin blocking
 
 ---
 
@@ -127,7 +129,7 @@ POST https://openrouter.ai/api/alpha/decisions
 
 **Do not** use `/api/v1/chat/completions`.
 
-**Recommended Model IDs**:
+**Recommended Model ID** (single, pinned — floating aliases like `~jev-latest` would silently invalidate fitted thresholds):
 - Default (current decision): `typesafe/jev-1.13-20260917` (pinned dated snapshot — reproducible evaluation; re-fit thresholds on any version change)
 
 **Pricing**: $0.042 / M input tokens • $0 output tokens • Context ≈ 32k

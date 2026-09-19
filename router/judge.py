@@ -32,7 +32,7 @@ ROUTER_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROUTER_DIR))
 sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
 
-from jev_client import call_jev  # noqa: E402
+from jev_client import call_jev, JevError  # noqa: E402
 
 LOCKFILE = ROUTER_DIR / "thresholds.lockfile.json"
 
@@ -191,8 +191,23 @@ def judge(story_text: str, implementation_text: str, log: bool = True,
 
 
 if __name__ == "__main__":
+    def _degrade(reason_kind: str, reason: str) -> None:
+        """Defined unavailable status — JSON, never a traceback (adapter contract)."""
+        try:
+            print(json.dumps({"status": "unavailable", "reason_kind": reason_kind,
+                              "reason": reason[:300], "passed": None}, indent=2))
+        except BrokenPipeError:
+            pass
+
+    if len(sys.argv) < 3:
+        print(json.dumps({"status": "bad_request", "reason_kind": "usage",
+                          "reason": "usage: judge.py <story_text> <implementation_text>",
+                          "passed": None}, indent=2))
+        raise SystemExit(2)
     try:
         print(json.dumps(judge(sys.argv[1], sys.argv[2]), indent=2))
-    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
-        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
-                          "passed": None}, indent=2))
+    except JevError as e:
+        _degrade("missing_api_key" if "API_KEY" in str(e).upper() else "provider_error",
+                 str(e))
+    except Exception as e:  # noqa: BLE001 — internal bugs degrade too, never traceback
+        _degrade("internal_error", f"{type(e).__name__}: {e}")

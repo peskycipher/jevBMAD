@@ -27,7 +27,7 @@ ROUTER_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROUTER_DIR))
 sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
 
-from jev_client import call_jev  # noqa: E402
+from jev_client import call_jev, JevError  # noqa: E402
 
 LOCKFILE = ROUTER_DIR / "thresholds.lockfile.json"
 
@@ -158,10 +158,28 @@ def check_readiness(artifact_text: str, transition: str = "planning_to_solutioni
 
 
 if __name__ == "__main__":
-    art = sys.stdin.read().strip() or sys.argv[1] if len(sys.argv) > 1 else sys.stdin.read()
-    trans = sys.argv[2] if len(sys.argv) > 2 else "planning_to_solutioning"
+    def _degrade(reason_kind: str, reason: str) -> None:
+        """Defined unavailable status — JSON, never a traceback (adapter contract)."""
+        try:
+            print(json.dumps({"status": "unavailable", "reason_kind": reason_kind,
+                              "reason": reason[:300], "decision": "unavailable",
+                              "transition": trans}, indent=2))
+        except BrokenPipeError:
+            pass
+
     try:
+        art = "" if sys.stdin.isatty() else sys.stdin.read().strip()
+        if not art and len(sys.argv) > 1:
+            art = sys.argv[1]
+        trans = sys.argv[2] if len(sys.argv) > 2 else "planning_to_solutioning"
+        if not art:
+            print(json.dumps({"status": "bad_request", "reason_kind": "usage",
+                              "reason": "empty artifact: pass text via stdin or argv[1]",
+                              "transition": trans}, indent=2))
+            raise SystemExit(2)
         print(json.dumps(check_readiness(art, trans), indent=2))
-    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
-        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
-                          "decision": "unavailable", "transition": trans}, indent=2))
+    except JevError as e:
+        _degrade("missing_api_key" if "API_KEY" in str(e).upper() else "provider_error",
+                 str(e))
+    except Exception as e:  # noqa: BLE001 — internal bugs degrade too, never traceback
+        _degrade("internal_error", f"{type(e).__name__}: {e}")
