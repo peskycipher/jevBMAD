@@ -5,3 +5,4 @@ __pycache__/
 # eval runtime artifacts — regenerate by re-running evals/harness/run_evals.py
 # (golden sets, criteria, and harness code ARE committed)
 /evals/logs/
+modules/bmad-jev/**/__pycache__/
