@@ -32,7 +32,7 @@ def load_set(set_dir: Path):
     return criteria, golden
 
 
-def score_record(qid: str, qdef: dict, answer: dict, label):
+def score_record(qid: str, qdef: dict, answer: dict, label, ex_id: str = ""):
     """Normalize one answer into a metrics record."""
     p = qdef["type"]
     if p == "noul":
@@ -46,7 +46,7 @@ def score_record(qid: str, qdef: dict, answer: dict, label):
         pred = answer["score"] / (n_levels - 1) * (n_levels - 1)  # already 0..n-1
         correct = round(pred) == label
     return {
-        "qid": qid, "primitive": p, "label": label,
+        "id": ex_id, "qid": qid, "primitive": p, "label": label,
         "prediction": pred, "confidence": answer.get("confidence"),
         "correct": correct,
     }
@@ -71,7 +71,7 @@ def run_set(set_dir: Path) -> dict:
                 n_err += 1
                 continue
             records.append(score_record(
-                qid, criteria["questions"][qid], resp["answers"][qid], label))
+                qid, criteria["questions"][qid], resp["answers"][qid], label, ex.get("id", "")))
 
     report = {
         "set": set_dir.name,

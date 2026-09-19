@@ -382,6 +382,53 @@ Latency p50 ≈ 360–380 ms; cost ≈ $0.00002/example. Fitted thresholds (0.5 
 
 ---
 
+## 14. Known Limitations & Holdout Validation (2026-09-19 audit)
+
+An adversarial self-audit of the completed phases. The baselines above should be read in this light.
+
+### 14.1 Methodology errors (partially corrected)
+
+1. **Selection bias in the scaled golden sets.** The prelabel pipeline promoted only candidates where Jev agreed with author intent and dropped disagreements — filtering the sets toward Jev's strengths and away from boundary cases. Routing/guardrails/complexity accuracies are *internal* estimates on an agreement-filtered distribution, not unbiased production estimates.
+2. **No held-out split** when fitting thresholds, tuning criteria, and calibrating the judge — violating the plan's own §6 rule. **Corrected 2026-09-19** via `evals/harness/holdout_validate.py`: deterministic stratified 80/20 splits (written once to `golden-sets/*/splits/`, reused), train-only fitting, holdout reporting.
+3. **Judge-judging-judge circularity.** Hindsight review, prelabeling, and judging all use the same pinned model; correlated errors are invisible. §7.6's human-audit gate has **zero human-labeled data behind it yet** — every current label is assistant-authored or assistant+Jev agreement.
+4. **System 2 (GLM-5.3) is unwired.** `router.route()` returns the string `system2`; no provider, consumer, or cost baseline exists. §7.5's cost-reduction and end-to-end-latency targets are unmeasurable until it is. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
+5. **The router lacks a prompt-injection gate** despite injecting Graft-retrieved content into Jev state (the fork CLIs run one; the jev-BMAD router does not) — and the ablation proved retrieved context changes decisions.
+6. **Eval thresholds ≠ production thresholds.** `run_evals` scores noul at a fixed 0.5 while production gates fire at 0.40–0.90; holdout reporting now evaluates at both (14.2).
+
+### 14.2 Holdout results (train-only fits vs locked production thresholds)
+
+| Set (train/holdout) | Train acc | Holdout acc | At train-fitted threshold | At locked threshold |
+|---|---|---|---|---|
+| routing (81/21) | 100% | **100%** | 100% auto-band @ conf 0.5 | 100% auto-band @ 0.75 |
+| guardrails (80/20) | 100% | **95%** | 9 auto, 100% acc @ noul 0.5 | **0 auto @ 0.90** ⚠️ |
+| complexity (80/20) | 96.3% | **90%** | 15 auto, 93.3% acc @ cap 3.5 | 9 auto, 100% acc @ cap 1.5 |
+
+**⚠️ Actionable finding — the 0.90 safety lock blocks all auto-execution.** Genuinely-safe requests score 0.5–0.8 on the noul gate; at `safe_noul_min = 0.90` nothing auto-executes, making the §7.5 ≥70% Jev-share target structurally unreachable (this — not just demo-traffic skew — explains the dashboard's 12.5% share). Options, pending decision:
+  (a) treat 0.90 as the *high-stakes* threshold only and use the train-fitted 0.5 with a 0.75–0.90 "auto + flag" band, or
+  (b) refit with an explicit auto-rate-maximizing constraint under a ≥95% accuracy floor.
+Readiness (n=8) and story_review (n=10) remain too small to split — provisional.
+
+### 14.3 Remaining caveats
+
+- Holdout samples come from the same filtered distribution — they validate internal generalization, not production accuracy (14.1.1). The ~29 dropped disagreement candidates should be preserved as a hard set and routed to human audit.
+- The complexity train→holdout gap (96→90) quantifies the small-sample overfit that same-data reporting hid.
+- ECE as implemented mixes hard and soft accuracy across primitives and treats score `confidence` (a concentration statistic) as calibration — the §10 ECE 0.05 alert is ill-defined across sets.
+- The CI gate's 3-point threshold on n=100 (~3 examples) sits near observed run-to-run variance; aggregate multiple runs before failing.
+- All candidates are English, single-tenant, single-agent; distribution shift vs production BMAD traffic is guaranteed.
+- Criteria wording and fitted thresholds are coupled: criteria edits invalidate thresholds, but only model-version changes trigger automated re-fit.
+- Prelabel promotion does not dedupe by state (ids only); repeated batches can duplicate examples.
+- `production_metrics.json` grows unbounded; the ablation script hardcodes its request list.
+
+### 14.4 Priority next steps
+
+1. **Decide the safe_noul policy** (14.2 options) — largest single effect on System-1 share.
+2. Wire a minimal System-2 path (GLM consumer + cost baseline) so end-to-end targets become measurable.
+3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration.
+4. Preserve the dropped disagreement candidates as a hard set with provisional labels.
+5. Add the injection gate to `router.py`; dedupe prelabel promotion by state hash.
+
+---
+
 ## 10. Key Configuration Defaults
 
 ```yaml

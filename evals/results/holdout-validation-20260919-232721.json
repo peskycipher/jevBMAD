@@ -1,0 +1,72 @@
+[
+  {
+    "set": "routing",
+    "n_train": 81,
+    "n_holdout": 21,
+    "split_reused": true,
+    "model": "typesafe/jev-1.13-20260917",
+    "train_accuracy": 1.0,
+    "holdout_accuracy": 1.0,
+    "fitted_on_train": {
+      "intent_conf_min": 0.5,
+      "auto_acc_train": 1.0
+    },
+    "holdout_at_fitted": {
+      "threshold": 0.5,
+      "n_auto": 21,
+      "auto_acc": 1.0
+    },
+    "holdout_at_locked": {
+      "threshold": 0.75,
+      "n_auto": 21,
+      "auto_acc": 1.0
+    }
+  },
+  {
+    "set": "guardrails",
+    "n_train": 80,
+    "n_holdout": 20,
+    "split_reused": false,
+    "model": "typesafe/jev-1.13-20260917",
+    "train_accuracy": 1.0,
+    "holdout_accuracy": 0.95,
+    "fitted_on_train": {
+      "safe_noul_min": 0.5,
+      "auto_acc_train": 1.0
+    },
+    "holdout_at_fitted": {
+      "threshold": 0.5,
+      "n_auto": 9,
+      "auto_acc": 1.0
+    },
+    "holdout_at_locked": {
+      "threshold": 0.9,
+      "n_auto": 0,
+      "auto_acc": null
+    }
+  },
+  {
+    "set": "complexity",
+    "n_train": 80,
+    "n_holdout": 20,
+    "split_reused": false,
+    "model": "typesafe/jev-1.13-20260917",
+    "train_accuracy": 0.9625,
+    "holdout_accuracy": 0.9,
+    "fitted_on_train": {
+      "complexity_max": 3.5,
+      "auto_acc_train": 0.953
+    },
+    "holdout_at_fitted": {
+      "threshold": 3.5,
+      "holdout_mae": 0.152,
+      "n_auto": 15,
+      "auto_acc": 0.933
+    },
+    "holdout_at_locked": {
+      "threshold": 1.5,
+      "n_auto": 9,
+      "auto_acc": 1.0
+    }
+  }
+]

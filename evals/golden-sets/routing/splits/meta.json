@@ -1,0 +1,7 @@
+{
+  "seed": 42,
+  "train_frac": 0.8,
+  "n_train": 81,
+  "n_holdout": 21,
+  "strata": 6
+}
