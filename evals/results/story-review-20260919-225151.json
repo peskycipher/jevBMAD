@@ -1,0 +1,239 @@
+{
+  "set": "story_review",
+  "n_examples": 10,
+  "verdict_accuracy": 1.0,
+  "taxonomy_accuracy": 0.6666666666666666,
+  "gate_agreement": 0.8333333333333334,
+  "per_example": [
+    {
+      "id": "story-001",
+      "expected": "first_pass",
+      "got": "first_pass",
+      "ok": true,
+      "failure_kind": null,
+      "gate_nouls": {
+        "gate_spec": 0.9,
+        "gate_no_regression": 0.93,
+        "gate_security": 0.92
+      },
+      "gate_labels": {
+        "gate_spec": 1,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 8.41,
+        "dim_quality": 7.93,
+        "dim_tests": 7.35,
+        "dim_bmad": 8.27
+      }
+    },
+    {
+      "id": "story-002",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "spec-misread",
+      "gate_nouls": {
+        "gate_spec": 0.01,
+        "gate_no_regression": 0.71,
+        "gate_security": 0.86
+      },
+      "gate_labels": {
+        "gate_spec": 0,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 2.72,
+        "dim_quality": 2.48,
+        "dim_tests": 2.08,
+        "dim_bmad": 2.65
+      }
+    },
+    {
+      "id": "story-003",
+      "expected": "first_pass",
+      "got": "first_pass",
+      "ok": true,
+      "failure_kind": null,
+      "gate_nouls": {
+        "gate_spec": 0.82,
+        "gate_no_regression": 0.9,
+        "gate_security": 0.97
+      },
+      "gate_labels": {
+        "gate_spec": 1,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 7.55,
+        "dim_quality": 7.25,
+        "dim_tests": 6.68,
+        "dim_bmad": 7.19
+      }
+    },
+    {
+      "id": "story-004",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "regression",
+      "gate_nouls": {
+        "gate_spec": 0.06,
+        "gate_no_regression": 0.02,
+        "gate_security": 0.95
+      },
+      "gate_labels": {
+        "gate_spec": 0,
+        "gate_no_regression": 0,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 3.29,
+        "dim_quality": 3.06,
+        "dim_tests": 3.53,
+        "dim_bmad": 3.36
+      }
+    },
+    {
+      "id": "story-005",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "other",
+      "gate_nouls": {
+        "gate_spec": 0.42,
+        "gate_no_regression": 0.19,
+        "gate_security": 0.06
+      },
+      "gate_labels": {
+        "gate_spec": 0,
+        "gate_no_regression": 1,
+        "gate_security": 0
+      },
+      "dimensions": {
+        "dim_correctness": 4.81,
+        "dim_quality": 4.04,
+        "dim_tests": 4.6,
+        "dim_bmad": 4.18
+      }
+    },
+    {
+      "id": "story-006",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "partial-implementation",
+      "gate_nouls": {
+        "gate_spec": 0.02,
+        "gate_no_regression": 0.23,
+        "gate_security": 0.21
+      },
+      "gate_labels": {
+        "gate_spec": 0,
+        "gate_no_regression": 1,
+        "gate_security": 0
+      },
+      "dimensions": {
+        "dim_correctness": 3.64,
+        "dim_quality": 3.52,
+        "dim_tests": 3.32,
+        "dim_bmad": 3.68
+      }
+    },
+    {
+      "id": "story-007",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "regression",
+      "gate_nouls": {
+        "gate_spec": 0.15,
+        "gate_no_regression": 0.03,
+        "gate_security": 0.88
+      },
+      "gate_labels": {
+        "gate_spec": 0,
+        "gate_no_regression": 0,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 5.08,
+        "dim_quality": 4.61,
+        "dim_tests": 4.78,
+        "dim_bmad": 4.59
+      }
+    },
+    {
+      "id": "story-008",
+      "expected": "first_pass",
+      "got": "first_pass",
+      "ok": true,
+      "failure_kind": null,
+      "gate_nouls": {
+        "gate_spec": 0.8,
+        "gate_no_regression": 0.95,
+        "gate_security": 0.97
+      },
+      "gate_labels": {
+        "gate_spec": 1,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 7.62,
+        "dim_quality": 7.54,
+        "dim_tests": 7.59,
+        "dim_bmad": 7.28
+      }
+    },
+    {
+      "id": "story-009",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "environment",
+      "gate_nouls": {
+        "gate_spec": 0.24,
+        "gate_no_regression": 0.06,
+        "gate_security": 0.92
+      },
+      "gate_labels": {
+        "gate_spec": 1,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 5.98,
+        "dim_quality": 5.87,
+        "dim_tests": 5.83,
+        "dim_bmad": 5.89
+      }
+    },
+    {
+      "id": "story-010",
+      "expected": "first_pass",
+      "got": "first_pass",
+      "ok": true,
+      "failure_kind": null,
+      "gate_nouls": {
+        "gate_spec": 0.8,
+        "gate_no_regression": 0.88,
+        "gate_security": 0.98
+      },
+      "gate_labels": {
+        "gate_spec": 1,
+        "gate_no_regression": 1,
+        "gate_security": 1
+      },
+      "dimensions": {
+        "dim_correctness": 7.41,
+        "dim_quality": 7.34,
+        "dim_tests": 6.98,
+        "dim_bmad": 6.87
+      }
+    }
+  ]
+}

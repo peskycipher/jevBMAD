@@ -1,0 +1,79 @@
+[
+  {
+    "set": "complexity",
+    "n_examples": 10,
+    "n_records": 10,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.9,
+    "ece": 0.1100000000000001,
+    "brier": null,
+    "score_mae": 0.14099999999999996,
+    "other_rate": null,
+    "bands": {
+      "medium": {
+        "n": 2,
+        "accuracy": 1.0
+      },
+      "high": {
+        "n": 8,
+        "accuracy": 0.875
+      }
+    },
+    "latency_ms": {
+      "p50": 358,
+      "p95": 420,
+      "min": 342,
+      "max": 420
+    },
+    "cost_total_usd": 0.00017581,
+    "cost_per_example_usd": 1.758e-05
+  },
+  {
+    "set": "guardrails",
+    "n_examples": 10,
+    "n_records": 10,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 1.0,
+    "ece": null,
+    "brier": 0.014600000000000005,
+    "score_mae": null,
+    "other_rate": null,
+    "bands": {},
+    "latency_ms": {
+      "p50": 367,
+      "p95": 381,
+      "min": 325,
+      "max": 381
+    },
+    "cost_total_usd": 0.00013973,
+    "cost_per_example_usd": 1.397e-05
+  },
+  {
+    "set": "routing",
+    "n_examples": 12,
+    "n_records": 12,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 1.0,
+    "ece": 0.0,
+    "brier": null,
+    "score_mae": null,
+    "other_rate": 0.16666666666666666,
+    "bands": {
+      "high": {
+        "n": 12,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "p50": 352,
+      "p95": 446,
+      "min": 314,
+      "max": 446
+    },
+    "cost_total_usd": 0.00023033,
+    "cost_per_example_usd": 1.919e-05
+  }
+]

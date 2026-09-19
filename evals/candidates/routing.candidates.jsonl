@@ -1,0 +1,72 @@
+{"state": "User: 'Configure the repository to require two approvals before merging.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Can you walk me through how a webhook event flows through our system? No changes needed.'", "intended": {"intent": "question"}}
+{"state": "User: 'Remove the deprecated shim layer that only forwards calls to the new module.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Add keyboard-only navigation support for accessibility compliance.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'The settings page loses all unsaved changes when the connection drops. Fix the data loss.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Build a bulk import tool so admins can upload thousands of users from a CSV.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'The CLI hangs forever when given an empty string as the search query. Please fix.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Add issue templates for bug reports and feature requests.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Background jobs silently stop processing after the first retry. Find the bug and fix it.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Extract the inline SQL strings into named query constants. Behavior must stay identical.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Document the three environment variables the worker reads.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Our webhooks send duplicate events within the same minute. Fix the deduplication.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Add an audit log page showing who changed what and when.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Add Slack notifications as an alternative to email alerts.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Update the license year in all file headers.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Implement saved searches so users can bookmark their filter combinations.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Let users schedule reports to be emailed every Monday morning.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Sorting by date in the admin table reverses the order randomly. Correct it.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Push notifications arrive twice for the same message. Track down why and fix it.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'How does the session expiry work in this codebase? Just explain it to me.'", "intended": {"intent": "question"}}
+{"state": "User: 'Flatten the deeply nested promise chain in the sync flow. Same behavior, clearer code.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Who owns the billing service these days? Just asking.'", "intended": {"intent": "question"}}
+{"state": "User: 'The autocomplete dropdown flickers and closes before you can pick an option. Fix it.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'What does the feature flag system support \u2014 percentages, users, or both? Curious.'", "intended": {"intent": "question"}}
+{"state": "User: 'Introduce types for the config object instead of untyped dicts. No runtime changes.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'What version of the framework are we on and are there any known issues with it?'", "intended": {"intent": "question"}}
+{"state": "User: 'Add multi-language support starting with Spanish and French.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Add a maintenance mode banner that admins can toggle.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'The dark theme makes the disabled buttons look enabled. Fix the styling.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'The mobile app crashes when opening a profile with more than 500 followers. Fix.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Update the README install instructions for the new Node 22 requirement.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Bump the pinned dependency versions in requirements.txt to the latest patch releases.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Split the 4000-line routes file into per-resource modules. No logic changes.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Collapse the three nearly identical email builders into one parameterized builder.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'What is the difference between the two caching layers we use?'", "intended": {"intent": "question"}}
+{"state": "User: 'Are there any open TODOs in the auth module? List them for me.'", "intended": {"intent": "question"}}
+{"state": "User: 'Extract the duplicated permission checks into a single guard function.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'The export button downloads a file with yesterday's data. Fix the stale cache issue.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Add a CONTRIBUTING section describing the branch naming convention.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Reorganize the test fixtures into shared factories. Tests must keep passing identically.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Why do we validate phone numbers twice, once on the client and once on the server? Explain the reasoning.'", "intended": {"intent": "question"}}
+{"state": "User: 'Explain what the middleware chain does for an authenticated request.'", "intended": {"intent": "question"}}
+{"state": "User: 'Which of our endpoints still accept the deprecated v1 auth header? Just list them.'", "intended": {"intent": "question"}}
+{"state": "User: 'Add the new staging URL to the deployment documentation.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Create a public read-only share link for any dashboard.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Add a lint step for the docs folder to the CI workflow.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Show me the current rate limits on the public API and where they are configured.'", "intended": {"intent": "question"}}
+{"state": "User: 'Logging in with a capital letter in the email fails. Fix the case sensitivity.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Convert the callback-based upload handler to async/await. Purely internal restructure.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Set up the code owners file so the payments folder requires the payments team.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Support dragging files directly onto the upload widget from the desktop.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Rename the UserService class to AccountService everywhere. No behavior changes.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'The image gallery never finishes loading thumbnails on Safari; the spinner spins forever. Fix this.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Replace the hand-rolled retry loops with the standard retry utility. Same semantics.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Correct the outdated screenshots in the onboarding guide.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'How would our current architecture handle a 10x traffic spike? Just an analysis.'", "intended": {"intent": "question"}}
+{"state": "User: 'Add recurring billing with proration when plans change mid-cycle.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Implement offline mode so the mobile app queues actions while disconnected.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Encapsulate the raw dict manipulation in the cart module behind a proper class.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Fix the typos in the API reference for the users endpoint.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Our invoice PDFs print with the wrong tax rate for EU customers. Correct the calculation.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Which database indexes exist on the orders table? I only want to know.'", "intended": {"intent": "question"}}
+{"state": "User: 'Password reset emails contain a broken link that 404s. Fix the link generation.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Create a REST endpoint that returns usage statistics per API key.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Move the date formatting helpers into the shared utils package. No functional changes.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Fix the broken markdown table in the architecture overview doc.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Group all environment variable reads behind one config module. No behavior change.'", "intended": {"intent": "refactor"}}
+{"state": "User: 'Update the CHANGELOG with the entries for this week's release.'", "intended": {"intent": "docs_config"}}
+{"state": "User: 'Add two-factor authentication via SMS to the existing login flow.'", "intended": {"intent": "new_feature"}}
+{"state": "User: 'Is there any documentation about the deployment pipeline? Point me to it.'", "intended": {"intent": "question"}}
+{"state": "User: 'The API returns 200 with an empty body for deleted resources instead of 404. Fix the status codes.'", "intended": {"intent": "bug_fix"}}
+{"state": "User: 'Add a print stylesheet so the reports page prints cleanly.'", "intended": {"intent": "new_feature"}}

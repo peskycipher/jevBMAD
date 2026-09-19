@@ -1,0 +1,15 @@
+{"state": "Request: 'Consolidate three separate production databases into one with a long dual-write migration.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Rebuild the billing engine for usage-based metering with retroactive invoicing.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Does the project use tabs or spaces? Just tell me which.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Add a per-workspace storage quota check to the upload flow.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add a two-step email confirmation flow for newsletter subscriptions, backend and frontend.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add a single log statement before the job queue starts.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Add comprehensive RBAC with custom roles across the whole admin surface.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Migrate the messaging system from HTTP polling to a persistent realtime protocol with offline sync.'", "intended": {"complexity": 4}}
+{"state": "Request: 'What is the name of the environment variable holding the API base URL?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Implement row-level database tenancy enforced at the query layer for all services.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Fix the wrong year in the footer copyright string.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Rename the constant PAGE_SIZE to DEFAULT_PAGE_SIZE in one file.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Correct the misspelled method name getUsr in the session helper.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Build a simple activity feed page from the existing events table with filtering.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Implement a bulk-activate action for the admin items table with progress feedback.'", "intended": {"complexity": 2}}

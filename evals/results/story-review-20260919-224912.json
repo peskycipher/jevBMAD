@@ -1,0 +1,79 @@
+{
+  "set": "story_review",
+  "n_examples": 10,
+  "verdict_accuracy": 0.6,
+  "taxonomy_accuracy": 0.6666666666666666,
+  "gate_agreement": 0.4,
+  "per_example": [
+    {
+      "id": "story-001",
+      "expected": "first_pass",
+      "got": "rework",
+      "ok": false,
+      "failure_kind": "other"
+    },
+    {
+      "id": "story-002",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "spec-misread"
+    },
+    {
+      "id": "story-003",
+      "expected": "first_pass",
+      "got": "rework",
+      "ok": false,
+      "failure_kind": "other"
+    },
+    {
+      "id": "story-004",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "regression"
+    },
+    {
+      "id": "story-005",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "other"
+    },
+    {
+      "id": "story-006",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "partial-implementation"
+    },
+    {
+      "id": "story-007",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "regression"
+    },
+    {
+      "id": "story-008",
+      "expected": "first_pass",
+      "got": "rework",
+      "ok": false,
+      "failure_kind": "other"
+    },
+    {
+      "id": "story-009",
+      "expected": "rework",
+      "got": "rework",
+      "ok": true,
+      "failure_kind": "environment"
+    },
+    {
+      "id": "story-010",
+      "expected": "first_pass",
+      "got": "rework",
+      "ok": false,
+      "failure_kind": "other"
+    }
+  ]
+}

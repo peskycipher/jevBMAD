@@ -1,0 +1,100 @@
+{"id": "cx-001", "state": "Request: 'What does the retry helper do in http_client.py?'", "labels": {"complexity": 0}, "priority": "high"}
+{"id": "cx-002", "state": "Request: 'Fix the off-by-one in the pagination counter in the list component.'", "labels": {"complexity": 1}, "priority": "high"}
+{"id": "cx-003", "state": "Request: 'Add a CSV export button to the reports screen. Backend endpoint and frontend wiring both needed.'", "labels": {"complexity": 2}, "priority": "high"}
+{"id": "cx-004", "state": "Request: 'Replace the REST API with GraphQL across the whole platform.'", "labels": {"complexity": 4}, "priority": "high"}
+{"id": "cx-005", "state": "Request: 'Tell me which version of Python this project targets.'", "labels": {"complexity": 0}, "priority": "high"}
+{"id": "cx-006", "state": "Request: 'Introduce a plugin architecture so third parties can extend the parser.'", "labels": {"complexity": 3}, "priority": "high"}
+{"id": "cx-007", "state": "Request: 'Rename the variable foo to itemCount in two files.'", "labels": {"complexity": 1}, "priority": "high"}
+{"id": "cx-008", "state": "Request: 'Migrate the monolith off MongoDB onto PostgreSQL with zero downtime.'", "labels": {"complexity": 4}, "priority": "high"}
+{"id": "cx-009", "state": "Request: 'Unify the three separate notification services into one with a shared queue.'", "labels": {"complexity": 3}, "priority": "high"}
+{"id": "cx-010", "state": "Request: 'Fix the import sorting in api/handlers.py.'", "labels": {"complexity": 1}, "priority": "medium"}
+{"id": "cx-011", "state": "Request: 'How many endpoints does the API module expose?'", "labels": {"complexity": 0}, "priority": "high"}
+{"id": "cx-012", "state": "Request: 'Change the default page size constant from 20 to 50.'", "labels": {"complexity": 1}, "priority": "high"}
+{"id": "cx-013", "state": "Request: 'Add pagination to the activity feed: backend query params, service layer, and UI table updates.'", "labels": {"complexity": 2}, "priority": "high"}
+{"id": "cx-014", "state": "Request: 'Switch the whole app from JavaScript to TypeScript.'", "labels": {"complexity": 4}, "priority": "high"}
+{"id": "cx-015", "state": "Request: 'What does the validatePayload function validate?'", "labels": {"complexity": 0}, "priority": "high"}
+{"id": "cx-016", "state": "Request: 'Introduce multi-tenancy: tenant isolation in every service and the database schema.'", "labels": {"complexity": 4}, "priority": "high"}
+{"id": "cx-017", "state": "Request: 'Fix the flaky timing assertion in the scheduler test.'", "labels": {"complexity": 1}, "priority": "high"}
+{"id": "cx-018", "state": "Request: 'Add OAuth login with Google alongside the existing email/password auth.'", "labels": {"complexity": 3}, "priority": "high"}
+{"id": "cx-019", "state": "Request: 'Update the error message thrown when the config file is missing.'", "labels": {"complexity": 1}, "priority": "high"}
+{"id": "cx-020", "state": "Request: 'Extract shared UI components and adopt them across all five existing screens.'", "labels": {"complexity": 2}, "priority": "high"}
+{"id": "cx-021", "state": "Request: 'Rebuild the search on a new engine with zero relevance regression at 10x scale.'", "labels": {"complexity": 4}, "priority": "high"}
+{"id": "cx-022", "state": "Request: 'Which database driver version is pinned in requirements.txt?'", "labels": {"complexity": 0}, "priority": "high"}
+{"id": "cx-023", "state": "Request: 'Add request tracing spans to the three downstream service clients.'", "labels": {"complexity": 2}, "priority": "high"}
+{"id": "cx-024", "state": "Request: 'Make the background job queue horizontally scalable across regions.'", "labels": {"complexity": 3}, "priority": "high"}
+{"id": "complexity-pre-1789822984-1", "state": "Request: 'List the modules under the services directory.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822985-3", "state": "Request: 'Add optimistic updates to the task board with rollback on failure.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822985-4", "state": "Request: 'Implement SSO with two enterprise providers alongside the existing login.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822985-5", "state": "Request: 'Migrate all customer data to a new region while respecting data residency laws.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822986-7", "state": "Request: 'Add a read-only audit trail view backed by the existing event log.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822986-8", "state": "Request: 'Add pagination to the users list, including API params, service layer, and UI table updates.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822987-10", "state": "Request: 'Add real-time collaborative editing to the document editor.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822987-11", "state": "Request: 'Design and implement a cross-service transactional outbox for consistency.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822988-12", "state": "Request: 'Introduce a plugin architecture so external teams can extend the data pipeline.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822988-13", "state": "Request: 'What HTTP status does the health endpoint return?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822989-14", "state": "Request: 'Add a public API v2 with versioning strategy and a v1 deprecation timeline.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822989-15", "state": "Request: 'What is the default page size in the API?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822989-16", "state": "Request: 'Make the empty-state message on the dashboard more helpful.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822990-18", "state": "Request: 'Show the current feature flags and their values.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822990-19", "state": "Request: 'Rename the parameter 'data' to 'payload' in the upload function.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822991-20", "state": "Request: 'What ports does the docker-compose file expose?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822991-21", "state": "Request: 'Replace the payment provider across all flows with PCI-compliant migration.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822991-22", "state": "Request: 'Add the 'beta' label to the new menu item.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822992-23", "state": "Request: 'Introduce an event-driven architecture between the web and worker tiers.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822992-24", "state": "Request: 'Add a log line when the cache is cleared.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822993-26", "state": "Request: 'Which timezone are the timestamps stored in?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822993-27", "state": "Request: 'Fix the off-by-one in the pagination display label.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822994-28", "state": "Request: 'Fix the broken markdown link in the setup docs.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822994-30", "state": "Request: 'Point me to where retry backoff is configured.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822995-31", "state": "Request: 'Build a settings section with three preference toggles persisted per user.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822995-32", "state": "Request: 'Implement a file upload flow with progress and retry for the attachments feature.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822995-33", "state": "Request: 'How many database tables does the schema define?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822996-34", "state": "Request: 'Add a single test for the new edge case in the slug generator.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822996-36", "state": "Request: 'Change the icon for the archive button.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822997-37", "state": "Request: 'Wire the notification service into the existing user preferences system.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822997-38", "state": "Request: 'Correct the grammatical error in the confirmation dialog.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822997-39", "state": "Request: 'Fix the import order in the utils module for the linter.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822998-40", "state": "Request: 'Add a full-text search engine with relevance tuning and multilingual support.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822998-42", "state": "Request: 'Switch the entire frontend from one framework to another with no feature freeze.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822999-43", "state": "Request: 'Change the constant MAX_RETRIES from 3 to 5.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789822999-44", "state": "Request: 'Rebuild the event pipeline to guarantee exactly-once processing at scale.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823001-45", "state": "Request: 'Update the user-facing text on the login button from 'Sign In' to 'Log In'.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823001-46", "state": "Request: 'Where is the main entry point of the worker?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823001-47", "state": "Request: 'Add CSV import with column mapping and error reporting for the contacts list.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823002-48", "state": "Request: 'What logging library does the project use?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823002-49", "state": "Request: 'Show me the current cache TTL setting.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823003-51", "state": "Request: 'Implement a drag-and-drop reorder for the dashboard widgets with persistence.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823003-52", "state": "Request: 'What does the validatePayload function check for?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823004-53", "state": "Request: 'Implement a full disaster recovery plan with cross-region failover and drills.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823004-54", "state": "Request: 'Re-architect the auth system from session cookies to zero-trust with device attestation.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823004-55", "state": "Request: 'Replace the in-house search with a vector search engine across all content types.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823005-57", "state": "Request: 'Migrate the production database from MongoDB to PostgreSQL with zero downtime.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823005-58", "state": "Request: 'Build an integration marketplace framework with partner onboarding.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823006-59", "state": "Request: 'What does the deprecation notice in the CLI say?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823006-60", "state": "Request: 'Which queue does the email worker consume from?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823007-61", "state": "Request: 'Implement a feature-flag system with gradual rollout and kill switches across services.'", "labels": {"complexity": 3}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823007-62", "state": "Request: 'Extend the search to cover three new entity types with snippets.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823008-64", "state": "Request: 'Replace the entire monolith with microservices while keeping the product live.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823008-65", "state": "Request: 'Rebuild the storage layer for end-to-end encryption with key management.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823009-66", "state": "Request: 'Update the default timeout value from 30s to 60s in one place.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823009-67", "state": "Request: 'Add the new enum value to the status list and its display name.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823010-69", "state": "Request: 'Consolidate five acquired companies' systems into one platform with data merging.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823010-70", "state": "Request: 'Which framework version does package.json declare?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823010-71", "state": "Request: 'Summarize the responsibilities of the auth module.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823012-74", "state": "Request: 'Fix the typo in the error message for invalid email format.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823012-75", "state": "Request: 'Move from REST to GraphQL platform-wide with a new gateway and federation.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823012-76", "state": "Request: 'Migrate off the legacy identity provider with zero user-visible disruption.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823013-77", "state": "Request: 'Adjust the padding on the alert component.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823078-0", "state": "Request: 'Consolidate three separate production databases into one with a long dual-write migration.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823078-1", "state": "Request: 'Rebuild the billing engine for usage-based metering with retroactive invoicing.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823079-2", "state": "Request: 'Does the project use tabs or spaces? Just tell me which.'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823079-3", "state": "Request: 'Add a per-workspace storage quota check to the upload flow.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823079-4", "state": "Request: 'Add a two-step email confirmation flow for newsletter subscriptions, backend and frontend.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823080-5", "state": "Request: 'Add a single log statement before the job queue starts.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823080-7", "state": "Request: 'Migrate the messaging system from HTTP polling to a persistent realtime protocol with offline sync.'", "labels": {"complexity": 4}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823081-8", "state": "Request: 'What is the name of the environment variable holding the API base URL?'", "labels": {"complexity": 0}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823081-10", "state": "Request: 'Fix the wrong year in the footer copyright string.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823082-11", "state": "Request: 'Rename the constant PAGE_SIZE to DEFAULT_PAGE_SIZE in one file.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823082-12", "state": "Request: 'Correct the misspelled method name getUsr in the session helper.'", "labels": {"complexity": 1}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823083-13", "state": "Request: 'Build a simple activity feed page from the existing events table with filtering.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}
+{"id": "complexity-pre-1789823083-14", "state": "Request: 'Implement a bulk-activate action for the admin items table with progress feedback.'", "labels": {"complexity": 2}, "source": "jev-prelabel+human-confirm"}

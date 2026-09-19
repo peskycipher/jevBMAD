@@ -1,0 +1,69 @@
+{
+  "ablation": "graft_context_on_vs_off",
+  "n_requests": 6,
+  "decision_agreement": 0.8333333333333334,
+  "mean_confidence_delta": 0.007,
+  "mean_safety_noul_delta": -0.008,
+  "rows": [
+    {
+      "request": "What does the fit_thresholds script do?",
+      "decision_with_memory": "system1_auto",
+      "decision_without": "system2",
+      "agree": false,
+      "conf_with": 1,
+      "conf_without": 1,
+      "safe_with": 0.94,
+      "safe_without": 0.89
+    },
+    {
+      "request": "Fix the typo in the eval harness metrics module if there is one.",
+      "decision_with_memory": "system2",
+      "decision_without": "system2",
+      "agree": true,
+      "conf_with": 0.98,
+      "conf_without": 0.94,
+      "safe_with": 0.75,
+      "safe_without": 0.82
+    },
+    {
+      "request": "Add a CLI flag to run_evals.py to filter by priority.",
+      "decision_with_memory": "system2",
+      "decision_without": "system2",
+      "agree": true,
+      "conf_with": 1,
+      "conf_without": 1,
+      "safe_with": 0.54,
+      "safe_without": 0.62
+    },
+    {
+      "request": "Where is the routing policy implemented and how does escalation work?",
+      "decision_with_memory": "system2",
+      "decision_without": "system2",
+      "agree": true,
+      "conf_with": 1,
+      "conf_without": 1,
+      "safe_with": 0.89,
+      "safe_without": 0.82
+    },
+    {
+      "request": "Refactor the golden sets into a database.",
+      "decision_with_memory": "system2",
+      "decision_without": "system2",
+      "agree": true,
+      "conf_with": 0.99,
+      "conf_without": 0.99,
+      "safe_with": 0.12,
+      "safe_without": 0.1
+    },
+    {
+      "request": "Update the evals README with the new gate fitter.",
+      "decision_with_memory": "system2",
+      "decision_without": "system2",
+      "agree": true,
+      "conf_with": 1,
+      "conf_without": 1,
+      "safe_with": 0.76,
+      "safe_without": 0.8
+    }
+  ]
+}

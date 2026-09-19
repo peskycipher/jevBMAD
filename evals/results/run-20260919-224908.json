@@ -1,0 +1,294 @@
+[
+  {
+    "set": "readiness",
+    "records": [
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.77,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.48,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.23,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 1.84,
+        "confidence": 0.55,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.08,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.16,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.46,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.05,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.11,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.08,
+        "confidence": 0.94,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.96,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.89,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.44,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 2.97,
+        "confidence": 0.77,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.44,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.16,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.03,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.16,
+        "confidence": 0.87,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.08,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.11,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.15,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.75,
+        "confidence": 0.78,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.69,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.39,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 2.7,
+        "confidence": 0.74,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.12,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.14,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.13,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      }
+    ],
+    "n_examples": 8,
+    "n_records": 32,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.625,
+    "ece": 0.38249999999999995,
+    "brier": 0.16535,
+    "score_mae": 0.56375,
+    "other_rate": null,
+    "bands": {
+      "low": {
+        "n": 2,
+        "accuracy": 0.0
+      },
+      "medium": {
+        "n": 3,
+        "accuracy": 0.3333333333333333
+      },
+      "high": {
+        "n": 3,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "p50": 345,
+      "p95": 607,
+      "min": 325,
+      "max": 607
+    },
+    "cost_total_usd": 0.00019215,
+    "cost_per_example_usd": 2.402e-05
+  }
+]

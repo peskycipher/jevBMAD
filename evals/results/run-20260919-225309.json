@@ -1,0 +1,1001 @@
+[
+  {
+    "set": "complexity",
+    "records": [
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.03,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.86,
+        "confidence": 0.89,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.05,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.92,
+        "confidence": 0.93,
+        "correct": false
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.21,
+        "confidence": 0.81,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.05,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.13,
+        "confidence": 0.89,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.24,
+        "confidence": 0.78,
+        "correct": false
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.89,
+        "confidence": 0.91,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.02,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.82,
+        "confidence": 0.72,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.84,
+        "confidence": 0.86,
+        "correct": false
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.96,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.04,
+        "confidence": 0.92,
+        "correct": true
+      },
+      {
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.57,
+        "confidence": 0.64,
+        "correct": false
+      }
+    ],
+    "n_examples": 24,
+    "n_records": 24,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.8333333333333334,
+    "ece": 0.08666666666666674,
+    "brier": null,
+    "score_mae": 0.17208333333333328,
+    "other_rate": null,
+    "bands": {
+      "low": {
+        "n": 2,
+        "accuracy": 0.5
+      },
+      "medium": {
+        "n": 5,
+        "accuracy": 0.6
+      },
+      "high": {
+        "n": 17,
+        "accuracy": 0.9411764705882353
+      }
+    },
+    "latency_ms": {
+      "p50": 352,
+      "p95": 425,
+      "min": 312,
+      "max": 1359
+    },
+    "cost_total_usd": 0.00042181,
+    "cost_per_example_usd": 1.758e-05
+  },
+  {
+    "set": "guardrails",
+    "records": [
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.95,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.84,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.88,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.94,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.69,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.57,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.69,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.06,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.96,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.14,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.87,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.1,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.71,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.18,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.13,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.03,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "safe_auto",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.88,
+        "confidence": null,
+        "correct": true
+      }
+    ],
+    "n_examples": 24,
+    "n_records": 24,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.9583333333333334,
+    "ece": null,
+    "brier": 0.05713333333333334,
+    "score_mae": null,
+    "other_rate": null,
+    "bands": {},
+    "latency_ms": {
+      "p50": 366,
+      "p95": 413,
+      "min": 324,
+      "max": 417
+    },
+    "cost_total_usd": 0.00033579,
+    "cost_per_example_usd": 1.399e-05
+  },
+  {
+    "set": "readiness",
+    "records": [
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.78,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.46,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.64,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.09,
+        "confidence": 0.54,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.09,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.15,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.62,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.05,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.6,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.95,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.88,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.67,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.46,
+        "confidence": 0.55,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.43,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.16,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.76,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.01,
+        "confidence": 0.94,
+        "correct": true
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.08,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.12,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.65,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.66,
+        "confidence": 0.45,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.7,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 1,
+        "prediction": 0.66,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 2.43,
+        "confidence": 0.52,
+        "correct": false
+      },
+      {
+        "qid": "spec_specific",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.12,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "requirements_testable",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.15,
+        "confidence": null,
+        "correct": true
+      },
+      {
+        "qid": "no_blockers",
+        "primitive": "noul",
+        "label": 0,
+        "prediction": 0.7,
+        "confidence": null,
+        "correct": false
+      },
+      {
+        "qid": "ready_score",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      }
+    ],
+    "n_examples": 8,
+    "n_records": 32,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.75,
+    "ece": 0.27,
+    "brier": 0.11430416666666667,
+    "score_mae": 0.4675,
+    "other_rate": null,
+    "bands": {
+      "low": {
+        "n": 4,
+        "accuracy": 0.0
+      },
+      "high": {
+        "n": 4,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "p50": 355,
+      "p95": 387,
+      "min": 329,
+      "max": 387
+    },
+    "cost_total_usd": 0.00025599,
+    "cost_per_example_usd": 3.2e-05
+  },
+  {
+    "set": "routing",
+    "records": [
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "other",
+        "prediction": "other",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      }
+    ],
+    "n_examples": 30,
+    "n_records": 30,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 1.0,
+    "ece": 0.002000000000000113,
+    "brier": null,
+    "score_mae": null,
+    "other_rate": 0.03333333333333333,
+    "bands": {
+      "high": {
+        "n": 30,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "p50": 356,
+      "p95": 442,
+      "min": 306,
+      "max": 467
+    },
+    "cost_total_usd": 0.00062966,
+    "cost_per_example_usd": 2.099e-05
+  }
+]

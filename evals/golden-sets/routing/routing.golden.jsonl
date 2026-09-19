@@ -1,0 +1,102 @@
+{"id": "routing-001", "state": "User: 'Why does my test suite fail intermittently on CI but pass locally? Just want to understand, not fix it yet.'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-002", "state": "User: 'The checkout page throws a TypeError whenever a customer applies two coupon codes. Please fix it.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-003", "state": "User: 'Add dark mode support to the settings page.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-004", "state": "User: 'Rename calculateTotals to computeInvoiceTotals everywhere and move the helper into utils.'", "labels": {"intent": "refactor"}, "priority": "high"}
+{"id": "routing-005", "state": "User: 'The login button does nothing on Safari. The click handler seems to never fire.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-006", "state": "User: 'Can you explain how the routing layer decides between System 1 and System 2?'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-007", "state": "User: 'I want to brainstorm ideas for improving onboarding before we commit to building anything.'", "labels": {"intent": "other"}, "priority": "medium"}
+{"id": "routing-008", "state": "User: 'Update the README to document the new CLI flags.'", "labels": {"intent": "docs_config"}, "priority": "medium"}
+{"id": "routing-009", "state": "User: 'Implement export-to-CSV for the reports screen.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-010", "state": "User: 'Memory usage keeps growing until the process is OOM-killed. Find and fix the leak.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-011", "state": "User: 'Split the 3000-line parser.py into focused modules. Behavior must not change.'", "labels": {"intent": "refactor"}, "priority": "high"}
+{"id": "routing-012", "state": "User: 'Review this PR and tell me if the error handling looks right. Do not change anything.'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-013", "state": "User: 'The tooltip on the disabled button still shows. Something is off in the CSS logic, please correct it.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-014", "state": "User: 'Add keyboard shortcut Ctrl+K to open the command palette.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-015", "state": "User: 'What is the difference between the two caching strategies used in this codebase?'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-016", "state": "User: 'Extract the duplicated validation logic in the three controllers into one shared module. Keep behavior identical.'", "labels": {"intent": "refactor"}, "priority": "high"}
+{"id": "routing-017", "state": "User: 'Bump all dependencies to their latest versions and fix anything that breaks.'", "labels": {"intent": "docs_config"}, "priority": "medium"}
+{"id": "routing-018", "state": "User: 'The date picker closes immediately when opened on mobile devices. Reproduce and fix.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-019", "state": "User: 'Build a settings screen where users can manage notification preferences.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-020", "state": "User: 'Is there any built-in rate limiting on the public API endpoints? Just curious.'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-021", "state": "User: 'Group the constants scattered across the codebase into a single constants.ts file.'", "labels": {"intent": "refactor"}, "priority": "high"}
+{"id": "routing-022", "state": "User: 'Set up a GitHub Actions workflow to run the linter on every PR.'", "labels": {"intent": "docs_config"}, "priority": "medium"}
+{"id": "routing-023", "state": "User: 'The exported CSV has semicolons instead of commas. That is wrong for our locale, fix it.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-024", "state": "User: 'Support undo/redo in the diagram editor.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-025", "state": "User: 'Which of the two sort implementations is faster, and why?'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-026", "state": "User: 'Convert the class components to functional components. No behavior changes.'", "labels": {"intent": "refactor"}, "priority": "high"}
+{"id": "routing-027", "state": "User: 'Draft a changelog entry for the 2.3 release.'", "labels": {"intent": "docs_config"}, "priority": "low"}
+{"id": "routing-028", "state": "User: 'The webhook retries forever on a 500. It should stop after 5 attempts. Correct this.'", "labels": {"intent": "bug_fix"}, "priority": "high"}
+{"id": "routing-029", "state": "User: 'Add an option to remember me on the login form.'", "labels": {"intent": "new_feature"}, "priority": "high"}
+{"id": "routing-030", "state": "User: 'Show me how the authentication middleware is wired together. Explain only.'", "labels": {"intent": "question"}, "priority": "high"}
+{"id": "routing-pre-1789822928-0", "state": "User: 'Configure the repository to require two approvals before merging.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822928-1", "state": "User: 'Can you walk me through how a webhook event flows through our system? No changes needed.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822928-2", "state": "User: 'Remove the deprecated shim layer that only forwards calls to the new module.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822929-3", "state": "User: 'Add keyboard-only navigation support for accessibility compliance.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822929-4", "state": "User: 'The settings page loses all unsaved changes when the connection drops. Fix the data loss.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822930-5", "state": "User: 'Build a bulk import tool so admins can upload thousands of users from a CSV.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822930-6", "state": "User: 'The CLI hangs forever when given an empty string as the search query. Please fix.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822930-7", "state": "User: 'Add issue templates for bug reports and feature requests.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822931-8", "state": "User: 'Background jobs silently stop processing after the first retry. Find the bug and fix it.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822931-9", "state": "User: 'Extract the inline SQL strings into named query constants. Behavior must stay identical.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822932-10", "state": "User: 'Document the three environment variables the worker reads.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822932-11", "state": "User: 'Our webhooks send duplicate events within the same minute. Fix the deduplication.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822932-12", "state": "User: 'Add an audit log page showing who changed what and when.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822933-13", "state": "User: 'Add Slack notifications as an alternative to email alerts.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822933-14", "state": "User: 'Update the license year in all file headers.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822933-15", "state": "User: 'Implement saved searches so users can bookmark their filter combinations.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822934-16", "state": "User: 'Let users schedule reports to be emailed every Monday morning.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822934-17", "state": "User: 'Sorting by date in the admin table reverses the order randomly. Correct it.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822934-18", "state": "User: 'Push notifications arrive twice for the same message. Track down why and fix it.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822935-19", "state": "User: 'How does the session expiry work in this codebase? Just explain it to me.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822935-20", "state": "User: 'Flatten the deeply nested promise chain in the sync flow. Same behavior, clearer code.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822936-21", "state": "User: 'Who owns the billing service these days? Just asking.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822936-22", "state": "User: 'The autocomplete dropdown flickers and closes before you can pick an option. Fix it.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822936-23", "state": "User: 'What does the feature flag system support \u2014 percentages, users, or both? Curious.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822937-24", "state": "User: 'Introduce types for the config object instead of untyped dicts. No runtime changes.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822937-25", "state": "User: 'What version of the framework are we on and are there any known issues with it?'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822937-26", "state": "User: 'Add multi-language support starting with Spanish and French.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822938-27", "state": "User: 'Add a maintenance mode banner that admins can toggle.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822938-28", "state": "User: 'The dark theme makes the disabled buttons look enabled. Fix the styling.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822938-29", "state": "User: 'The mobile app crashes when opening a profile with more than 500 followers. Fix.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822939-30", "state": "User: 'Update the README install instructions for the new Node 22 requirement.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822939-31", "state": "User: 'Bump the pinned dependency versions in requirements.txt to the latest patch releases.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822940-32", "state": "User: 'Split the 4000-line routes file into per-resource modules. No logic changes.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822940-33", "state": "User: 'Collapse the three nearly identical email builders into one parameterized builder.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822940-34", "state": "User: 'What is the difference between the two caching layers we use?'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822941-35", "state": "User: 'Are there any open TODOs in the auth module? List them for me.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822941-36", "state": "User: 'Extract the duplicated permission checks into a single guard function.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822941-37", "state": "User: 'The export button downloads a file with yesterday's data. Fix the stale cache issue.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822942-38", "state": "User: 'Add a CONTRIBUTING section describing the branch naming convention.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822942-39", "state": "User: 'Reorganize the test fixtures into shared factories. Tests must keep passing identically.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822942-40", "state": "User: 'Why do we validate phone numbers twice, once on the client and once on the server? Explain the reasoning.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822943-41", "state": "User: 'Explain what the middleware chain does for an authenticated request.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822943-42", "state": "User: 'Which of our endpoints still accept the deprecated v1 auth header? Just list them.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822944-43", "state": "User: 'Add the new staging URL to the deployment documentation.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822944-44", "state": "User: 'Create a public read-only share link for any dashboard.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822944-45", "state": "User: 'Add a lint step for the docs folder to the CI workflow.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822945-46", "state": "User: 'Show me the current rate limits on the public API and where they are configured.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822945-47", "state": "User: 'Logging in with a capital letter in the email fails. Fix the case sensitivity.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822945-48", "state": "User: 'Convert the callback-based upload handler to async/await. Purely internal restructure.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822946-49", "state": "User: 'Set up the code owners file so the payments folder requires the payments team.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822946-50", "state": "User: 'Support dragging files directly onto the upload widget from the desktop.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822947-51", "state": "User: 'Rename the UserService class to AccountService everywhere. No behavior changes.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822947-52", "state": "User: 'The image gallery never finishes loading thumbnails on Safari; the spinner spins forever. Fix this.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822947-53", "state": "User: 'Replace the hand-rolled retry loops with the standard retry utility. Same semantics.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822948-54", "state": "User: 'Correct the outdated screenshots in the onboarding guide.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822948-55", "state": "User: 'How would our current architecture handle a 10x traffic spike? Just an analysis.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822948-56", "state": "User: 'Add recurring billing with proration when plans change mid-cycle.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822949-57", "state": "User: 'Implement offline mode so the mobile app queues actions while disconnected.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822949-58", "state": "User: 'Encapsulate the raw dict manipulation in the cart module behind a proper class.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822949-59", "state": "User: 'Fix the typos in the API reference for the users endpoint.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822950-60", "state": "User: 'Our invoice PDFs print with the wrong tax rate for EU customers. Correct the calculation.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822950-61", "state": "User: 'Which database indexes exist on the orders table? I only want to know.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822951-62", "state": "User: 'Password reset emails contain a broken link that 404s. Fix the link generation.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822951-63", "state": "User: 'Create a REST endpoint that returns usage statistics per API key.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822951-64", "state": "User: 'Move the date formatting helpers into the shared utils package. No functional changes.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822952-65", "state": "User: 'Fix the broken markdown table in the architecture overview doc.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822952-66", "state": "User: 'Group all environment variable reads behind one config module. No behavior change.'", "labels": {"intent": "refactor"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822952-67", "state": "User: 'Update the CHANGELOG with the entries for this week's release.'", "labels": {"intent": "docs_config"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822953-68", "state": "User: 'Add two-factor authentication via SMS to the existing login flow.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822953-69", "state": "User: 'Is there any documentation about the deployment pipeline? Point me to it.'", "labels": {"intent": "question"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822953-70", "state": "User: 'The API returns 200 with an empty body for deleted resources instead of 404. Fix the status codes.'", "labels": {"intent": "bug_fix"}, "source": "jev-prelabel+human-confirm"}
+{"id": "routing-pre-1789822954-71", "state": "User: 'Add a print stylesheet so the reports page prints cleanly.'", "labels": {"intent": "new_feature"}, "source": "jev-prelabel+human-confirm"}

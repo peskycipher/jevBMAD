@@ -1,0 +1,15 @@
+{
+  "questions": {
+    "complexity": {
+      "type": "score",
+      "instructions": "Rate the implementation complexity of the request in the state.",
+      "criteria": [
+        "0 - trivial: no code changes needed; answering a question or reading existing code.",
+        "1 - minor: small, localized change; single file or function; clear spec; low risk.",
+        "2 - moderate: multi-file change with a clear spec; some interdependencies; medium risk.",
+        "3 - major: cross-cutting change needing design decisions; touches many modules; high risk.",
+        "4 - critical: architectural overhaul, data migration, or security-sensitive change."
+      ]
+    }
+  }
+}

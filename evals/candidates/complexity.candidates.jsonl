@@ -1,0 +1,78 @@
+{"state": "Request: 'Create a webhook subscription page with signing secret management.'", "intended": {"complexity": 2}}
+{"state": "Request: 'List the modules under the services directory.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Extract the monolith's billing domain into an independently deployable service.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Add optimistic updates to the task board with rollback on failure.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Implement SSO with two enterprise providers alongside the existing login.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Migrate all customer data to a new region while respecting data residency laws.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Add rate limiting to the public endpoints with per-key quotas.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add a read-only audit trail view backed by the existing event log.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add pagination to the users list, including API params, service layer, and UI table updates.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add request logging middleware with correlation IDs across the API.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Add real-time collaborative editing to the document editor.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Design and implement a cross-service transactional outbox for consistency.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Introduce a plugin architecture so external teams can extend the data pipeline.'", "intended": {"complexity": 3}}
+{"state": "Request: 'What HTTP status does the health endpoint return?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Add a public API v2 with versioning strategy and a v1 deprecation timeline.'", "intended": {"complexity": 3}}
+{"state": "Request: 'What is the default page size in the API?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Make the empty-state message on the dashboard more helpful.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Add an admin impersonation flow with audit logging for support cases.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Show the current feature flags and their values.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Rename the parameter 'data' to 'payload' in the upload function.'", "intended": {"complexity": 1}}
+{"state": "Request: 'What ports does the docker-compose file expose?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Replace the payment provider across all flows with PCI-compliant migration.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Add the 'beta' label to the new menu item.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Introduce an event-driven architecture between the web and worker tiers.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Add a log line when the cache is cleared.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Implement granular audit logging with compliance export for regulated customers.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Which timezone are the timestamps stored in?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Fix the off-by-one in the pagination display label.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Fix the broken markdown link in the setup docs.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Move the file storage to object storage with signed URLs and a migration plan.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Point me to where retry backoff is configured.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Build a settings section with three preference toggles persisted per user.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Implement a file upload flow with progress and retry for the attachments feature.'", "intended": {"complexity": 2}}
+{"state": "Request: 'How many database tables does the schema define?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Add a single test for the new edge case in the slug generator.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Rewrite the core in a different language for performance, keeping behavior identical.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Change the icon for the archive button.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Wire the notification service into the existing user preferences system.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Correct the grammatical error in the confirmation dialog.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Fix the import order in the utils module for the linter.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Add a full-text search engine with relevance tuning and multilingual support.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Implement soft deletes for the projects resource across API, service, and UI.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Switch the entire frontend from one framework to another with no feature freeze.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Change the constant MAX_RETRIES from 3 to 5.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Rebuild the event pipeline to guarantee exactly-once processing at scale.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Update the user-facing text on the login button from 'Sign In' to 'Log In'.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Where is the main entry point of the worker?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Add CSV import with column mapping and error reporting for the contacts list.'", "intended": {"complexity": 2}}
+{"state": "Request: 'What logging library does the project use?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Show me the current cache TTL setting.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Add multi-region failover for the stateful services with data replication.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Implement a drag-and-drop reorder for the dashboard widgets with persistence.'", "intended": {"complexity": 2}}
+{"state": "Request: 'What does the validatePayload function check for?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Implement a full disaster recovery plan with cross-region failover and drills.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Re-architect the auth system from session cookies to zero-trust with device attestation.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Replace the in-house search with a vector search engine across all content types.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Implement workload isolation so enterprise tenants get dedicated compute.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Migrate the production database from MongoDB to PostgreSQL with zero downtime.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Build an integration marketplace framework with partner onboarding.'", "intended": {"complexity": 3}}
+{"state": "Request: 'What does the deprecation notice in the CLI say?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Which queue does the email worker consume from?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Implement a feature-flag system with gradual rollout and kill switches across services.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Extend the search to cover three new entity types with snippets.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Rebuild the permission system around fine-grained roles and resource scopes.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Replace the entire monolith with microservices while keeping the product live.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Rebuild the storage layer for end-to-end encryption with key management.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Update the default timeout value from 30s to 60s in one place.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Add the new enum value to the status list and its display name.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Implement email verification with a token flow and resend logic, frontend and backend.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Consolidate five acquired companies' systems into one platform with data merging.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Which framework version does package.json declare?'", "intended": {"complexity": 0}}
+{"state": "Request: 'Summarize the responsibilities of the auth module.'", "intended": {"complexity": 0}}
+{"state": "Request: 'Unify the three identity silos into a single profile service.'", "intended": {"complexity": 3}}
+{"state": "Request: 'Add multi-currency display support across pricing and checkout screens.'", "intended": {"complexity": 2}}
+{"state": "Request: 'Fix the typo in the error message for invalid email format.'", "intended": {"complexity": 1}}
+{"state": "Request: 'Move from REST to GraphQL platform-wide with a new gateway and federation.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Migrate off the legacy identity provider with zero user-visible disruption.'", "intended": {"complexity": 4}}
+{"state": "Request: 'Adjust the padding on the alert component.'", "intended": {"complexity": 1}}

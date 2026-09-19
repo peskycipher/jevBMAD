@@ -1,0 +1,30 @@
+{
+  "questions": {
+    "spec_specific": {
+      "type": "noul",
+      "instructions": "Does the artifact state concrete, specific requirements \u2014 named components, expected behavior, and scope \u2014 rather than vague goals or background material?",
+      "proposition": "The artifact states concrete, specific requirements."
+    },
+    "requirements_testable": {
+      "type": "noul",
+      "instructions": "Are the acceptance criteria verifiable \u2014 could a reviewer or automated test objectively confirm each one (given inputs, expected outputs, measurable conditions)?",
+      "proposition": "The acceptance criteria are objectively verifiable."
+    },
+    "no_blockers": {
+      "type": "noul",
+      "instructions": "Work that is simply not done yet does NOT count as a blocker. Count only explicit unresolved blocking decisions: TODOs, open either/or choices, or required content that is missing or only referenced but absent. A document that is entirely absent or placeholder counts as a blocker.",
+      "proposition": "There are no explicit unresolved blocking decisions."
+    },
+    "ready_score": {
+      "type": "score",
+      "instructions": "Rate the overall readiness of this artifact for the next BMAD phase.",
+      "criteria": [
+        "0 - not ready: background material, goals, or discussion with no actionable requirements. NOT for: a concrete task list (that is at least 1). Example: a theory overview or 'make it nice and modern'.",
+        "1 - weak: some concrete requirements but vague scope, untestable criteria, or open blockers remain. NOT for: artifacts where every criterion could be verified by a test. Example: 'implement CSV export' with a TODO 'stream or buffer?' left open.",
+        "2 - partial: mostly concrete and testable, but at least one significant gap (one gate fails, one criterion unmeasurable). Example: clear spec but acceptance criteria say only 'the system should be fast'.",
+        "3 - ready: concrete requirements, objectively testable criteria, no open blockers; minor polish still possible. Example: a phase plan with named deliverables and measurable exit criteria, or a story with given/expected behavior and named test cases.",
+        "4 - exemplary: concrete, testable, complete, AND edge cases and failure modes explicitly addressed. NOT for: merely solid specs that ignore edge cases. Example: 'empty results yield a header-only CSV; tests cover happy path and empty state'."
+      ]
+    }
+  }
+}

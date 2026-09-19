@@ -1,0 +1,13 @@
+[
+  {
+    "ts": "2026-09-19T22:57:09+1000",
+    "log": "/home/loki/projects.io/jev-BMAD/evals/logs/routing.jsonl",
+    "log_size": 16,
+    "sample_rate": 0.05,
+    "n_sampled": 1,
+    "hindsight_agreement": 0.0,
+    "human_audit_queued": 1,
+    "memory_relevance_mean": null,
+    "memory_relevance_target": 3.2
+  }
+]

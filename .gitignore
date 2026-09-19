@@ -1,3 +1,7 @@
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
 __pycache__/
+
+# eval runtime artifacts — regenerate by re-running evals/harness/run_evals.py
+# (golden sets, criteria, and harness code ARE committed)
+/evals/logs/

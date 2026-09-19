@@ -1,0 +1,1 @@
+{"ts": "2026-09-19T22:46:15+1000", "request": "Add a typo fix to the README.", "decision": "system2", "jev_hindsight_correct": false, "hindsight_noul": 0.29, "failure_kind": "over_escalation", "audit": "confirm_or_reject_routing"}

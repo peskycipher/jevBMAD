@@ -1,0 +1,270 @@
+[
+  {
+    "set": "routing",
+    "records": [
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "other",
+        "prediction": "other",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "refactor",
+        "prediction": "refactor",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "docs_config",
+        "prediction": "docs_config",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "bug_fix",
+        "prediction": "bug_fix",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "new_feature",
+        "prediction": "new_feature",
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "qid": "intent",
+        "primitive": "choice",
+        "label": "question",
+        "prediction": "question",
+        "confidence": 1,
+        "correct": true
+      }
+    ],
+    "n_examples": 30,
+    "n_records": 30,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 1.0,
+    "ece": 0.002666666666666706,
+    "brier": null,
+    "score_mae": null,
+    "other_rate": 0.03333333333333333,
+    "bands": {
+      "high": {
+        "n": 30,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "p50": 362,
+      "p95": 460,
+      "min": 317,
+      "max": 554
+    },
+    "cost_total_usd": 0.00062966,
+    "cost_per_example_usd": 2.099e-05
+  }
+]

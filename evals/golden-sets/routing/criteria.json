@@ -1,0 +1,16 @@
+{
+  "questions": {
+    "intent": {
+      "type": "choice",
+      "instructions": "Classify the primary intent of the user request described in the state.",
+      "criteria": {
+        "bug_fix": "Fixing broken or incorrect existing behavior: error, crash, wrong output, regression.",
+        "new_feature": "Adding new functionality or capability that does not exist yet.",
+        "question": "Asking for information, explanation, review, or clarification; no code change requested.",
+        "refactor": "Restructuring existing code without changing behavior: rename, reorganize, cleanup.",
+        "docs_config": "Documentation-only or configuration/infra edits that change no product behavior: README, changelog, docs, CI workflow, dependency bumps, formatting, git maintenance.",
+        "other": "None of the listed categories fit (e.g. docs-only, infra config, version-control ops, brainstorming)."
+      }
+    }
+  }
+}
