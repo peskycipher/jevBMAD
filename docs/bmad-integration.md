@@ -8,7 +8,7 @@ Two layers of integration exist: this repo's runtime modules (used by the hybrid
 - `router/judge.py` — the §7.7 story-review rubric for post-implementation review (System-2 output quality, Jev-as-judge).
 - Both load thresholds from the fitted lockfile and log every decision with `agent_id` for multi-agent attribution.
 
-## The BMAD-METHOD fork (`~/projects.io/BMAD-METHOD`)
+## The BMAD-METHOD fork
 
 | Branch | Contents | Status |
 |---|---|---|
