@@ -79,6 +79,20 @@ def main():
             alerts.append({"severity": "warn", "check": "latency", "detail": f"p95 {p95:.0f}ms > 2500ms"})
         lines.append("")
 
+    # --- System-2 escalations (cost/latency, §7.5) ---
+    s2_log = LOGS / "system2.jsonl"
+    if s2_log.exists():
+        rows = [json.loads(l) for l in s2_log.read_text().splitlines() if l.strip()]
+        if rows:
+            lat = sorted(r["latency_ms"] for r in rows)
+            cost = sum((r.get("usage") or {}).get("cost", 0) for r in rows)
+            lines += ["## System-2 escalations (GLM)", "",
+                      f"- calls: {len(rows)}",
+                      f"- p50 / max latency: {lat[len(lat)//2]:.0f} / {lat[-1]:.0f} ms",
+                      f"- total cost: ${cost:.4f}",
+                      f"- models: {sorted({r.get('model') for r in rows})}"]
+            lines.append("")
+
     # --- online samples (hindsight agreement + memory relevance, §7.6/§7.5) ---
     pm = RESULTS / "production_metrics.json"
     if pm.exists():

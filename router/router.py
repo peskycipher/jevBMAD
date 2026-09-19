@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+import uuid
 from pathlib import Path
 
 ROUTER_DIR = Path(__file__).resolve().parent
@@ -83,6 +84,7 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
 
     # Step 2-3: batched Jev call + thresholds
     t0 = time.monotonic()
+    decision_id = uuid.uuid4().hex[:12]
     resp = call_jev(questions, state)
     a = resp["answers"]
 
@@ -127,6 +129,7 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
     entry = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "agent_id": agent_id,
+        "decision_id": decision_id,
         "request": request_text[:500],
         "decision": decision,
         "needs_review": needs_review,
@@ -144,8 +147,10 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
     _log(entry)
 
     return {
+        "decision_id": decision_id,
         "decision": decision,
         "needs_review": needs_review,
+        "usage": resp.get("usage", {}),
         "intent": intent["choice"],
         "intent_confidence": intent["confidence"],
         "safe_noul": safe["noul"],

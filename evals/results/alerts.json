@@ -1,14 +1,1 @@
-[
-  {
-    "severity": "warn",
-    "check": "ece_drift",
-    "set": "complexity",
-    "detail": "ECE 0.058"
-  },
-  {
-    "severity": "warn",
-    "check": "ece_drift",
-    "set": "readiness",
-    "detail": "ECE 0.256"
-  }
-]
+[]

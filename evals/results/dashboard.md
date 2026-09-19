@@ -1,15 +1,12 @@
 # Hybrid System Dashboard
 
-Generated: 2026-09-19 23:14 +1000
+Generated: 2026-09-19 23:49 +1000
 
 ## Golden sets
 
 | Set | Accuracy | ECE | vs baseline |
 |---|---|---|---|
-| complexity | 0.960 | 0.058 | +0.000 |
-| guardrails | 0.980 | - | +0.000 |
-| readiness | 0.781 | 0.256 | +0.000 |
-| routing | 1.000 | 0.006 | +0.000 |
+| guardrails | 0.990 | - | +0.000 |
 
 ## System-2 judge (story review)
 
@@ -19,10 +16,17 @@ Generated: 2026-09-19 23:14 +1000
 
 ## Production routing (decision log)
 
-- decisions: 16
-- System-1 auto-execute share: 12.5% (target >= 70%, §7.5)
-- p95 routing latency: 472 ms
-- total decision cost: $0.0007
+- decisions: 22
+- System-1 auto-execute share: 18.2% (target >= 70%, §7.5)
+- p95 routing latency: 626 ms
+- total decision cost: $0.0009
+
+## System-2 escalations (GLM)
+
+- calls: 1
+- p50 / max latency: 104888 / 104888 ms
+- total cost: $0.0326
+- models: ['z-ai/glm-5.3']
 
 ## Online sampling
 
@@ -35,5 +39,4 @@ Generated: 2026-09-19 23:14 +1000
 
 ## Alerts
 
-- **WARN** ece_drift: ECE 0.058
-- **WARN** ece_drift: ECE 0.256
+- none

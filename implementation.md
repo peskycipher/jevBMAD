@@ -391,7 +391,7 @@ An adversarial self-audit of the completed phases. The baselines above should be
 1. **Selection bias in the scaled golden sets.** The prelabel pipeline promoted only candidates where Jev agreed with author intent and dropped disagreements — filtering the sets toward Jev's strengths and away from boundary cases. Routing/guardrails/complexity accuracies are *internal* estimates on an agreement-filtered distribution, not unbiased production estimates.
 2. **No held-out split** when fitting thresholds, tuning criteria, and calibrating the judge — violating the plan's own §6 rule. **Corrected 2026-09-19** via `evals/harness/holdout_validate.py`: deterministic stratified 80/20 splits (written once to `golden-sets/*/splits/`, reused), train-only fitting, holdout reporting.
 3. **Judge-judging-judge circularity.** Hindsight review, prelabeling, and judging all use the same pinned model; correlated errors are invisible. §7.6's human-audit gate has **zero human-labeled data behind it yet** — every current label is assistant-authored or assistant+Jev agreement.
-4. **System 2 (GLM-5.3) is unwired.** `router.route()` returns the string `system2`; no provider, consumer, or cost baseline exists. §7.5's cost-reduction and end-to-end-latency targets are unmeasurable until it is. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
+4. **System 2 (GLM-5.3) — CORRECTED 2026-09-19: minimal path now wired.** `router/system2.py` (GLM-5.3 via OpenRouter chat completions, cost+latency logged to `evals/logs/system2.jsonl`, linked by `decision_id`) + `router/hybrid.py` (route → escalate → execute; end-to-end ms + total cost per dispatch). First live data points: escalated call **105 s / $0.033** on `z-ai/glm-5.3`; auto path **1.1 s / $0.00005** with zero System-2 calls. Implication for §7.5: a System-2 call costs ~670x a System-1 decision, so the ≥40% cost-reduction target is met at escalation rates up to ~60% (and ~70% reduction at a 30% escalation rate). §7.5's end-to-end latency target applies to mixed traffic; deep System-2 calls dominate p95 by design. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
 5. **The router lacks a prompt-injection gate** despite injecting Graft-retrieved content into Jev state (the fork CLIs run one; the jev-BMAD router does not) — and the ablation proved retrieved context changes decisions.
 6. **Eval thresholds ≠ production thresholds.** `run_evals` scores noul at a fixed 0.5 while production gates fire at 0.40–0.90; holdout reporting now evaluates at both (14.2).
 
@@ -435,7 +435,7 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 ### 14.4 Priority next steps
 
 1. **Decide the safe_noul policy** (14.2 options) — largest single effect on System-1 share.
-2. Wire a minimal System-2 path (GLM consumer + cost baseline) so end-to-end targets become measurable.
+2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.py` + `router/hybrid.py`; first cost/latency data points recorded in §14.1.4).
 3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration.
 4. Preserve the dropped disagreement candidates as a hard set with provisional labels.
 5. Add the injection gate to `router.py`; dedupe prelabel promotion by state hash.
