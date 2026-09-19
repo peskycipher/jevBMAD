@@ -167,11 +167,12 @@ if __name__ == "__main__":
         except BrokenPipeError:
             pass
 
+    trans = sys.argv[2] if len(sys.argv) > 2 else "planning_to_solutioning"
     try:
-        art = "" if sys.stdin.isatty() else sys.stdin.read().strip()
+        stdin = sys.stdin
+        art = "" if (stdin is None or stdin.isatty()) else stdin.read().strip()
         if not art and len(sys.argv) > 1:
             art = sys.argv[1]
-        trans = sys.argv[2] if len(sys.argv) > 2 else "planning_to_solutioning"
         if not art:
             print(json.dumps({"status": "bad_request", "reason_kind": "usage",
                               "reason": "empty artifact: pass text via stdin or argv[1]",

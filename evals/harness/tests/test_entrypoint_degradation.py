@@ -83,6 +83,21 @@ class UsageDegradationTest(unittest.TestCase):
                 self.assertEqual(data["reason_kind"], "usage")
                 self.assertEqual(proc.returncode, 2)
 
+    def test_closed_stdin_degrades_not_tracebacks(self):
+        """sys.stdin is None when fd 0 is closed — handler must still emit JSON
+        (regression: _degrade referenced try-local `trans` → NameError in handler)."""
+        for label, argv in [("bmad_gates.py", [sys.executable, "router/bmad_gates.py",
+                                               "spec text", "planning_to_solutioning"]),
+                            ("router.py", [sys.executable, "router/router.py", "test request"])]:
+            with self.subTest(entrypoint=label):
+                proc = subprocess.run(argv, stdin=subprocess.DEVNULL, capture_output=True,
+                                      text=True, env={**os.environ, "OPENROUTER_API_KEY": ""},
+                                      cwd=str(ROOT), timeout=60)
+                self.assertNotIn("Traceback", proc.stderr,
+                                 f"{label} leaked a traceback:\n{proc.stderr}")
+                data = json.loads(proc.stdout)
+                self.assertEqual(data["status"], "unavailable")
+
 
 if __name__ == "__main__":
     unittest.main()

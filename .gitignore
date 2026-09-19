@@ -6,3 +6,6 @@ __pycache__/
 # (golden sets, criteria, and harness code ARE committed)
 /evals/logs/
 modules/bmad-jev/**/__pycache__/
+
+# module-copy runtime decision logs (written by skills at call time)
+modules/bmad-jev/**/evals/logs/

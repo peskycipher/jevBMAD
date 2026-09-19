@@ -98,5 +98,7 @@ if __name__ == "__main__":
     except JevError as e:
         _degrade("missing_api_key" if "API_KEY" in str(e).upper() else "provider_error",
                  str(e))
+    except System2Error as e:
+        _degrade("provider_error", str(e))
     except Exception as e:  # noqa: BLE001 — internal bugs degrade too, never traceback
         _degrade("internal_error", f"{type(e).__name__}: {e}")
