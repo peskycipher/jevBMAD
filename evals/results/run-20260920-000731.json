@@ -1,0 +1,1091 @@
+[
+  {
+    "set": "complexity",
+    "records": [
+      {
+        "id": "cx-001",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-002",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "cx-003",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.03,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "cx-004",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.85,
+        "confidence": 0.87,
+        "correct": true
+      },
+      {
+        "id": "cx-005",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-006",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.07,
+        "confidence": 0.92,
+        "correct": true
+      },
+      {
+        "id": "cx-007",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.93,
+        "confidence": 0.94,
+        "correct": false
+      },
+      {
+        "id": "cx-008",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "cx-009",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.25,
+        "confidence": 0.78,
+        "correct": true
+      },
+      {
+        "id": "cx-010",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "cx-011",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-012",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.06,
+        "confidence": 0.94,
+        "correct": true
+      },
+      {
+        "id": "cx-013",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.17,
+        "confidence": 0.86,
+        "correct": true
+      },
+      {
+        "id": "cx-014",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.27,
+        "confidence": 0.76,
+        "correct": false
+      },
+      {
+        "id": "cx-015",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-016",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.91,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "cx-017",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.02,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "cx-018",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.82,
+        "confidence": 0.73,
+        "correct": true
+      },
+      {
+        "id": "cx-019",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "cx-020",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.87,
+        "confidence": 0.89,
+        "correct": false
+      },
+      {
+        "id": "cx-021",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "cx-022",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "cx-023",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.04,
+        "confidence": 0.91,
+        "correct": true
+      },
+      {
+        "id": "cx-024",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.56,
+        "confidence": 0.63,
+        "correct": false
+      },
+      {
+        "id": "complexity-pre-1789822984-1",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-3",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.34,
+        "confidence": 0.7,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-4",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.26,
+        "confidence": 0.75,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822985-5",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822986-7",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.92,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822986-8",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.18,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822987-10",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.19,
+        "confidence": 0.83,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822987-11",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.19,
+        "confidence": 0.82,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822988-12",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.17,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822988-13",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-14",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.06,
+        "confidence": 0.91,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-15",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822989-16",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.82,
+        "confidence": 0.82,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822990-18",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.24,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822990-19",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.01,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-20",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-21",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.96,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822991-22",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.97,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822992-23",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.36,
+        "confidence": 0.68,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822992-24",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822993-26",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822993-27",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822994-28",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.82,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822994-30",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-31",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.99,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-32",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.3,
+        "confidence": 0.74,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822995-33",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822996-34",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822996-36",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-37",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.33,
+        "confidence": 0.71,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-38",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.69,
+        "confidence": 0.74,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822997-39",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822998-40",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.39,
+        "confidence": 0.66,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822998-42",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.81,
+        "confidence": 0.84,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822999-43",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.99,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789822999-44",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.8,
+        "confidence": 0.83,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-45",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.98,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-46",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.04,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823001-47",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.25,
+        "confidence": 0.79,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823002-48",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823002-49",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.02,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823003-51",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.19,
+        "confidence": 0.84,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823003-52",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-53",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.91,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-54",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823004-55",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.77,
+        "confidence": 0.81,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823005-57",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823005-58",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.47,
+        "confidence": 0.59,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823006-59",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.01,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823006-60",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823007-61",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.13,
+        "confidence": 0.88,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823007-62",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.74,
+        "confidence": 0.68,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823008-64",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823008-65",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823009-66",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823009-67",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.17,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-69",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-70",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823010-71",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823012-74",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.95,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823012-75",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.93,
+        "confidence": 0.94,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823012-76",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.94,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823013-77",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.98,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823078-0",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.97,
+        "confidence": 0.98,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823078-1",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.96,
+        "confidence": 0.97,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-2",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-3",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.09,
+        "confidence": 0.85,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823079-4",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.38,
+        "confidence": 0.68,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823080-5",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823080-7",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.88,
+        "confidence": 0.9,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823081-8",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 0,
+        "prediction": 0.0,
+        "confidence": 1,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823081-10",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 0.93,
+        "confidence": 0.93,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823082-11",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.0,
+        "confidence": 0.99,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823082-12",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 1,
+        "prediction": 1.06,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823083-13",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.66,
+        "confidence": 0.72,
+        "correct": true
+      },
+      {
+        "id": "complexity-pre-1789823083-14",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 1.97,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822984-0",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.5,
+        "confidence": 0.55,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822984-2",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.84,
+        "confidence": 0.87,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822986-6",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.82,
+        "confidence": 0.79,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822987-9",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.59,
+        "confidence": 0.66,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822990-17",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.69,
+        "confidence": 0.74,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822992-25",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 3.59,
+        "confidence": 0.66,
+        "correct": false
+      },
+      {
+        "id": "complexity-hard-1789822994-29",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.95,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789822996-35",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.04,
+        "confidence": 0.72,
+        "correct": false
+      },
+      {
+        "id": "complexity-hard-1789822998-41",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 3.01,
+        "confidence": 0.96,
+        "correct": false
+      },
+      {
+        "id": "complexity-hard-1789823003-50",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.77,
+        "confidence": 0.81,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823005-56",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.52,
+        "confidence": 0.6,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823007-63",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.93,
+        "confidence": 0.94,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823009-68",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 2,
+        "prediction": 2.67,
+        "confidence": 0.7,
+        "correct": false
+      },
+      {
+        "id": "complexity-hard-1789823011-72",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.95,
+        "confidence": 0.96,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823011-73",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 3,
+        "prediction": 2.96,
+        "confidence": 0.95,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823080-6",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.77,
+        "confidence": 0.8,
+        "correct": true
+      },
+      {
+        "id": "complexity-hard-1789823081-9",
+        "qid": "complexity",
+        "primitive": "score",
+        "label": 4,
+        "prediction": 3.79,
+        "confidence": 0.83,
+        "correct": true
+      }
+    ],
+    "n_examples": 117,
+    "n_records": 117,
+    "n_errors": 0,
+    "model_resolved": "typesafe/jev-1.13-20260917",
+    "accuracy": 0.9316239316239316,
+    "ece": 0.04170940170940136,
+    "brier": null,
+    "score_mae": 0.15427350427350425,
+    "other_rate": null,
+    "bands": {
+      "low": {
+        "n": 19,
+        "accuracy": 0.7894736842105263
+      },
+      "medium": {
+        "n": 27,
+        "accuracy": 0.9259259259259259
+      },
+      "high": {
+        "n": 71,
+        "accuracy": 0.971830985915493
+      }
+    },
+    "latency_ms": {
+      "p50": 367,
+      "p95": 573,
+      "min": 294,
+      "max": 1495
+    },
+    "cost_total_usd": 0.00205514,
+    "cost_per_example_usd": 1.757e-05
+  }
+]

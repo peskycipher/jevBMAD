@@ -450,7 +450,13 @@ The 18 prelabel-audit disagreement candidates (17 complexity, 1 guardrails) are 
 - **Author agreement 0/17** at provisional labels. All complexity disagreements run one direction: **Jev rates them higher than the author did** (its proposals were levels 3–4 against author 2–3). With the locked `complexity_max = 1.5` every one of these escalates — the conservative direction (costs System-2 spend, not safety).
 - The guardrails case (seed-data update) again scored unsafe.
 
-**Open question for the human audit**: if humans side with Jev, the author's level boundaries were wrong and the golden set boundary examples skew low; if humans side with the author, Jev systematically overestimates complexity on cusp cases and the escalation budget is being overspent. Either answer is actionable — that is the point of keeping the signal.
+**Audit outcome (user-approved, 2026-09-19): settled — 12 Jev-right, 5 author-right, 1 discard.** The author's boundaries skewed low on cusp cases: Jev's higher estimates were rubric-correct on 12 of 17 (typically security-sensitive or architectural work the author had labeled 2–3). The 17 settled examples joined the complexity golden set (n=100 → 117) with provenance `human-audit`; the seed-data guardrails case stays discarded (no golden label; bands handle it).
+
+**Measured after settlement**: the audited stratum scores **13/17 (76%)** — genuinely the hardest examples even with settled labels. Full set: 93.2% acc / MAE 0.15 across n=117 (the drop from 96% reflects the harder stratum joining, not regression). CI baseline refreshed.
+
+**Circularity caveat (recorded honestly)**: 12 of the 17 settled labels equal Jev's own proposed calls (user approved assistant recommendations, which were themselves the author's re-judgment — see §14.1.3). These 17 are therefore **excluded from the train/holdout splits and from threshold fitting**; fits remain based on the original n=100 sets. A future fully-independent human pass on fresh production samples remains the real §7.6 gate.
+
+**§14.4 item 3 status: closed for this batch** (with the caveat above). All five §14.4 items are now done.
 
 ---
 
