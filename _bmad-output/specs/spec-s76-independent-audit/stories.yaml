@@ -1,0 +1,40 @@
+- id: "1"
+  title: Collect the independent blind-labeled batch
+  description: >-
+    Execute CAP-1 of SPEC.md per labeling-protocol.md: freeze 15-25 samples
+    (pool-first ~10, fresh traffic after), label blind in two sessions, commit
+    the batch with full provenance. No judge output may exist before the
+    labels are committed.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    The labeler (Loki) must never see Jev output for sampled states — this is
+    a process story, not just code: enforce the freeze-commit ordering, the
+    two-session split, and the provenance attestations exactly as
+    labeling-protocol.md specifies. Ambiguous samples are recorded and
+    dropped, never relabeled.
+- id: "2"
+  title: Run the judge calibration re-check and record the verdict
+  description: >-
+    Execute CAP-2: run the pinned-model judge over the frozen batch in a clean
+    environment and produce the agreement report against the fixed §7.6
+    targets, with the ordering gate enforced.
+  done_checkpoint: true
+  invoke_dev_with: >-
+    The judge pass must run in an environment that never mounts the labeling
+    workspace (labeling-protocol.md 'Judge isolation'). The report refuses to
+    score if the human-label commit does not precede the judge run. Record an
+    honest met/not-met verdict on noul gate agreement (>=95%) in
+    docs/implementation.md §7.6/§14 either way — ECE on score is deferred
+    until n>=50 and must not be claimed from this batch.
+- id: "3"
+  title: Fit policy-layer thresholds through the eval pipeline
+  description: >-
+    Execute CAP-3: route the readiness/review gate thresholds through the
+    golden-set sweep -> holdout validation -> lockfile path, or document them
+    explicitly as provisional with a named growth path.
+  invoke_dev_with: >-
+    Follow §6 fitting rules: train-only fits, holdout reporting, lockfile
+    recording. Question wording is frozen — a criteria edit invalidates fits.
+    If a set is too small to fit, the deliverable is the explicit
+    provisional-with-growth-path statement in the lockfile/docs, not a guess.
