@@ -76,7 +76,12 @@ def dispatch(request_text: str, project_root: str = ".", use_memory: bool = True
 
 if __name__ == "__main__":
     req = " ".join(sys.argv[1:]) or "Refactor the router package into a cleaner module layout."
-    result = dispatch(req)
+    try:
+        result = dispatch(req)
+    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
+        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
+                          "routing_decision": "unavailable"}, indent=2))
+        raise SystemExit(0)
     summary = {k: result[k] for k in ("decision_id", "end_to_end_ms", "cost_usd")}
     summary["routing_decision"] = result["routing"]["decision"]
     if result["system2"] and result["system2"]["status"] == "ok":

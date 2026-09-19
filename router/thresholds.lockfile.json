@@ -12,7 +12,7 @@
       "n_auto": 102,
       "n_total": 102
     },
-    "safe_noul_min": {
+    "safe_noul_escalate": {
       "fitted": 0.5,
       "auto_acc": 1.0,
       "n_auto": 49,

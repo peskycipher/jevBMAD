@@ -2,7 +2,7 @@
 **Jev AI (System 1) + GLM-5.3 (System 2) + pi.dev Harness + Mem0 + Graft**  
 Integrated with the BMAD-Method Workflow
 
-**Version:** 1.5  
+**Version:** 1.5.1  
 **Date:** 2026-09-19  
 **Status:** Ready for Implementation  
 
@@ -13,6 +13,7 @@ Integrated with the BMAD-Method Workflow
 - v1.3: Full integration of Jev primitives, structured criteria, API details, and best practices  
 - v1.4: Added comprehensive evaluation (evals) framework, metrics, offline/online evaluation strategy, and integration into all phases
 - v1.5: Jev-as-judge replaces most human-in-the-loop labeling/review; System-2 output rubric added (§7.7); Choice `other` → System-2 fallback; default model set to `~typesafe/jev-latest`
+- v1.5.1: Pinned System-1 model to `typesafe/jev-1.13-20260917` (reproducibility now required: silent upstream model bumps would invalidate fitted thresholds); lockfile fitted key renamed `safe_noul_min` → `safe_noul_escalate` to match the consumed threshold names
 
 ---
 
@@ -127,12 +128,11 @@ POST https://openrouter.ai/api/alpha/decisions
 **Do not** use `/api/v1/chat/completions`.
 
 **Recommended Model IDs**:
-- Default (current decision): `~typesafe/jev-latest`
-- Optional pinned alias: `typesafe/jev-1.13` (only if reproducibility is later required)
+- Default (current decision): `typesafe/jev-1.13-20260917` (pinned dated snapshot — reproducible evaluation; re-fit thresholds on any version change)
 
 **Pricing**: $0.042 / M input tokens • $0 output tokens • Context ≈ 32k
 
-Always log the exact `model` string returned (the resolved version behind `~jev-latest`). Re-fit thresholds whenever the resolved version changes.
+Always log the exact `model` string returned. Re-fit thresholds whenever the resolved version changes.
 
 ---
 
@@ -469,7 +469,7 @@ models:
   system1:
     provider: "openrouter"
     endpoint: "https://openrouter.ai/api/alpha/decisions"
-    model: "~typesafe/jev-latest"       # Team decision 2026-09-19; log resolved version per call
+    model: "typesafe/jev-1.13-20260917" # Pinned dated snapshot (v1.5.1, supersedes the 2026-09-19 ~jev-latest decision); log resolved version per call
     api_key_env: "OPENROUTER_API_KEY"
   system2:
     model: "glm-5.3"

@@ -204,4 +204,7 @@ def route(request_text: str, project_root: str = ".", use_memory: bool = True,
 
 if __name__ == "__main__":
     req = " ".join(sys.argv[1:]) or "What does the retry helper do in http_client.py?"
-    print(json.dumps(route(req), indent=2))
+    try:
+        print(json.dumps(route(req), indent=2))
+    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
+        print(json.dumps({"status": "unavailable", "reason": str(e)[:300], "decision": "unavailable"}, indent=2))

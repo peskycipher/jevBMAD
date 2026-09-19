@@ -191,4 +191,8 @@ def judge(story_text: str, implementation_text: str, log: bool = True,
 
 
 if __name__ == "__main__":
-    print(json.dumps(judge(sys.argv[1], sys.argv[2]), indent=2))
+    try:
+        print(json.dumps(judge(sys.argv[1], sys.argv[2]), indent=2))
+    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
+        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
+                          "passed": None}, indent=2))

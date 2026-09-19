@@ -160,4 +160,8 @@ def check_readiness(artifact_text: str, transition: str = "planning_to_solutioni
 if __name__ == "__main__":
     art = sys.stdin.read().strip() or sys.argv[1] if len(sys.argv) > 1 else sys.stdin.read()
     trans = sys.argv[2] if len(sys.argv) > 2 else "planning_to_solutioning"
-    print(json.dumps(check_readiness(art, trans), indent=2))
+    try:
+        print(json.dumps(check_readiness(art, trans), indent=2))
+    except Exception as e:  # noqa: BLE001 — explicit status, never a traceback (adapter contract)
+        print(json.dumps({"status": "unavailable", "reason": str(e)[:300],
+                          "decision": "unavailable", "transition": trans}, indent=2))

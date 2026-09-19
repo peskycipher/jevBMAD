@@ -124,7 +124,7 @@ def main(argv):
             fitted["intent_conf_min"] = sweep_confidence(recs)
         elif name == "guardrails":
             recs = [r for r in train if r["primitive"] == "noul"]
-            fitted["safe_noul_min"] = sweep_noul(recs)
+            fitted["safe_noul_escalate"] = sweep_noul(recs)
         elif name == "complexity":
             recs = [r for r in train if r["primitive"] == "score"]
             fitted["complexity_max"] = sweep_score(recs)
@@ -153,9 +153,9 @@ def main(argv):
             out["holdout_accuracy"] = sum(r["correct"] for r in noul_hold) / len(noul_hold)
             noul_train = [r for r in train if r["primitive"] == "noul"]
             out["train_accuracy"] = sum(r["correct"] for r in noul_train) / len(noul_train)
-            t_fit = fitted["safe_noul_min"][0]
-            out["fitted_on_train"] = {"safe_noul_min": t_fit,
-                                      "auto_acc_train": round(fitted["safe_noul_min"][1], 3)}
+            t_fit = fitted["safe_noul_escalate"][0]
+            out["fitted_on_train"] = {"safe_noul_escalate": t_fit,
+                                      "auto_acc_train": round(fitted["safe_noul_escalate"][1], 3)}
             out["holdout_at_fitted"] = {"threshold": t_fit,
                                         **eval_at_threshold(noul_hold, "noul", t_fit, "ge")}
             t_lock = locked.get("safe_noul_escalate", 0.50)  # production escalate cut

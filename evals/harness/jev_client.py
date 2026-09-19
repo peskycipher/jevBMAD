@@ -2,7 +2,7 @@
 
 POST https://openrouter.ai/api/alpha/decisions
 Schema (validated live 2026-09-19):
-  { "model": "~typesafe/jev-latest",
+  { "model": "typesafe/jev-1.13-20260917",
     "state": str | dict | list,
     "questions": { <qid>: {
         "type": "noul"|"choice"|"score",
@@ -23,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 ENDPOINT = "https://openrouter.ai/api/alpha/decisions"
-DEFAULT_MODEL = "~typesafe/jev-latest"
+DEFAULT_MODEL = "typesafe/jev-1.13-20260917"  # pinned dated snapshot (reproducible eval); re-fit thresholds if this changes (§6)
 LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "decisions.jsonl"
 
 
