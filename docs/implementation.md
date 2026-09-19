@@ -333,7 +333,7 @@ Latency p50 ≈ 360–380 ms; cost ≈ $0.00002/example. Fitted thresholds (0.5 
 - [x] Create BMAD-specific skills and readiness gates — `router/judge.py` implements the §7.7 System-2 rubric (3 Noul gates + 4 Score dims + failure-taxonomy Choice)
 - [x] Implement end-to-end BMAD evaluation (story success, first-pass rate) — `evals/harness/run_story_review.py` over the `story_review` golden set
 - [x] Measure memory contribution (Mem0 + Graft) to success rates — `evals/harness/memory_ablation.py` (Graft on/off)
-- [x] Expand golden sets with real BMAD artifacts — `readiness` set uses real excerpts (implementation.md §9, breif.md); `story_review` set = 10 story/implementation pairs; routing criteria gained a `docs_config` label (Phase 1 finding resolved: `other` rate 16.7% → 3.3%, routing accuracy 100%)
+- [x] Expand golden sets with real BMAD artifacts — `readiness` set uses real excerpts (implementation.md §9, brief.md); `story_review` set = 10 story/implementation pairs; routing criteria gained a `docs_config` label (Phase 1 finding resolved: `other` rate 16.7% → 3.3%, routing accuracy 100%)
 
 **Exit Criteria**: Full BMAD flow works; end-to-end metrics are tracked. ✅ **Met 2026-09-19** (provisional: readiness set needs ≥100 examples + label audit).
 

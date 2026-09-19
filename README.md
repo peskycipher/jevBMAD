@@ -98,8 +98,8 @@ python3 evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale 
 
 ## Related repo
 
-The BMAD-METHOD fork (`~/projects.io/BMAD-METHOD`) carries the skill-side wiring:
-`feature/jev-decision-assist` = recommendation pilot (unchanged) · `feature/jev-gates` = readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile. Both opt-in, disabled by default, advisory-only.
+The BMAD-METHOD integration lives in a companion fork carrying the skill-side wiring:
+`feature/jev-decision-assist` = recommendation pilot (unchanged) · `feature/jev-gates` = readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile. Both opt-in, disabled by default, advisory-only. Public fork URL to be added when the fork is pushed.
 
 ## Key lessons (encode these into future Jev work)
 

@@ -1,6 +1,6 @@
 # Evaluation Harness & Golden Sets
 
-Implements §7 of `../docs/implementation.md` (v1.5): offline golden-set evals for the
+Implements §7 of `../docs/implementation.md`: offline golden-set evals for the
 Jev System-1 layer, plus decision logging for later threshold fitting (Phase 1)
 and Jev-as-judge calibration (§7.6).
 
@@ -73,7 +73,7 @@ usage — everything needed for threshold fitting and calibration tracking).
 
 Golden sets:
 - `readiness/` — BMAD phase-transition gate questions (noul gates + readiness score),
-  including real artifacts from implementation.md and breif.md
+  including real artifacts from implementation.md and brief.md
 - `story_review/` — story/implementation pairs judged by `router/judge.py` (§7.7 rubric);
   run with `python3 evals/harness/run_story_review.py` (no criteria.json — questions
   live in the judge module)
