@@ -4,6 +4,15 @@ Thanks for your interest. This repo is an experimental, evaluation-first
 System-1/System-2 router and installable BMad module. A few ground rules
 keep its core doctrine intact.
 
+## Jev lessons (standing rules — earned live, violated at your peril)
+
+These are recorded in the README as lessons; here they are as rules:
+
+1. **Polarity alignment**: noul `instructions` and `proposition` must agree — misalignment returns inverted probabilities. Found live, fixed, tested (see D10 in `docs/decisions.md`). If noul answers look inverted, check polarity before anything else.
+2. **Thresholds are data, not aspirations**: §7.7's hardcoded 0.95 rejected every passing story; fitted thresholds took verdict accuracy 60% → 100%. Never ship a threshold that hasn't been fit and holdout-validated.
+3. **Jev's noul is bimodal on safety**: treat mid-range values as a signal (tiered bands), not as "probably unsafe" (a single high cut). The lockfile encodes this — don't flatten it.
+4. **The audit loop catches author errors**: guard-022 and the hard-set stratum were both author-labeling mistakes the audit caught first. If the loop disagrees with you, re-examine your label before the model's.
+
 ## The doctrine (read before changing anything)
 
 - **Thresholds are data, not aspirations.** Never hardcode or tune a
