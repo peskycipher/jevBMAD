@@ -9,14 +9,17 @@ and Jev-as-judge calibration (§7.6).
 ```
 evals/
   golden-sets/           # versioned labeled datasets + exact prod criteria
+                         #   (structured EntryType boundaries where subtle — see docs/decisions.md D14)
     routing/             # Choice: classify user request intent (-> route)
     guardrails/          # Noul: binary safety/correctness gates
     complexity/          # Score: implementation complexity 0-4
   harness/
-    jev_client.py        # OpenRouter Decisions API client + JSONL logging
+    jev_client.py        # Decisions API client (TypeSafe direct / OpenRouter fallback) + JSONL logging
+                         #   records model_requested (the dated-snapshot pin) + the provider echo on every call
     metrics.py           # accuracy, ECE, Brier, per-band reports
     run_evals.py        # CLI runner over a golden set
-    tests/               # unit tests (entrypoint degradation, model/lockfile consistency) — run keyless
+    tests/               # unit tests (entrypoint degradation, model/lockfile consistency,
+                         #   golden<->runtime question sync, EntryType shapes) — run keyless
   results/               # eval run reports (versioned JSON)
   logs/                  # full decision logs (one JSON line per API call)
 ```
@@ -63,7 +66,9 @@ usage — everything needed for threshold fitting and calibration tracking).
 - **choice**: top-1 accuracy; per-confidence-band accuracy; `other` rate
 - **noul**: accuracy @ 0.5; Brier score
 - **score**: accuracy @ nearest level; MAE (levels)
-- **all**: Expected Calibration Error (ECE, 10 bins), latency p50/p95, cost
+- **all**: Expected Calibration Error (ECE, 10 bins), latency p50/p95, cost (`null` unless the provider reports one — never $0.00)
+
+Run reports also record `model_resolved` (the pinned dated snapshot, provider-independent) and `model_echo` (what the provider actually served) per set.
 
 ## Phase mapping (implementation.md §7.4)
 
@@ -92,8 +97,8 @@ lockfile; all calls logged to `evals/logs/`.
 
 ## Phase 3 additions
 
-- `ci_gate.py` — CI regression gate (accuracy drop > 3 pts or model drift = fail; ECE = warn unless `--strict`); `--update-baseline` refreshes `results/baseline.json`; wired to `.github/workflows/evals.yml`
-- `online_sample.py` — 5% log sampling, Jev hindsight review, ~3% human audit queue, memory-relevance scoring, `production_metrics.json` snapshots
+- `ci_gate.py` — CI regression gate (accuracy drop > 3 pts or model drift = fail; ECE and provider-echo drift = warn unless `--strict`); `--update-baseline` refreshes `results/baseline.json`; wired to `.github/workflows/evals.yml`
+- `online_sample.py` — ~3% log sampling (`--seed` for reproducibility), Jev hindsight review, ~3% human audit queue, memory-relevance scoring, `production_metrics.json` snapshots
 - `dashboard.py` — `results/dashboard.md` + `alerts.json` vs §7.5 targets
 - `prelabel.py` — Jev-assisted golden-set growth: `--generate <set> <candidates.jsonl>` proposes labels into `audit/prelabel_queue.jsonl`; human approves; `--promote <set>` appends to the golden set
 - `agent_id` parameter on router/judge/gates for multi-agent logging

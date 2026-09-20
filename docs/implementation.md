@@ -123,6 +123,12 @@ Start with simple strings; upgrade to structured objects only when needed.
 
 ## 5. Jev API Integration (OpenRouter Only)
 
+> **2026-09-20 update:** TypeSafe direct access is now live and preferred when
+> `TYPESAFE_API_KEY` is set (`https://api.typesafe.ai/v1/systemone`). TypeSafe
+> direct rejects the dated snapshot ID (HTTP 400), so the client sends its
+> alias there and records the logical pin as `model_requested` — see D13.
+> The original OpenRouter-only plan text below is preserved as history.
+
 **Endpoint**:
 ```
 POST https://openrouter.ai/api/alpha/decisions
@@ -464,6 +470,29 @@ The 18 prelabel-audit disagreement candidates (17 complexity, 1 guardrails) are 
 **First completed online-sample → golden-set cycle (§7.3, 2026-09-19):** the hindsight queue's over-escalation verdict on "Add a typo fix to the README" was confirmed — root cause was the `intent=other` fallback under pre-Phase-2 criteria, fixed by the `docs_config` label. Re-route of the identical request now returns `system1_auto`/`docs_config`; the case is locked in as golden example `routing-031` (routing set n=103). The online loop — sample → hindsight judge → audit → criteria fix → golden set — has now run end-to-end once.
 
 ---
+
+## 15. 2026-09-20 hardening pass (post-release)
+
+Record of the commits after the 2026-09-19 audit cutoff (full detail in the
+commit log; decisions D13/D14 in `decisions.md`):
+
+- **Entrypoint degradation contract** (`c63f636`): every CLI/skill emits JSON
+  statuses, never tracebacks; memlog init TOCTOU fixed; retry on transport
+  failures.
+- **Eval integrity** (`0a2ce25`): provider-reported cost only (`null`, never
+  $0.00); `fit_gates` MIN_FIT_N=20 guard; `online_sample` audits ~3% of the
+  sample with a `--seed`; run_story_review reads gate thresholds from the
+  lockfile.
+- **Provider-independent provenance** (`0508fe6`, D13): `model_requested` /
+  `model_echo` recorded per call and per report; `ci_gate` echo-drift warning;
+  lockfile re-fit (values unchanged) from a full live run.
+- **Structured EntryType questions** (`b67e9fb`, D14): structured noul/score/
+  choice boundaries where the docs recommend them; guardrails 0.990 → 1.000,
+  readiness 0.750 → 0.781 (ECE 0.275 → 0.220); lockfile + baseline refreshed
+  from the same structured run; live CI GATE PASS.
+- **Sync & shape enforcement** (`742947b`): `test_questions_golden_sync.py` —
+  runtime `QUESTIONS` ≡ golden-set payloads, labels ⊆ choice option keys,
+  documented EntryType shapes; harness suite 25 → 32 tests.
 
 ## 10. Key Configuration Defaults
 

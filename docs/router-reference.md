@@ -79,10 +79,17 @@ Graft via local CLI (`graft ask --source`, ~1500 chars). Mem0 via platform REST 
 
 | Variable | Used by | Meaning |
 |---|---|---|
-| `OPENROUTER_API_KEY` | everything live | required for any network call; absent → clean skip |
+| `TYPESAFE_API_KEY` | jev_client, jev_adapter | TypeSafe direct (`https://api.typesafe.ai/v1/systemone`); preferred over OpenRouter when set |
+| `OPENROUTER_API_KEY` | jev_client, jev_adapter, system2.py | fallback Decisions path (`https://openrouter.ai/api/alpha/decisions`); absent both → clean skip |
 | `MEM0_API_KEY` | memory.py | enables the Mem0 retriever (optional) |
 | `SYSTEM2_MODEL` | system2.py | override the GLM model id |
 
+Provider resolution (both keys set → TypeSafe direct wins): TypeSafe direct
+**rejects** the dated snapshot ID — the client sends its alias (`jev-1.13.0`,
+verified live: the dated ID returns HTTP 400 "Unknown model") and records the
+logical pin on every response as `model_requested`; OpenRouter receives the
+dated ID as-is. See D13 in `decisions.md`.
+
 ## Jev Decisions API contract (verified live)
 
-`POST https://openrouter.ai/api/alpha/decisions` with `{model, state, questions}`. Every question needs `type` (`noul`|`choice`|`score`) + `instructions`. `choice` → `criteria` as a record (always include `other`); `score` → `criteria` as an array of legend levels; `noul` → `proposition` (keep instructions and proposition **polarity-aligned** — see `decisions.md` D10). Answers: noul → probability only (no confidence); choice → pick + probabilities + confidence; score → fractional score + legend + probabilities + confidence. Log the resolved model string every call.
+Decisions endpoints (TypeSafe direct or OpenRouter fallback, see env vars) take `{model, state, questions}`. Every question needs `type` (`noul`|`choice`|`score`) + `instructions`. Per [docs.typesafe.ai/primitives/advanced](https://docs.typesafe.ai/primitives/advanced), `instructions`, `criteria` values (choice), level entries (score), and `criteria.true/false` (noul) all accept `string | object | array | null` — the project uses **structured objects wherever a boundary is subtle** (guardrails and readiness noul boundaries: `{what, examples}`; readiness score levels: `{summary, signals, examples}`; judge `failure_kind` options: `{what, not_for}`). Golden sets and runtime `QUESTIONS` are kept byte-identical (enforced by `evals/harness/tests/test_questions_golden_sync.py`). Noul questions stay polarity-aligned (D10). Answers: noul → probability only (no confidence); choice → pick + probabilities + confidence; score → fractional score + legend + probabilities + confidence. Log the resolved model string every call: `model_requested` (the pin) + the response echo (`model` — provider-normalized; `ci_gate` warns when the echo is neither the pin nor its known alias).

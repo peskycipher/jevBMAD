@@ -40,7 +40,7 @@ Both print advisory JSON: `verdict` (`proceed`/`hold`, `first_pass`/`rework`), g
 
 ### Threshold provenance
 
-The fork's `jev_gates.py` thresholds are seeded from this repo's fitted lockfile (fitted 2026-09-19 against these golden sets, model `typesafe/jev-1.13-20260917`): readiness spec ≥ 0.40, testable ≥ 0.45, blockers ≥ 0.55, score ≥ 3.0; review spec ≥ 0.75, no-regression ≥ 0.65, security ≥ 0.85, dims ≥ 5.0. Re-fit on model change (§6 rule); the fork's model is pinned to the same dated snapshot for reproducibility.
+The fork's `jev_gates.py` thresholds are seeded from this repo's fitted lockfile (fitted 2026-09-19 against these golden sets, model `typesafe/jev-1.13-20260917`; re-fit 2026-09-20 after the structured-question adoption — locked values unchanged): readiness spec ≥ 0.40, testable ≥ 0.45, blockers ≥ 0.55, score ≥ 3.0; review spec ≥ 0.75, no-regression ≥ 0.65, security ≥ 0.85, dims ≥ 5.0. Re-fit on model change (§6 rule); the fork's model is pinned to the same dated snapshot for reproducibility.
 
 ### What is deliberately NOT wired
 

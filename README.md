@@ -11,12 +11,12 @@ trail backing every behavior change.
 
 At a glance:
 
-- **System 1 (fast)**: [Jev](https://openrouter.ai) via the OpenRouter Decisions API — typed, probabilistic, calibrated decisions in ~350 ms at ~$0.00002/call, using all three primitives (`choice`, `score`, `noul`)
+- **System 1 (fast)**: [Jev](https://docs.typesafe.ai) via the TypeSafe Decisions API (TypeSafe direct, or OpenRouter fallback) — typed, probabilistic, calibrated decisions in ~350 ms at ~$0.00002/call, using all three primitives (`choice`, `score`, `noul`), with structured JSON question boundaries where the docs recommend them
 - **System 2 (slow)**: GLM-5.3 via OpenRouter chat completions — deep reasoning for escalated work (~105 s, ~$0.03/call)
 - **Harness**: pi.dev · **Memory**: Graft (code, live) + Mem0 (semantic, pluggable) · **Process**: BMAD-Method
 - **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
-**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
+**Status (2026-09-20):** Phases 0–3 complete, holdout-validated, audit pass done, plus a 2026-09-20 hardening pass (provider-independent eval provenance, structured question boundaries, golden↔runtime sync tests). Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
 
 > **Template note:** this repo is a GitHub template — click **"Use this template"** to start your own copy. The release link above, commit history, and evaluation results all document *this* repository's provenance; they do not describe your fork's state until you re-run the evaluation pipeline yourself (see [Quickstart](#quickstart)).
 
@@ -30,16 +30,17 @@ cd jevBMAD
 
 # Requirements: Python 3.11+ (scripts are stdlib-first / PEP 723)
 # Optional but recommended for any live call:
-export OPENROUTER_API_KEY=sk-...
+export TYPESAFE_API_KEY=...    # TypeSafe direct (preferred)
+# or: export OPENROUTER_API_KEY=sk-...   (fallback Decisions path)
 
-# Verify the install — contract tests pass with no API key:
+# Verify the install — 32 contract/sync tests pass with no API key:
 python3 -m unittest discover -s evals/harness/tests
 
 # Optional: run the skill-script test suites too (they need pytest):
 pip install -r requirements-dev.txt && pytest .agents/skills modules/bmad-jev
 ```
 
-Without `OPENROUTER_API_KEY` nothing makes network calls — every CLI and skill
+Without either key nothing makes network calls — every CLI and skill
 degrades to explicit `disabled` / `unavailable` statuses instead.
 
 ### 2. Install as a BMad module (optional)
@@ -114,7 +115,7 @@ request ──▶ router.py: ONE batched Jev call
 ## Quickstart
 
 ```bash
-export OPENROUTER_API_KEY=sk-...          # required for everything live
+export TYPESAFE_API_KEY=...               # preferred; or OPENROUTER_API_KEY=sk-... as fallback
 python3 -m unittest discover -s evals/harness/tests   # contract tests — no key needed
 
 python3 router/hybrid.py "What does the router do?"       # full loop demo
@@ -127,14 +128,14 @@ python3 evals/harness/online_sample.py                     # hindsight sampling 
 python3 evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale a golden set
 ```
 
-## Verified state (2026-09-19, model `typesafe/jev-1.13-20260917`)
+## Verified state (2026-09-20, model `typesafe/jev-1.13-20260917`)
 
 | Component | Metric |
 |---|---|
 | Routing (choice, n=103) | 100% holdout acc (n=21), ECE 0.006, `other` rate 3.3% |
-| Guardrails (noul, n=100) | 100% holdout acc (n=20), Brier 0.034; unsafe ≤ 0.17, safe ≥ 0.50 (bimodal) |
-| Complexity (score, n=117) | 93.2% acc, MAE 0.15; audited hard stratum 13/17 (76%) |
-| Story judge (§7.7, n=10) | 100% verdict accuracy (fitted; provisional — set too small to split) |
+| Guardrails (noul, n=100) | 100% holdout acc (n=20); 100% full-set acc since structured boundaries (Brier 0.013); unsafe ≤ 0.17, safe ≥ 0.50 (bimodal) |
+| Complexity (score, n=117) | 92–93% acc (run-to-run variance), MAE 0.155; audited hard stratum 13/17 (76%) |
+| Story judge (§7.7, n=10) | verdict accuracy 60% on the 2026-09-20 live run (100% on the fitted subset 2026-09-19; provisional — set too small to split) |
 | Readiness gates (n=8) | 75–78% — provisional, needs growth |
 | Tiered safety bands | < 0.50 escalate · 0.50–0.75 auto+flag · ≥ 0.75 clean auto |
 | Injection gate | clean 0.41 passes · blatant injection 0.97 escalates |

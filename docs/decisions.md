@@ -1,6 +1,6 @@
 # Decision Log
 
-ADR-style record of the decisions that shaped this system, in roughly chronological order. Each entry: context → decision → consequence. Numbers cited are from the 2026-09-19 build-out.
+ADR-style record of the decisions that shaped this system, in roughly chronological order. Each entry: context → decision → consequence. Numbers cited are from the 2026-09-19 build-out; D13–D14 are from the 2026-09-20 hardening pass.
 
 ## D1 — OpenRouter as the only Jev access path
 Direct TypeSafe access was a waitlist; OpenRouter's Decisions API was live and verified. **Decision:** OpenRouter only (`/api/alpha/decisions`), pin the resolved model string per call. **Consequence:** single provider dependency (alpha, undocumented) — mitigated by strict response validation and explicit `unavailable` statuses.
@@ -37,3 +37,8 @@ Direct TypeSafe access was a waitlist; OpenRouter's Decisions API was live and v
 
 ## D12 — Advisory-only doctrine in the fork
 **Decision:** `proceed`/`first_pass` is one vote, never an approval; `hold`/`rework` surfaces reasons, never blocks automatically; shadow mode for the readiness gate until n≥100. **Consequence:** no skill can cite Jev as authority for executing or rejecting work; adoption into skill flows stays a separate per-skill decision.
+## D13 — Provider-independent provenance: pin vs echo (2026-09-20)
+**Context:** live full-suite runs via TypeSafe direct failed the CI model-drift check — the API rejects the dated snapshot ID (HTTP 400 "Unknown model") and only accepts its alias `jev-1.13.0`, so recorded `model_resolved` flipped to the alias and diverged from the lockfile pin. **Decision:** the lockfile and eval reports record the *logical pin* (`model_requested` = dated snapshot, provider-independent); the provider-specific alias resolution stays an explicit, documented client behavior; the response echo is recorded separately as `model_echo`, and `ci_gate` **warns** when the echo is neither the pin nor its known alias (early repoint signal) without hard-failing. **Consequence:** eval provenance is reconstructable regardless of access path; a repointed snapshot surfaces as an alert, not silent drift or a permanently red gate.
+
+## D14 — Structured EntryType questions where boundaries are subtle (2026-09-20)
+**Context:** [docs.typesafe.ai/primitives/advanced](https://docs.typesafe.ai/primitives/advanced) documents that instructions, choice options, score levels, and noul criteria all accept JSON structure; the project had been hand-serializing exactly those boundaries into strings ("NOT for: … Example: …"). Verified live that the pinned model accepts all structured shapes with calibrated answers. **Decision:** adopt structured `{what, examples}` noul boundaries (guardrails `safe_auto`, readiness gates), `{summary, signals, examples}` score levels (readiness `ready_score`), and `{what, not_for}` choice options (judge `failure_kind`) — and *only* where the docs recommend structure for subtle boundaries (routing at 1.000 and the uniform 2–10 legend stay strings). Runtime `QUESTIONS` and golden sets kept byte-identical, enforced by a new sync test. **Consequence:** guardrails full-set accuracy 0.990 → 1.000, readiness 0.750 → 0.781 (ECE 0.275 → 0.220), story-review unchanged (option keys untouched — labels match keys); a criteria-shape regression class is now CI-caught.

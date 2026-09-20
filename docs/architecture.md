@@ -42,7 +42,7 @@ A System-2 call costs ~670× a System-1 decision. The §7.5 cost-reduction targe
 ## Routing policy (implemented order)
 
 1. Retrieve memory (Graft; Mem0 if `MEM0_API_KEY` set) and prepend to state.
-2. One batched Jev call answers all three questions atomically.
+2. One batched Jev call answers all three questions atomically (TypeSafe direct when `TYPESAFE_API_KEY` is set, OpenRouter fallback; the dated snapshot pin is recorded as `model_requested` on every call — see D13).
 3. Apply gates in order — first failure decides:
    - **Force keywords** (`architecture|security|refactor|migrate|design`) → system2
    - **`intent = other`** → system2 (never force a listed category)
@@ -57,7 +57,7 @@ Why bands instead of one threshold: the safety noul is **bimodal** (unsafe ≤ 0
 
 ## Memory layer
 
-- **Graft**: local CLI (`graft ask --source`), ~1500 chars of context, injected into the Jev state. Contribution measured as a **boundary effect** (changes decisions near thresholds, not mean confidence).
+- **Graft**: local CLI (`graft ask --source`), ~1500 chars of context, injected into the Jev state. Question payloads use structured JSON boundaries (docs.typesafe.ai primitives/advanced) where the docs recommend them — golden sets and runtime `QUESTIONS` are sync-test-locked to be identical. Contribution measured as a **boundary effect** (changes decisions near thresholds, not mean confidence).
 - **Mem0**: REST retriever, activates only when `MEM0_API_KEY` is set; degrades to Graft-only with a logged note. Unvalidated against the real API — treat as scaffolding until first live use.
 - Retrieved context is **untrusted input** — that is why the injection gate checks the full state, not just the request.
 
