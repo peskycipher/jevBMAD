@@ -57,7 +57,7 @@ class EntrypointDegradationTest(unittest.TestCase):
                     data = json.loads(proc.stdout)
                 except json.JSONDecodeError:
                     self.fail(f"{label} did not emit JSON on stdout: {proc.stdout!r}")
-                self.assertIn("unavailable", json.dumps(data).lower(),
+                self.assertIn(data.get("status"), ("unavailable", "disabled"),
                               f"{label} should report an unavailable/disabled status")
                 self.assertIn("reason_kind", data,
                               f"{label} should carry a machine-readable reason_kind")
