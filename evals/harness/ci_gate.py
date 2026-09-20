@@ -30,6 +30,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import run_evals  # noqa: E402
+from jev_client import env_has_provider_key  # noqa: E402
 
 RESULTS = HERE.parent / "results"
 BASELINE = RESULTS / "baseline.json"
@@ -62,7 +63,7 @@ def main(argv):
         print("CI GATE: FAIL (unit tests)")
         return 1
 
-    if not (os.environ.get("TYPESAFE_API_KEY") or os.environ.get("OPENROUTER_API_KEY")):
+    if not env_has_provider_key():
         print("CI GATE: SKIP (no TYPESAFE_API_KEY or OPENROUTER_API_KEY set)")
         return 0
 

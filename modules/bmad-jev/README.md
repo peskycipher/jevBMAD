@@ -22,8 +22,10 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
 
 - Python 3.11+ with `uv` (scripts are PEP 723 / stdlib-first)
 - `TYPESAFE_API_KEY` (TypeSafe direct) or `OPENROUTER_API_KEY` (OpenRouter
-  fallback) in the environment for any live call — without one of them every
-  skill still runs and returns explicit `unavailable` statuses
+  fallback) in the environment — or in a `.env` file (copy `.env.example`)
+  in the working directory or any parent; real environment variables win —
+  for any live call. Without one of them every skill still runs and returns
+  explicit `unavailable` statuses
 - Optional: `[jev] mode = "suggest"` in `_bmad/custom/config.toml`
   (`off` by default; `shadow` = evaluate only)
 

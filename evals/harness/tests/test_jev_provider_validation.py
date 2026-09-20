@@ -11,7 +11,9 @@ client, and run offline (no API key, no network).
 
 import importlib.util
 import json
+import os
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -180,15 +182,82 @@ class ClientRetryAfterTest(unittest.TestCase):
         self.assertIsNone(self.mod._retry_after_seconds({}))
 
     def test_no_key_raises_provider_agnostic_error(self):
-        import os
-        env_backup = {k: os.environ.pop(k) for k in ("TYPESAFE_API_KEY", "OPENROUTER_API_KEY") if k in os.environ}
-        try:
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.dict(os.environ), \
+                mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+            for k in ("TYPESAFE_API_KEY", "OPENROUTER_API_KEY"):
+                os.environ.pop(k, None)
             with self.assertRaises(self.mod.JevError) as ctx:
                 self.mod.call_jev({"q": {"type": "noul", "instructions": "x"}}, "state")
             self.assertIn("TYPESAFE_API_KEY", str(ctx.exception))
-        finally:
-            os.environ.update(env_backup)
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EnvFileLoadingTest(unittest.TestCase):
+    """ensure_env_loaded: nearest .env, real env wins, malformed lines ignored."""
+
+    def setUp(self):
+        self._backup = {k: os.environ.pop(k) for k in
+                        ("TYPESAFE_API_KEY", "OPENROUTER_API_KEY") if k in os.environ}
+        self.mod = load_module(CLIENT_COPY, "jev_client_env")
+
+    def tearDown(self):
+        for k in ("TYPESAFE_API_KEY", "OPENROUTER_API_KEY"):
+            os.environ.pop(k, None)
+        os.environ.update(self._backup)
+
+    def test_dotenv_in_cwd_is_loaded(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            Path(tmp, ".env").write_text("TYPESAFE_API_KEY=ts_test_local\n")
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                endpoint, key, model = self.mod.resolve_provider()
+        self.assertEqual(endpoint, self.mod.ENDPOINT_TYPESAFE)
+        self.assertEqual(key, "ts_test_local")
+        self.assertEqual(model, self.mod.MODEL_TYPESAFE)
+
+    def test_real_env_wins_over_dotenv(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            os.environ["TYPESAFE_API_KEY"] = "ts_from_env"
+            Path(tmp, ".env").write_text("TYPESAFE_API_KEY=ts_from_file\n")
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                _, key, _ = self.mod.resolve_provider()
+        self.assertEqual(key, "ts_from_env")
+
+    def test_walks_up_parents(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            Path(tmp, ".env").write_text("OPENROUTER_API_KEY=sk-or-parent\n")
+            sub = Path(tmp, "a", "b")
+            sub.mkdir(parents=True)
+            with mock.patch.object(Path, "cwd", return_value=sub):
+                endpoint, key, _ = self.mod.resolve_provider()
+        self.assertEqual(key, "sk-or-parent")
+        self.assertEqual(endpoint, self.mod.ENDPOINT_OPENROUTER)
+
+    def test_quotes_and_export_prefix_parsed(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            Path(tmp, ".env").write_text(
+                "export OPENROUTER_API_KEY=\"sk-or-v1-quoted\"\n"
+                "# a comment\n"
+                "this line is not kv\n"
+                "\n")
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                _, key, _ = self.mod.resolve_provider()
+        self.assertEqual(key, "sk-or-v1-quoted")
+
+    def test_missing_dotenv_is_noop(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                self.assertIsNone(self.mod.resolve_provider())
+
+    def test_env_has_provider_key_reflects_dotenv(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            Path(tmp, ".env").write_text("OPENROUTER_API_KEY=sk-or-v1-any\n")
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                self.assertTrue(self.mod.env_has_provider_key())
+        # fresh module state: without any key or file -> False
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ):
+            with mock.patch.object(Path, "cwd", return_value=Path(tmp)):
+                self.assertFalse(self.mod.env_has_provider_key())

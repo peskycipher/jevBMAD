@@ -37,7 +37,9 @@ CASES = [
 
 
 def run(label, argv, stdin_text):
-    env = {**os.environ, "OPENROUTER_API_KEY": ""}  # force provider-unavailable
+    # Force provider-unavailable: both keys set (empty) so no .env file can
+    # supply a credential — real environment variables always win.
+    env = {**os.environ, "OPENROUTER_API_KEY": "", "TYPESAFE_API_KEY": ""}
     proc = subprocess.run(argv, input=stdin_text, capture_output=True, text=True,
                           env=env, cwd=str(ROOT), timeout=60)
     return label, proc
@@ -91,7 +93,8 @@ class UsageDegradationTest(unittest.TestCase):
                             ("router.py", [sys.executable, "router/router.py", "test request"])]:
             with self.subTest(entrypoint=label):
                 proc = subprocess.run(argv, stdin=subprocess.DEVNULL, capture_output=True,
-                                      text=True, env={**os.environ, "OPENROUTER_API_KEY": ""},
+                                      text=True,
+                                      env={**os.environ, "OPENROUTER_API_KEY": "", "TYPESAFE_API_KEY": ""},
                                       cwd=str(ROOT), timeout=60)
                 self.assertNotIn("Traceback", proc.stderr,
                                  f"{label} leaked a traceback:\n{proc.stderr}")

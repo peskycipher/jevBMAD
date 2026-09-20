@@ -102,6 +102,51 @@ class JevResult:
     model: str | None = None
 
 
+_ENV_LOADED = False
+
+
+def _parse_env_line(line: str) -> tuple[str, str] | None:
+    """Parse one KEY=VALUE line. Comments, blanks, and malformed lines -> None."""
+    text = line.strip()
+    if not text or text.startswith("#"):
+        return None
+    if text.startswith("export "):
+        text = text[len("export "):].strip()
+    key, sep, value = text.partition("=")
+    if not sep or not key.isidentifier():
+        return None
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+        value = value[1:-1]
+    return key, value
+
+
+def ensure_env_loaded() -> None:
+    """Load the nearest `.env` (walking up from the working directory) once.
+
+    dotenv conventions: existing environment variables always win; a missing
+    or unreadable `.env` is silently ignored. Idempotent per module copy.
+    """
+    global _ENV_LOADED
+    if _ENV_LOADED:
+        return
+    _ENV_LOADED = True
+    here = Path.cwd()
+    for candidate in (here, *here.parents):
+        path = candidate / ".env"
+        if not path.is_file():
+            continue
+        try:
+            lines = path.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            return
+        for line in lines:
+            parsed = _parse_env_line(line)
+            if parsed is not None and parsed[0] not in os.environ:
+                os.environ[parsed[0]] = parsed[1]
+        return
+
+
 def load_settings(project_root: Path | None) -> JevSettings:
     """Resolve settings from central config layers, then environment overrides.
 
@@ -115,6 +160,8 @@ def load_settings(project_root: Path | None) -> JevSettings:
     for endpoint and model follow the resolved credential unless explicitly
     configured.
     """
+    ensure_env_loaded()
+
     table: dict[str, Any] = {}
     if project_root is not None:
         try:

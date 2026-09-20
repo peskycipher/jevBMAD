@@ -57,12 +57,66 @@ class JevError(RuntimeError):
     pass
 
 
+_ENV_LOADED = False
+
+
+def _parse_env_line(line: str) -> tuple[str, str] | None:
+    """Parse one KEY=VALUE line. Comments, blanks, and malformed lines -> None."""
+    text = line.strip()
+    if not text or text.startswith("#"):
+        return None
+    if text.startswith("export "):
+        text = text[len("export "):].strip()
+    key, sep, value = text.partition("=")
+    if not sep or not key.isidentifier():
+        return None
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+        value = value[1:-1]
+    return key, value
+
+
+def ensure_env_loaded() -> None:
+    """Load the nearest `.env` (walking up from the working directory) once.
+
+    dotenv conventions: existing environment variables always win; a missing
+    or unreadable `.env` is silently ignored. Idempotent per module copy.
+    """
+    global _ENV_LOADED
+    if _ENV_LOADED:
+        return
+    _ENV_LOADED = True
+    here = Path.cwd()
+    for candidate in (here, *here.parents):
+        path = candidate / ".env"
+        if not path.is_file():
+            continue
+        try:
+            lines = path.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            return
+        for line in lines:
+            parsed = _parse_env_line(line)
+            if parsed is not None and parsed[0] not in os.environ:
+                os.environ[parsed[0]] = parsed[1]
+        return
+
+
+def env_has_provider_key() -> bool:
+    """True when TYPESAFE_API_KEY or OPENROUTER_API_KEY is available (after .env load)."""
+    ensure_env_loaded()
+    return bool(os.environ.get("TYPESAFE_API_KEY") or os.environ.get("OPENROUTER_API_KEY"))
+
+
 def resolve_provider() -> tuple[str, str, str] | None:
     """Return (endpoint, api_key, default_model) for the first credential set.
 
     TYPESAFE_API_KEY (TypeSafe direct) wins over OPENROUTER_API_KEY
-    (OpenRouter fallback). Returns None when no key is set.
+    (OpenRouter fallback). Credentials may also come from the nearest
+    `.env` file (see ensure_env_loaded); real environment variables win.
+    Returns None when no key is set.
     """
+    ensure_env_loaded()
     typesafe = os.environ.get("TYPESAFE_API_KEY") or None
     if typesafe:
         return ENDPOINT_TYPESAFE, typesafe, MODEL_TYPESAFE

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -19,6 +20,9 @@ from pathlib import Path
 
 ROUTER_DIR = Path(__file__).resolve().parent
 LOG_PATH = ROUTER_DIR.parent / "evals" / "logs" / "system2.jsonl"
+
+sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
+from jev_client import ensure_env_loaded  # noqa: E402  (loads the nearest .env once)
 
 ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "z-ai/glm-5.3"  # §10 system2 config
