@@ -76,6 +76,13 @@ requirements and configuration (`off` / `shadow` / `suggest` modes).
 
 ```bash
 uv run python router/hybrid.py "What does the router do?"   # full loop demo (needs key)
+
+# Toggle decision-assist config without hand-editing TOML/.env —
+# also available as the /jev-mode slash command:
+uv run _bmad/scripts/jev_mode.py            # status (mode, source, keys — masked)
+uv run _bmad/scripts/jev_mode.py suggest    # turn decision assist on (advisory)
+uv run _bmad/scripts/jev_mode.py off        # turn it off (zero network calls)
+uv run _bmad/scripts/jev_mode.py key typesafe <your-key>   # writes .env
 ```
 
 More commands: [Quickstart](#quickstart) below.

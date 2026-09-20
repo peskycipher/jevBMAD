@@ -29,12 +29,18 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
   live call. Without one of them every skill still runs and returns explicit
   `unavailable` statuses
 - Optional: mode via the `BMAD_DECISION_ASSIST_MODE` environment variable, or
-  the `[jev] mode` key in the central BMad config — the four TOML layers
-  `_bmad/{config,config.user}.toml` then `_bmad/custom/{config,config.user}.toml`
-  are merged in that order (later layers override), and the environment
-  variable overrides them all. Valid modes: `off` (default, zero network
-  calls), `shadow` (evaluate only), `suggest`; an unknown value warns and
-  falls back to `off`.
+  the `[jev] mode` central-config key (`mode` / `model` / `endpoint`) — the
+  four TOML layers `_bmad/{config,config.user}.toml` then
+  `_bmad/custom/{config,config.user}.toml` are merged in that order (later
+  layers override), and the environment variable overrides them all. Valid
+  modes: `off` (default, zero network calls), `shadow` (evaluate only),
+  `suggest`; an unknown value warns and falls back to `off`.
+- Manage all of this with the bundled helper (also exposed as the
+  `/jev-mode` slash command after install): `uv run jev-setup/scripts/jev_mode.py
+  [status|suggest|shadow|off|clear|set <mode|model|endpoint> <value>]` writes
+  the mode/config to `_bmad/custom/config.user.toml` (or `--layer team`), and
+  `... key <typesafe|openrouter> <api-key>` creates/updates the project `.env`
+  with the credential (values are never echoed back — output is masked).
 
 ## Install
 
