@@ -80,7 +80,11 @@ def run_set(set_dir: Path) -> dict:
         "n_examples": len(golden),
         "n_records": len(records),
         "n_errors": n_err,
-        "model_resolved": resp.get("model") if records else None,
+        # model_resolved = the logical pinned snapshot (§6, provider-
+        # independent); model_echo = what the provider actually served
+        # (drift-detection signal, alerted by ci_gate).
+        "model_resolved": (resp.get("model_requested") or resp.get("model")) if records else None,
+        "model_echo": resp.get("model"),
         "accuracy": M.accuracy(records),
         "ece": M.ece(records),
         "brier": M.brier_score(records),

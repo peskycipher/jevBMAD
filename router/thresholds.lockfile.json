@@ -1,16 +1,16 @@
 {
-  "source_run": "evals/results/run-20260919-230654.json",
+  "source_run": "evals/results/run-20260920-145124.json",
   "target_auto_band_accuracy": 0.95,
   "status": "candidate-final",
   "min_examples_required": 100,
-  "n_examples_total": 302,
+  "n_examples_total": 320,
   "model_resolved": "typesafe/jev-1.13-20260917",
   "fitted": {
     "intent_conf_min": {
       "fitted": 0.5,
       "auto_acc": 1.0,
-      "n_auto": 102,
-      "n_total": 102
+      "n_auto": 103,
+      "n_total": 103
     },
     "safe_noul_escalate": {
       "fitted": 0.5,
@@ -19,10 +19,10 @@
       "n_total": 100
     },
     "complexity_max": {
-      "fitted": 3.5,
-      "auto_acc": 0.962,
-      "n_auto": 79,
-      "n_total": 100
+      "fitted": 2.75,
+      "auto_acc": 0.956,
+      "n_auto": 68,
+      "n_total": 117
     }
   },
   "locked": {

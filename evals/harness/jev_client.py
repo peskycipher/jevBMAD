@@ -26,7 +26,7 @@ from pathlib import Path
 
 ENDPOINT_TYPESAFE = "https://api.typesafe.ai/v1/systemone"
 ENDPOINT_OPENROUTER = "https://openrouter.ai/api/alpha/decisions"
-MODEL_TYPESAFE = "jev-1.13.0"  # pinned versioned ID per docs.typesafe.ai/models
+MODEL_TYPESAFE = "jev-1.13.0"  # TypeSafe direct alias of DEFAULT_MODEL (the dated snapshot)
 DEFAULT_MODEL = "typesafe/jev-1.13-20260917"  # pinned dated snapshot (reproducible eval); re-fit thresholds if this changes (§6)
 ENDPOINT = ENDPOINT_OPENROUTER  # legacy alias: OpenRouter fallback endpoint
 LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "decisions.jsonl"
@@ -134,6 +134,9 @@ def resolve_provider() -> tuple[str, str, str] | None:
     ensure_env_loaded()
     typesafe = os.environ.get("TYPESAFE_API_KEY") or None
     if typesafe:
+        # TypeSafe direct only knows its own alias (verified live: the dated
+        # snapshot ID is rejected with HTTP 400). The translation below maps
+        # the logical pin to it; MODEL_TYPESAFE is that alias.
         return ENDPOINT_TYPESAFE, typesafe, MODEL_TYPESAFE
     openrouter = os.environ.get("OPENROUTER_API_KEY") or None
     if openrouter:
@@ -153,7 +156,13 @@ def call_jev(
     if provider is None:
         raise JevError("set TYPESAFE_API_KEY (TypeSafe direct) or OPENROUTER_API_KEY (fallback)")
     endpoint, api_key, provider_model = provider
-    if model is None or model == DEFAULT_MODEL:
+    # The caller pins DEFAULT_MODEL (the dated snapshot, §6); each endpoint
+    # gets its own ID for that same logical model (TypeSafe direct rejects
+    # the dated ID — verified live). model_requested records the logical pin
+    # so lockfile/eval provenance stays provider-independent; the response
+    # echo (model_echo in reports) is the drift-detection signal.
+    requested = DEFAULT_MODEL if model in (None, DEFAULT_MODEL) else model
+    if model in (None, DEFAULT_MODEL):
         model = provider_model
 
     payload = json.dumps({"model": model, "state": state, "questions": questions}).encode()
@@ -172,6 +181,7 @@ def call_jev(
             with urllib.request.urlopen(req, timeout=60) as resp:
                 body = json.loads(resp.read())
             latency_ms = (time.monotonic() - t0) * 1000
+            body["model_requested"] = requested
             if log:
                 _log_call(questions, state, body, latency_ms)
             return body

@@ -28,6 +28,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+import jev_client as J  # noqa: E402
 import run_evals  # noqa: E402
 from jev_client import JevError, env_has_provider_key  # noqa: E402
 
@@ -104,6 +105,12 @@ def main(argv):
         if acc_drop > CI_REGRESSION_THRESHOLD:
             failures.append(f"{name}: accuracy dropped {acc_drop:.3f} "
                             f"({base_acc:.3f} -> {rep_acc:.3f})")
+        # The provider serving an ID that is neither the pinned snapshot nor
+        # its known alias is an early drift signal (e.g. a repointed
+        # snapshot) — alert, don't fail; re-fit decision stays with §6.
+        if rep.get("model_echo") and rep["model_echo"] not in (J.DEFAULT_MODEL, J.MODEL_TYPESAFE):
+            warnings.append(f"{name}: provider served {rep['model_echo']} for pinned "
+                            f"{rep['model_resolved']} (normalization or repoint — verify §6)")
         if rep.get("ece") is not None and rep["ece"] > ECE_ALERT_THRESHOLD:
             (failures if "--strict" in argv else warnings).append(
                 f"{name}: ECE {rep['ece']:.3f} > {ECE_ALERT_THRESHOLD}"
