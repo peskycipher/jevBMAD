@@ -51,42 +51,117 @@ SCORE_THRESHOLD = _load_locked("readiness_score_min", 3.0)  # ready_score levels
 QUESTIONS = {
     "spec_specific": {
         "type": "noul",
-        "instructions": "Does the artifact state concrete, specific requirements — named components, expected behavior, and scope — rather than vague goals or background material?",
+        "instructions": "Does the artifact state concrete, specific requirements \u2014 named components, expected behavior, and scope \u2014 rather than vague goals or background material?",
         "proposition": "The artifact states concrete, specific requirements.",
-    },
+        "criteria": {
+                "true": {
+                        "what": "Named components, expected behavior, and explicit scope",
+                        "examples": [
+                                "Add /health returning 200; test in tests/test_health.py"
+                        ]
+                },
+                "false": {
+                        "what": "Vague goals or background material with no actionable requirements",
+                        "examples": [
+                                "Make the dashboard nicer and faster"
+                        ]
+                }
+        }
+},
     "requirements_testable": {
         "type": "noul",
-        "instructions": "Are the acceptance criteria verifiable — could a reviewer or automated test objectively confirm each one (given inputs, expected outputs, measurable conditions)?",
+        "instructions": "Are the acceptance criteria verifiable \u2014 could a reviewer or automated test objectively confirm each one (given inputs, expected outputs, measurable conditions)?",
         "proposition": "The acceptance criteria are objectively verifiable.",
-    },
+        "criteria": {
+                "true": {
+                        "what": "Each criterion objectively confirmable: given inputs, expected outputs, measurable conditions",
+                        "examples": [
+                                "returns 200 within 500ms for /health"
+                        ]
+                },
+                "false": {
+                        "what": "Subjective or unverifiable criteria",
+                        "examples": [
+                                "the system should feel fast",
+                                "improve UX"
+                        ]
+                }
+        }
+},
     "no_blockers": {
         "type": "noul",
         "instructions": "Work that is simply not done yet does NOT count as a blocker. Count only explicit unresolved blocking decisions: TODOs, open either/or choices, or required content that is missing or only referenced but absent. A document that is entirely absent or placeholder counts as a blocker.",
         "proposition": "There are no explicit unresolved blocking decisions.",
-    },
+        "criteria": {
+                "true": {
+                        "what": "No explicit unresolved blocking decisions",
+                        "examples": [
+                                "All either/or choices already decided"
+                        ]
+                },
+                "false": {
+                        "what": "Open TODOs, either/or choices, or missing required content",
+                        "examples": [
+                                "TODO: stream or buffer?",
+                                "auth module not yet written"
+                        ]
+                }
+        }
+},
     "ready_score": {
         "type": "score",
         "instructions": "Rate the overall readiness of this artifact for the next BMAD phase.",
         "criteria": [
-            "0 - not ready: background material, goals, or discussion with no actionable requirements. NOT for: a concrete task list (that is at least 1). Example: a theory overview or 'make it nice and modern'.",
-            "1 - weak: some concrete requirements but vague scope, untestable criteria, or open blockers remain. NOT for: artifacts where every criterion could be verified by a test. Example: 'implement CSV export' with a TODO 'stream or buffer?' left open.",
-            "2 - partial: mostly concrete and testable, but at least one significant gap (one gate fails, one criterion unmeasurable). Example: clear spec but acceptance criteria say only 'the system should be fast'.",
-            "3 - ready: concrete requirements, objectively testable criteria, no open blockers; minor polish still possible. Example: a phase plan with named deliverables and measurable exit criteria, or a story with given/expected behavior and named test cases.",
-            "4 - exemplary: concrete, testable, complete, AND edge cases and failure modes explicitly addressed. NOT for: merely solid specs that ignore edge cases. Example: 'empty results yield a header-only CSV; tests cover happy path and empty state'.",
-        ],
-    },
-    "blocker_kind": {
-        "type": "choice",
-        "instructions": "If any readiness gate failed, classify the primary blocker. If all gates passed, choose none_applicable.",
-        "criteria": {
-            "scope_vague": "Requirements are vague, generic, or missing scope boundaries",
-            "criteria_untestable": "Acceptance criteria cannot be objectively verified",
-            "open_questions": "Unresolved blocking decisions or TODOs remain",
-            "missing_artifact": "The artifact itself is empty, missing, or not provided",
-            "none_applicable": "No gate failed; the artifact is ready to proceed",
-            "other": "None of the listed categories fit",
-        },
-    },
+                {
+                        "summary": "0 - not ready",
+                        "signals": [
+                                "background material, goals, or discussion with no actionable requirements",
+                                "NOT for: a concrete task list (that is at least 1)"
+                        ],
+                        "examples": [
+                                "a theory overview or 'make it nice and modern'"
+                        ]
+                },
+                {
+                        "summary": "1 - weak",
+                        "signals": [
+                                "some concrete requirements but vague scope, untestable criteria, or open blockers remain",
+                                "NOT for: artifacts where every criterion could be verified by a test"
+                        ],
+                        "examples": [
+                                "'implement CSV export' with a TODO 'stream or buffer?' left open"
+                        ]
+                },
+                {
+                        "summary": "2 - partial",
+                        "signals": [
+                                "mostly concrete and testable, but at least one significant gap (one gate fails, one criterion unmeasurable)"
+                        ],
+                        "examples": [
+                                "clear spec but acceptance criteria say only 'the system should be fast'"
+                        ]
+                },
+                {
+                        "summary": "3 - ready",
+                        "signals": [
+                                "concrete requirements, objectively testable criteria, no open blockers; minor polish still possible"
+                        ],
+                        "examples": [
+                                "a phase plan with named deliverables and measurable exit criteria, or a story with given/expected behavior and named test cases"
+                        ]
+                },
+                {
+                        "summary": "4 - exemplary",
+                        "signals": [
+                                "concrete, testable, complete, AND edge cases and failure modes explicitly addressed",
+                                "NOT for: merely solid specs that ignore edge cases"
+                        ],
+                        "examples": [
+                                "'empty results yield a header-only CSV; tests cover happy path and empty state'"
+                        ]
+                }
+        ]
+},
 }
 
 

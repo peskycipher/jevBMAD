@@ -1,5 +1,5 @@
 {
-  "source_run": "evals/results/run-20260920-145124.json",
+  "source_run": "evals/results/run-20260920-151200-structured.json",
   "target_auto_band_accuracy": 0.95,
   "status": "candidate-final",
   "min_examples_required": 100,
@@ -15,7 +15,7 @@
     "safe_noul_escalate": {
       "fitted": 0.5,
       "auto_acc": 1.0,
-      "n_auto": 49,
+      "n_auto": 50,
       "n_total": 100
     },
     "complexity_max": {

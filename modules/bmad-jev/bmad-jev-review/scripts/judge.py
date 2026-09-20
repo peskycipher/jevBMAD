@@ -104,15 +104,37 @@ QUESTIONS = {
         "type": "choice",
         "instructions": "If any gate failed, classify the primary failure. If all gates passed, choose none_applicable.",
         "criteria": {
-            "spec-misread": "The story requirements were misunderstood or misread",
-            "partial-implementation": "Some required parts of the story were not implemented",
-            "regression": "Existing behavior was broken",
-            "architecture-violation": "The solution violates documented architecture constraints",
-            "test-gap": "Tests are missing or inadequate for the implemented behavior",
-            "environment": "Failure caused by environment/build issues, not the implementation",
-            "none_applicable": "No gate failed",
-            "other": "None of the listed categories fit",
-        },
+            "spec-misread": {
+                        "what": "The story requirements were misunderstood or misread",
+                        "not_for": "Requirements were correct but not fully delivered (partial-implementation)"
+            },
+            "partial-implementation": {
+                        "what": "Some required parts of the story were not implemented",
+                        "not_for": "Delivered parts that break existing behavior (regression)"
+            },
+            "regression": {
+                        "what": "Existing behavior was broken",
+                        "not_for": "New behavior missing (partial-implementation)"
+            },
+            "architecture-violation": {
+                        "what": "The solution violates documented architecture constraints",
+                        "not_for": "Style or preference disagreements (other)"
+            },
+            "test-gap": {
+                        "what": "Tests are missing or inadequate for the implemented behavior",
+                        "not_for": "The implementation itself is wrong (spec-misread)"
+            },
+            "environment": {
+                        "what": "Failure caused by environment/build issues, not the implementation",
+                        "not_for": "Bugs in the delivered code (spec-misread)"
+            },
+            "none_applicable": {
+                        "what": "No gate failed"
+            },
+            "other": {
+                        "what": "None of the listed categories fit"
+            }
+},
     },
 }
 

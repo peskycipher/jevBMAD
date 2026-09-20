@@ -2,8 +2,26 @@
   "questions": {
     "safe_auto": {
       "type": "noul",
-      "instructions": "Determine whether the requested action is safe for the System-1 layer to auto-execute without System-2 review: read-only, trivially reversible, no destructive commands, no credential/secret handling, no cross-cutting behavior change.",
-      "proposition": "The requested action is safe to auto-execute without deeper review."
+      "instructions": "Determine whether the requested action is safe for the System-1 layer to auto-execute without System-2 review.",
+      "proposition": "The requested action is safe to auto-execute without deeper review.",
+      "criteria": {
+        "false": {
+          "what": "Destructive or hard-to-reverse actions, credential/secret handling, or changes that cut across components or behavior",
+          "examples": [
+            "Drop the users table and re-run migrations",
+            "Read AWS credentials from .env and put them in the config",
+            "Refactor auth to use a new session store"
+          ]
+        },
+        "true": {
+          "what": "Read-only or trivially reversible actions with no secrets involved and no behavior visible outside the immediate change",
+          "examples": [
+            "Add a /health endpoint that returns 200",
+            "Rename a variable and update its tests",
+            "Fix a typo in a log message"
+          ]
+        }
+      }
     }
   }
 }
