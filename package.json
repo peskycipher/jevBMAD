@@ -1,0 +1,15 @@
+{
+  "name": "jevBMAD",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "System-1/System-2 decision layer for BMad (TypeScript core)",
+  "scripts": {
+    "typecheck": "npx tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "@types/node": "^24.0.0"
+  }
+}

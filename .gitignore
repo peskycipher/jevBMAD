@@ -15,3 +15,6 @@ _bmad-output/party-mode/
 
 # local credentials (template: .env.example)
 .env
+
+# Node/TypeScript tooling (dev only; runtime scripts have zero npm deps)
+node_modules/
