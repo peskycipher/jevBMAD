@@ -26,10 +26,13 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
   in the working directory or any parent; real environment variables win —
   for any live call. Without one of them every skill still runs and returns
   explicit `unavailable` statuses
-- Optional: mode via the `BMAD_DECISION_ASSIST_MODE` environment variable or
-  the `[jev] mode` key in the central BMad config (`_bmad/config.toml`,
-  4-layer merged — module table < user config < env var wins)
-  (`off` by default; `shadow` = evaluate only)
+- Optional: mode via the `BMAD_DECISION_ASSIST_MODE` environment variable, or
+  the `[jev] mode` key in the central BMad config — the four TOML layers
+  `_bmad/{config,config.user}.toml` then `_bmad/custom/{config,config.user}.toml`
+  are merged in that order (later layers override), and the environment
+  variable overrides them all. Valid modes: `off` (default, zero network
+  calls), `shadow` (evaluate only), `suggest`; an unknown value warns and
+  falls back to `off`.
 
 ## Install
 
@@ -47,6 +50,8 @@ the fitted values, copy `router/thresholds.lockfile.json` from the repo into
 each skill's `scripts/` directory (e.g.
 `bmad-jev-gates/scripts/thresholds.lockfile.json` and
 `bmad-jev-review/scripts/thresholds.lockfile.json`) — each script resolves its
-lockfile next to itself and falls back per-key to the conservative defaults
-(readiness gates 0.90, ready_score ≥ 3.0; judge gates 0.75/0.65/0.85,
-dimensions ≥ 5.0) when it is absent.
+lockfile next to itself and falls back per-key to the conservative §10
+defaults when it is absent: readiness noul gates **0.90**, ready_score
+**≥ 3.0**; judge gates **≥ 0.95**, dimension pass **≥ 7** (note: the fitted
+lockfile is less strict for the judge — 0.75/0.65/0.85 and 5.0 — because it
+was calibrated on the golden sets; the fallback is deliberately stricter).
