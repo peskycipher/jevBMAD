@@ -19,9 +19,36 @@ Both config scripts use an anti-zombie pattern — existing entries for this mod
 
 ## On Activation
 
-1. Read `./assets/module.yaml` for module metadata and variable definitions (the `code` field is the module identifier)
-2. Check if `{project-root}/_bmad/config.yaml` exists — if a section matching the module's code is already present, inform the user this is an update
-3. Check for per-module configuration at `{project-root}/_bmad/custom/bmad-jev/config.yaml` and `{project-root}/_bmad/core/config.yaml`. If either file exists:
+### 1. Resolve the `[workflow]` customization block
+
+Run:
+
+```bash
+uv run {project-root}/_bmad/scripts/resolve_customization.py --skill {skill-root} --project-root {project-root} --key workflow
+```
+
+**If the script fails**, resolve the `workflow` block yourself: read these three files in base → team → user order and apply the BMad structural merge rules (scalars override; tables deep-merge; arrays of tables keyed by `code` or `id` replace matching entries and append; all other arrays append):
+
+1. `{skill-root}/customize.toml` — shipped defaults
+2. `{project-root}/_bmad/custom/{skill-name}.toml` — team overrides (committed)
+3. `{project-root}/_bmad/custom/{skill-name}.user.toml` — personal overrides (gitignored)
+
+Any missing file is skipped.
+
+### 2. Execute prepend steps
+
+Execute each entry of `{workflow.activation_steps_prepend}` in order.
+
+### 3. Load persistent facts
+
+Treat each `{workflow.persistent_facts}` entry as standing context: literal sentences directly; `file:` references (globs supported) by reading the file's contents. These facts inform judgment and reporting only — they never override the decision-layer contract below. Decision-layer settings (`[jev]` mode, model, endpoint) remain central configuration, managed with the `/jev-mode` command.
+
+### 4. Continue
+
+
+5. Read `./assets/module.yaml` for module metadata and variable definitions (the `code` field is the module identifier)
+6. Check if `{project-root}/_bmad/config.yaml` exists — if a section matching the module's code is already present, inform the user this is an update
+7. Check for per-module configuration at `{project-root}/_bmad/custom/bmad-jev/config.yaml` and `{project-root}/_bmad/core/config.yaml`. If either file exists:
    - If `{project-root}/_bmad/config.yaml` does **not** yet have a section for this module: this is a **fresh install**. Inform the user that installer config was detected and values will be consolidated into the new format.
    - If `{project-root}/_bmad/config.yaml` **already** has a section for this module: this is a **legacy migration**. Inform the user that legacy per-module config was found alongside existing config, and legacy values will be used as fallback defaults.
    - In both cases, per-module config files and directories will be cleaned up after setup.
@@ -64,10 +91,10 @@ After writing config, create any output directories that were configured. For fi
 
 After registration, verify the runtime environment so the user knows what to expect:
 
-1. `uv run ./scripts/merge-config.py --help` — confirms `uv` and PEP 723 resolution work (no output means `uv` is missing; tell the user, but do not fail the install).
-2. `cp -n ./assets/env.example "{project-root}/.env"` — seed the env template if the project has no `.env` yet; the user still has to fill in `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY` before any live call succeeds.
-3. `echo ${TYPESAFE_API_KEY:+set} ${OPENROUTER_API_KEY:+set}` — if neither is set, warn: the skills still work and abstain conservatively, but every decision returns `status: unavailable` until a key is exported or written to `.env`.
-4. Optional: persist `[jev] mode = "suggest"` in `{project-root}/_bmad/custom/config.toml` if the user chose a durable mode.
+11. `uv run ./scripts/merge-config.py --help` — confirms `uv` and PEP 723 resolution work (no output means `uv` is missing; tell the user, but do not fail the install).
+12. `cp -n ./assets/env.example "{project-root}/.env"` — seed the env template if the project has no `.env` yet; the user still has to fill in `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY` before any live call succeeds.
+13. `echo ${TYPESAFE_API_KEY:+set} ${OPENROUTER_API_KEY:+set}` — if neither is set, warn: the skills still work and abstain conservatively, but every decision returns `status: unavailable` until a key is exported or written to `.env`.
+14. Optional: persist `[jev] mode = "suggest"` in `{project-root}/_bmad/custom/config.toml` if the user chose a durable mode.
 
 ## Cleanup Legacy Directories
 
@@ -90,3 +117,13 @@ Use the script JSON output to display what was written — config values set (wr
 ## Outcome
 
 Once the user's `user_name` and `communication_language` are known (from collected input, arguments, or existing config), use them consistently for the remainder of the session: address the user by their configured name and communicate in their configured `communication_language`.
+
+## On Completion
+
+After presenting the skill's main output:
+
+1. Execute each entry of `{{workflow.activation_steps_append}}` in order.
+2. Execute the `{{workflow.on_complete}}` instructions (a string, or an array in order).
+3. Then report the run as complete.
+
+Both come from the customization block resolved in step 1; empty lists mean nothing to do.

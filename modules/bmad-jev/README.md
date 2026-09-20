@@ -55,6 +55,43 @@ modules/bmad-jev`), or run the `jev-setup` skill in-project after copying this
 folder to the host's skill directory (`.claude/skills/` for Claude Code,
 `.agents/skills/` for pi).
 
+## Customizing
+
+Each skill ships a `customize.toml` in its folder — the schema of what is customizable. Never edit it (updates overwrite it); instead create sparse override files:
+
+- `{project-root}/_bmad/custom/<skill>.toml` — team overrides (committed)
+- `{project-root}/_bmad/custom/<skill>.user.toml` — personal overrides (gitignored)
+
+Overridable fields per skill (merge per BMad structural rules — scalars override, plain arrays append):
+
+```toml
+[workflow]
+activation_steps_prepend = []   # run before the main flow
+activation_steps_append = []    # run after the main output
+persistent_facts = []           # standing context (sentences or file: references)
+on_complete = []                # instructions executed when the skill finishes
+```
+
+Example — a team rule for the decide skill:
+
+```toml
+# _bmad/custom/bmad-jev-decide.toml
+[workflow]
+persistent_facts = [
+  "Recommendations must respect our AWS-only architecture rule.",
+]
+on_complete = "Summarize the outcome in one line and offer to log it."
+```
+
+Check what resolved at any time:
+
+```bash
+uv run {project-root}/_bmad/scripts/resolve_customization.py \
+  --skill <installed-path>/bmad-jev-decide --project-root {project-root} --key workflow
+```
+
+Decision-layer settings (`[jev]` mode, model, endpoint, API keys) are **central** configuration across the four config TOML layers — manage them with the bundled `jev_mode.py` helper or the `/jev-mode` slash command, not per-skill overrides.
+
 ## Provenance
 
 Scripts are copied verbatim from the validated jevBMAD pipeline

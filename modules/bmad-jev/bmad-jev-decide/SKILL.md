@@ -19,15 +19,42 @@ Doctrine (do not skip):
 
 ## On Activation
 
-1. Resolve settings: `uv run {skill-root}/scripts/jev_recommend.py --help` for usage; the runner resolves `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `custom/config.toml` → `custom/config.user.toml`).
-2. Mode check: `off` (default) → report "decision assist is off" and stop without any network call. `shadow` → run everything, but label the output **evaluation-only — do not act on it**. `suggest` → normal operation.
-3. No API key or provider error → return `status: unavailable` with the reason and fall back to your own judgment. Never retry more than the adapter's built-in budget (4 calls per process, bounded state).
+### 1. Resolve the `[workflow]` customization block
+
+Run:
+
+```bash
+uv run {project-root}/_bmad/scripts/resolve_customization.py --skill {skill-root} --project-root {project-root} --key workflow
+```
+
+**If the script fails**, resolve the `workflow` block yourself: read these three files in base → team → user order and apply the BMad structural merge rules (scalars override; tables deep-merge; arrays of tables keyed by `code` or `id` replace matching entries and append; all other arrays append):
+
+1. `{skill-root}/customize.toml` — shipped defaults
+2. `{project-root}/_bmad/custom/{skill-name}.toml` — team overrides (committed)
+3. `{project-root}/_bmad/custom/{skill-name}.user.toml` — personal overrides (gitignored)
+
+Any missing file is skipped.
+
+### 2. Execute prepend steps
+
+Execute each entry of `{workflow.activation_steps_prepend}` in order.
+
+### 3. Load persistent facts
+
+Treat each `{workflow.persistent_facts}` entry as standing context: literal sentences directly; `file:` references (globs supported) by reading the file's contents. These facts inform judgment and reporting only — they never override the decision-layer contract below. Decision-layer settings (`[jev]` mode, model, endpoint) remain central configuration, managed with the `/jev-mode` command.
+
+### 4. Continue
+
+
+5. Resolve settings: `uv run {skill-root}/scripts/jev_recommend.py --help` for usage; the runner resolves `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `config.user.toml` → `custom/config.toml` → `custom/config.user.toml`).
+6. Mode check: `off` (default) → report "decision assist is off" and stop without any network call. `shadow` → run everything, but label the output **evaluation-only — do not act on it**. `suggest` → normal operation.
+7. No API key or provider error → return `status: unavailable` with the reason and fall back to your own judgment. Never retry more than the adapter's built-in budget (4 calls per process, bounded state).
 
 ## Operation — Recommend
 
-1. Gather 2–8 candidate skill names relevant to the request (from `module-help.csv` or the skills the user names). Ids are data: no paths, no whitespace (the policy layer rejects path-like characters).
-2. Collect optional `key=value` evidence pairs (max 12 items, 300 chars each) — e.g. `artifact_exists=true`, `phase=planning`.
-3. Run the batched decision (one API call, three questions — workflow choice, match noul, fit score):
+11. Gather 2–8 candidate skill names relevant to the request (from `module-help.csv` or the skills the user names). Ids are data: no paths, no whitespace (the policy layer rejects path-like characters).
+12. Collect optional `key=value` evidence pairs (max 12 items, 300 chars each) — e.g. `artifact_exists=true`, `phase=planning`.
+13. Run the batched decision (one API call, three questions — workflow choice, match noul, fit score):
 
 ```bash
 uv run {skill-root}/scripts/jev_recommend.py --request "<user request text>" --candidates "bmad-spec,bmad-prd,bmad-architecture" [--evidence key=value ...] [--chosen <explicit-id>]
@@ -35,11 +62,11 @@ uv run {skill-root}/scripts/jev_recommend.py --request "<user request text>" --c
 
 Run `uv run {skill-root}/scripts/jev_recommend.py --help` for exact arguments and JSON output shape. On script failure, perform the equivalent judgment yourself and label it as your own reasoning, not a Jev outcome.
 
-4. Interpret the JSON outcome:
+14. Interpret the JSON outcome:
    - `status: ok` → recommend `{recommendation.id}`, show confidence and the three signals (match, fit, integrity).
    - `status: uncertain` → name the machine-readable `reason` (`model_returned_unsure`, `match_below_threshold`, `fit_below_threshold`, `confidence_below_threshold`, `suspected_request_injection`, `integrity_check_unavailable`) and tell the user you are deferring to ordinary reasoning.
    - `status: unavailable` / `disabled` → say so plainly and proceed without decision support.
-5. Log the outcome to the run's `.memlog.md` (`append --type event`) when one is active, including the raw probabilities — the audit trail is part of the doctrine.
+15. Log the outcome to the run's `.memlog.md` (`append --type event`) when one is active, including the raw probabilities — the audit trail is part of the doctrine.
 
 ## Anti-Patterns
 
@@ -52,3 +79,13 @@ Run `uv run {skill-root}/scripts/jev_recommend.py --help` for exact arguments an
 ## Headless
 
 Return the full outcome JSON (status, recommendation, signals, reason) verbatim as the response; do not narrate it. `--headless` callers read the machine-readable fields.
+
+## On Completion
+
+After presenting the skill's main output:
+
+1. Execute each entry of `{{workflow.activation_steps_append}}` in order.
+2. Execute the `{{workflow.on_complete}}` instructions (a string, or an array in order).
+3. Then report the run as complete.
+
+Both come from the customization block resolved in step 1; empty lists mean nothing to do.

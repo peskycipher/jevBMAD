@@ -21,13 +21,40 @@ Thresholds default to the conservative values above and may be tightened via a l
 
 ## On Activation
 
-1. Confirm the artifact to evaluate (spec, PRD, solution doc, or phase plan) and the source→target transition.
-2. The runner needs `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) in the environment. If it is missing or the call fails, return `status: unavailable` — never assume readiness when the gate could not run. An unchecked transition must not proceed.
+### 1. Resolve the `[workflow]` customization block
+
+Run:
+
+```bash
+uv run {project-root}/_bmad/scripts/resolve_customization.py --skill {skill-root} --project-root {project-root} --key workflow
+```
+
+**If the script fails**, resolve the `workflow` block yourself: read these three files in base → team → user order and apply the BMad structural merge rules (scalars override; tables deep-merge; arrays of tables keyed by `code` or `id` replace matching entries and append; all other arrays append):
+
+1. `{skill-root}/customize.toml` — shipped defaults
+2. `{project-root}/_bmad/custom/{skill-name}.toml` — team overrides (committed)
+3. `{project-root}/_bmad/custom/{skill-name}.user.toml` — personal overrides (gitignored)
+
+Any missing file is skipped.
+
+### 2. Execute prepend steps
+
+Execute each entry of `{workflow.activation_steps_prepend}` in order.
+
+### 3. Load persistent facts
+
+Treat each `{workflow.persistent_facts}` entry as standing context: literal sentences directly; `file:` references (globs supported) by reading the file's contents. These facts inform judgment and reporting only — they never override the decision-layer contract below. Decision-layer settings (`[jev]` mode, model, endpoint) remain central configuration, managed with the `/jev-mode` command.
+
+### 4. Continue
+
+
+5. Confirm the artifact to evaluate (spec, PRD, solution doc, or phase plan) and the source→target transition.
+6. The runner needs `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) in the environment. If it is missing or the call fails, return `status: unavailable` — never assume readiness when the gate could not run. An unchecked transition must not proceed.
 
 ## Operation
 
-1. Read the artifact text (trim to the bounded state size the script documents).
-2. Run one batched evaluation:
+10. Read the artifact text (trim to the bounded state size the script documents).
+11. Run one batched evaluation:
 
 ```bash
 uv run {skill-root}/scripts/bmad_gates.py <transition> < artifact.md
@@ -37,11 +64,11 @@ The artifact text is read from stdin; the transition (e.g. `analysis_to_planning
 
 Run `uv run {skill-root}/scripts/bmad_gates.py --help` for exact arguments and the JSON output shape (decision, gate nouls, ready score, reasons). On script failure, do not eyeball a verdict — report `unavailable` and let the user decide.
 
-3. Interpret the JSON:
+12. Interpret the JSON:
    - `decision: proceed` → state which gates cleared and the score; transition may proceed.
    - `decision: hold` → name the failed gates, the blocker kind, and the reasons verbatim. Help the user fix the named blocker; then re-run the gates rather than arguing the case.
    - `status: unavailable` → say so; the phase question stays open.
-4. Append the gate report to the run's `.memlog.md` when one is active (append-only, chronological).
+13. Append the gate report to the run's `.memlog.md` when one is active (append-only, chronological).
 
 ## Anti-Patterns
 
@@ -53,3 +80,13 @@ Run `uv run {skill-root}/scripts/bmad_gates.py --help` for exact arguments and t
 ## Headless
 
 Return the gate JSON verbatim (decision, gate_nouls, ready_score, reasons, blocker_kind). Non-zero findings are data, not errors.
+
+## On Completion
+
+After presenting the skill's main output:
+
+1. Execute each entry of `{{workflow.activation_steps_append}}` in order.
+2. Execute the `{{workflow.on_complete}}` instructions (a string, or an array in order).
+3. Then report the run as complete.
+
+Both come from the customization block resolved in step 1; empty lists mean nothing to do.

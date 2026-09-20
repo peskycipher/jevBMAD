@@ -1,0 +1,48 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for bmad-jev-decide.
+# Jev Decide — typed decision support
+#
+# Override files (not edited here):
+#   {project-root}/_bmad/custom/bmad-jev-decide.toml         (team, committed)
+#   {project-root}/_bmad/custom/bmad-jev-decide.user.toml    (personal, gitignored)
+#
+# Decision-layer settings (mode, model, endpoint, API keys) are central
+# configuration, not per-skill: the [jev] table across the four central
+# config TOML layers, managed with the /jev-mode command. These per-skill
+# files shape THIS skill's behavior only.
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • plain arrays: append
+#   arrays of tables keyed by `code`: matching key replaces, new keys append
+
+# Steps executed in order before the main run. Use for pre-flight context
+# loads (project conventions, domain docs) that this skill should honor.
+# Example (set in a team/user override TOML):
+#   activation_steps_prepend = [
+#     "Load {project-root}/docs/decisions/decision-policy.md as context.",
+#   ]
+activation_steps_prepend = []
+
+# Steps executed after the main output, before the run is reported complete.
+# Example:
+#   activation_steps_append = [
+#     "Log the outcome to {project-root}/_bmad-output/decisions-log.md.",
+#   ]
+activation_steps_append = []
+
+# Static context loaded on every activation. Each entry is a literal
+# sentence or a file reference prefixed with `file:` (globs supported).
+# Examples:
+#   persistent_facts = [
+#     "Recommendations must respect our AWS-only architecture rule.",
+#     "file:{project-root}/docs/compliance/review-checklist.md",
+#   ]
+persistent_facts = []
+
+# Instructions executed in order once the skill's main output is complete.
+# A string, or an array of strings. Example:
+#   on_complete = "Summarize the outcome in one line and offer to log it."
+on_complete = []
