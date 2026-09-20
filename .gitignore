@@ -2,7 +2,7 @@
 /graft/
 __pycache__/
 
-# eval runtime artifacts — regenerate by re-running evals/harness/run_evals.ts
+# eval runtime artifacts — regenerate by re-running evals/harness/run_evals.py
 # (golden sets, criteria, and harness code ARE committed)
 /evals/logs/
 modules/bmad-jev/**/__pycache__/
@@ -15,6 +15,3 @@ _bmad-output/party-mode/
 
 # local credentials (template: .env.example)
 .env
-
-# Node/TypeScript tooling (dev only; runtime scripts have zero npm deps)
-node_modules/

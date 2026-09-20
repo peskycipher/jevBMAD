@@ -1,16 +1,16 @@
 ---
 description: Show or change Jev decision-assist config (mode, model, endpoint) and API keys
 argument-hint: "[status|suggest|shadow|off|clear|set <mode|model|endpoint> <value>|key <typesafe|openrouter> <api-key>]"
-allowed-tools: Bash(npx tsx _bmad/custom/bmad-jev/jev_mode.ts:*)
+allowed-tools: Bash(uv run _bmad/custom/bmad-jev/jev_mode.py:*)
 ---
 
 # Jev Config Control
 
 Manage the Jev decision layer's runtime configuration via the canonical script
-`_bmad/custom/bmad-jev/jev_mode.ts` (TypeScript, zero-dependency — always invoke
-via `npx tsx`; resolves tsx from the repo's devDependencies). All script
-output is JSON; report the relevant fields to the user concisely and never
-print API key values (the script masks them — keep it that way).
+`_bmad/custom/bmad-jev/jev_mode.py` (stdlib-only, PEP 723 — always invoke through
+`uv run`). All script output is JSON; report the relevant fields to the user
+concisely and never print API key values (the script masks them — keep it that
+way).
 
 ## User's request
 
@@ -20,7 +20,7 @@ $ARGUMENTS
 
 Parse the user's arguments and map them to exactly ONE script invocation:
 
-- No arguments, or "status" / "show" / "what mode" → `npx tsx _bmad/custom/bmad-jev/jev_mode.ts`
+- No arguments, or "status" / "show" / "what mode" → `uv run _bmad/custom/bmad-jev/jev_mode.py`
 - "suggest" / "on" (advisory recommendations) → `... suggest`
 - "shadow" (evaluate only) → `... shadow`
 - "off" / "disable" → `... off`

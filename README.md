@@ -37,7 +37,7 @@ cp .env.example .env
 # then edit .env and set TYPESAFE_API_KEY (preferred) and/or OPENROUTER_API_KEY
 
 # Verify the install — 35 contract/sync tests pass with no API key:
-npm run test:unit
+uv run python -m unittest discover -s evals/harness/tests
 
 # Optional: run the skill-script test suites too (they need pytest; the dev
 # requirements are injected ephemerally — nothing is installed into a venv):
@@ -75,14 +75,14 @@ requirements and configuration (`off` / `shadow` / `suggest` modes).
 ### 3. Try it
 
 ```bash
-npx tsx router/hybrid.ts "What does the router do?"   # full loop demo (needs key)
+uv run python router/hybrid.py "What does the router do?"   # full loop demo (needs key)
 
 # Toggle decision-assist config without hand-editing TOML/.env —
 # also available as the /jev-mode slash command:
-npx tsx _bmad/custom/bmad-jev/jev_mode.ts            # status (mode, source, keys — masked)
-npx tsx _bmad/custom/bmad-jev/jev_mode.ts suggest    # turn decision assist on (advisory)
-npx tsx _bmad/custom/bmad-jev/jev_mode.ts off        # turn it off (zero network calls)
-npx tsx _bmad/custom/bmad-jev/jev_mode.ts key typesafe <your-key>   # writes .env
+uv run _bmad/custom/bmad-jev/jev_mode.py            # status (mode, source, keys — masked)
+uv run _bmad/custom/bmad-jev/jev_mode.py suggest    # turn decision assist on (advisory)
+uv run _bmad/custom/bmad-jev/jev_mode.py off        # turn it off (zero network calls)
+uv run _bmad/custom/bmad-jev/jev_mode.py key typesafe <your-key>   # writes .env
 ```
 
 More commands: [Quickstart](#quickstart) below.
@@ -90,7 +90,7 @@ More commands: [Quickstart](#quickstart) below.
 ## How it works
 
 ```
-request ──▶ router.ts: ONE batched Jev call
+request ──▶ router.py: ONE batched Jev call
             intent (choice) + safety (noul) + complexity (score)
             │  + retrieved memory (Graft) in state
             │  + injection gate on the auto path
@@ -106,12 +106,12 @@ request ──▶ router.ts: ONE batched Jev call
 
 | Path | What it is |
 |---|---|
-| `router/router.ts` | System-1 router: batched gates, tiered safety bands, injection gate, full logging |
-| `router/hybrid.ts` | End-to-end dispatcher (route → auto or GLM-5.3), end-to-end latency + cost |
-| `router/system2.ts` | GLM-5.3 consumer, cost/latency log, `decision_id` linkage |
-| `router/bmad_gates.ts` | BMAD phase-transition readiness gates (noul gates + score + blocker taxonomy) |
-| `router/judge.ts` | §7.7 story-review rubric (3 gates + 4 dims + failure taxonomy), Jev-as-judge |
-| `router/memory.ts` | Unified retrieval: Graft CLI (live) + Mem0 REST (activates with `MEM0_API_KEY`) |
+| `router/router.py` | System-1 router: batched gates, tiered safety bands, injection gate, full logging |
+| `router/hybrid.py` | End-to-end dispatcher (route → auto or GLM-5.3), end-to-end latency + cost |
+| `router/system2.py` | GLM-5.3 consumer, cost/latency log, `decision_id` linkage |
+| `router/bmad_gates.py` | BMAD phase-transition readiness gates (noul gates + score + blocker taxonomy) |
+| `router/judge.py` | §7.7 story-review rubric (3 gates + 4 dims + failure taxonomy), Jev-as-judge |
+| `router/memory.py` | Unified retrieval: Graft CLI (live) + Mem0 REST (activates with `MEM0_API_KEY`) |
 | `router/thresholds.lockfile.json` | Fitted thresholds + model pin; fitted on train splits only |
 
 ### Evaluation
@@ -128,23 +128,23 @@ request ──▶ router.ts: ONE batched Jev call
 | Path | What it is |
 |---|---|
 | `modules/bmad-jev/` | Installable BMad module — `jev-setup`, `bmad-jev-decide`, `bmad-jev-gates`, `bmad-jev-review` skills ([README](modules/bmad-jev/README.md)) |
-| `_bmad/` | BMad Method config (TOML-based), manifests, and the canonical Jev adapter scripts (`jev_adapter.ts`, `jev_recommend.ts`, `jev_policy.ts`) |
+| `_bmad/` | BMad Method config (TOML-based), manifests, and the canonical Jev adapter scripts (`jev_adapter.py`, `jev_recommend.py`, `jev_policy.py`) |
 | `.agents/skills/` | All installed BMad skills, rendered for the pi harness (BMM plan/ship pipeline + BMad Builder factory + the jev module) |
 
 ## Quickstart
 
 ```bash
 # requires keys in .env — see [Installation](#1-clone-and-set-up-the-repo) above
-npm run test:unit                                     # contract tests — no key needed
+uv run python -m unittest discover -s evals/harness/tests   # contract tests — no key needed
 
-npx tsx router/hybrid.ts "What does the router do?"       # full loop demo
-npx tsx router/router.ts "Drop the users table"           # routing decision only
-npx tsx evals/harness/run_evals.ts evals/golden-sets       # full eval sweep (~$0.006)
-npx tsx evals/harness/ci_gate.ts                           # regression gate vs baseline
-npx tsx evals/harness/dashboard.ts                         # metrics + alerts vs §7.5 targets
-npx tsx evals/harness/holdout_validate.ts                  # honest held-out numbers
-npx tsx evals/harness/online_sample.ts                     # hindsight sampling + audit queue
-npx tsx evals/harness/prelabel.ts --generate <set> <candidates.jsonl>   # scale a golden set
+uv run python router/hybrid.py "What does the router do?"       # full loop demo
+uv run python router/router.py "Drop the users table"           # routing decision only
+uv run python evals/harness/run_evals.py evals/golden-sets       # full eval sweep (~$0.006)
+uv run python evals/harness/ci_gate.py                           # regression gate vs baseline
+uv run python evals/harness/dashboard.py                         # metrics + alerts vs §7.5 targets
+uv run python evals/harness/holdout_validate.py                  # honest held-out numbers
+uv run python evals/harness/online_sample.py                     # hindsight sampling + audit queue
+uv run python evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale a golden set
 ```
 
 ## Verified state (2026-09-20, model `typesafe/jev-1.13-20260917`)
@@ -179,7 +179,7 @@ npx tsx evals/harness/prelabel.ts --generate <set> <candidates.jsonl>   # scale 
 
 The BMAD-METHOD integration lives in a companion fork: [`peskycipher/BMAD-METHOD`](https://github.com/peskycipher/BMAD-METHOD).
 
-- `feature/jev-decision-assist` — recommendation pilot (adapter, policy, `jev_recommend.ts` CLI), pushed and public
+- `feature/jev-decision-assist` — recommendation pilot (adapter, policy, `jev_recommend.py` CLI), pushed and public
 - `feature/jev-gates` — readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile — **validated locally (167 tests), not yet pushed to the public fork**
 
 Both opt-in, disabled by default, advisory-only. Details: [`docs/bmad-integration.md`](docs/bmad-integration.md).

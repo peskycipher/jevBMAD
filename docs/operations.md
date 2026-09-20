@@ -5,33 +5,33 @@ Every command runs from the repo root. Live calls need `TYPESAFE_API_KEY` (TypeS
 ## Daily commands
 
 ```bash
-npx tsx evals/harness/run_evals.ts evals/golden-sets   # full sweep: ~$0.006, ~2 min
-npx tsx evals/harness/ci_gate.ts                     # gate vs baseline (~same cost)
-npx tsx evals/harness/dashboard.ts                   # $0 — aggregates logs+results
-npx tsx evals/harness/online_sample.ts               # ~3% hindsight sampling (~$0.001; --seed for reproducibility)
+python3 evals/harness/run_evals.py evals/golden-sets   # full sweep: ~$0.006, ~2 min
+python3 evals/harness/ci_gate.py                     # gate vs baseline (~same cost)
+python3 evals/harness/dashboard.py                   # $0 — aggregates logs+results
+python3 evals/harness/online_sample.py               # ~3% hindsight sampling (~$0.001; --seed for reproducibility)
 ```
 
 ## Workflows
 
 ### Grow a golden set (prelabel pipeline)
 1. Author candidates: `evals/candidates/<set>.candidates.jsonl` — one `{"state": ...}` per line, each written with a known intended label.
-2. Propose: `npx tsx evals/harness/prelabel.ts --generate <set> candidates.jsonl` (~$0.00002/example).
-3. Audit: `npx tsx evals/harness/audit_prelabel.ts` — agreements approved, disagreements dropped (the disagreement rule: coin-flip labels never enter ground truth).
-4. Promote: `npx tsx evals/harness/prelabel.ts --promote <set>` (dedupes by id and state).
-5. Refresh baseline: `npx tsx evals/harness/ci_gate.ts --update-baseline`.
+2. Propose: `python3 evals/harness/prelabel.py --generate <set> candidates.jsonl` (~$0.00002/example).
+3. Audit: `python3 evals/harness/audit_prelabel.py` — agreements approved, disagreements dropped (the disagreement rule: coin-flip labels never enter ground truth).
+4. Promote: `python3 evals/harness/prelabel.py --promote <set>` (dedupes by id and state).
+5. Refresh baseline: `python3 evals/harness/ci_gate.py --update-baseline`.
 
 ### Settle an audit queue entry
 Entries in `evals/audit/human_audit_queue.jsonl` carry a `question` field. Apply the decision as a `decision` field (+ `resolved_ts`), then act: relabel and return to golden set, or discard. Both prior settlements (guard-022, the 18 hard-set verdicts) are recorded there as templates.
 
 ### Model change (the §6 re-fit rule)
 1. The CI gate hard-fails on resolved-model drift vs the lockfile (the pin is provider-independent; a provider *echo* change only warns — see D13).
-2. Re-run full evals + `holdout_validate.ts` (fresh predictions, ids recorded).
-3. `fit_thresholds.ts` + `fit_gates.ts` — refit on train splits only.
-4. `ci_gate.ts --update-baseline` — lock the new baseline.
+2. Re-run full evals + `holdout_validate.py` (fresh predictions, ids recorded).
+3. `fit_thresholds.py` + `fit_gates.py` — refit on train splits only.
+4. `ci_gate.py --update-baseline` — lock the new baseline.
 5. Record the re-fit in the lockfile (status, n, date).
 
 ### Criteria edit (manual awareness required)
-Changing any `criteria.json` or gate question wording **invalidates the fitted thresholds** (coupling rule). What *is* automated: `evals/harness/tests/test_questions_golden_sync.ts` fails when runtime `QUESTIONS` drift from golden payloads, when labels lose their Choice option key, or when EntryType shapes break. What is still manual: threshold re-fit after a semantic wording change — re-run evals, check accuracy/ECE deltas by hand, refit if the distribution moved, then refresh the baseline.
+Changing any `criteria.json` or gate question wording **invalidates the fitted thresholds** (coupling rule). What *is* automated: `evals/harness/tests/test_questions_golden_sync.py` fails when runtime `QUESTIONS` drift from golden payloads, when labels lose their Choice option key, or when EntryType shapes break. What is still manual: threshold re-fit after a semantic wording change — re-run evals, check accuracy/ECE deltas by hand, refit if the distribution moved, then refresh the baseline.
 
 ## Monitoring targets (§7.5)
 

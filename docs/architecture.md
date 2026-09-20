@@ -7,11 +7,11 @@ The system operationalizes Kahneman's dual-process model: a fast, calibrated, ch
 ```
 ┌────────────────────────── request ──────────────────────────┐
 │                                                            │
-│  memory.ts         Graft (code/project memory, live)        │
+│  memory.py         Graft (code/project memory, live)        │
 │                    + Mem0 (semantic memory, pluggable)      │
 │         │                                                  │
 │         ▼                                                  │
-│  router.ts         ONE batched Jev call:                   │
+│  router.py         ONE batched Jev call:                   │
 │                    intent (choice)                          │
 │                    safety (noul)                            │
 │                    complexity (score)                       │
@@ -21,10 +21,10 @@ The system operationalizes Kahneman's dual-process model: a fast, calibrated, ch
 │         │                                                  │
 │         ├── system1_auto ──▶ injection gate ──▶ host runs  │
 │         │                     (clean | flagged band)        │
-│         └── system2 ────────▶ system2.ts ──▶ GLM-5.3         │
+│         └── system2 ────────▶ system2.py ──▶ GLM-5.3         │
 │                                (context + reasons attached)│
 │                                                            │
-│  hybrid.ts         dispatch(): full loop, end-to-end       │
+│  hybrid.py         dispatch(): full loop, end-to-end       │
 │                    latency + total cost per request         │
 └────────────────────────────────────────────────────────────┘
 ```

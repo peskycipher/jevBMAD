@@ -52,12 +52,12 @@ Treat each `{workflow.persistent_facts}` entry as standing context: literal sent
 10. Run one batched judgment:
 
 ```bash
-npx tsx {skill-root}/scripts/judge.ts <story-path> <implementation-path-or-diff>
+uv run {skill-root}/scripts/judge.py <story-path> <implementation-path-or-diff>
 ```
 
 Both arguments are positional: the story file first, the implementation second.
 
-Run `npx tsx {skill-root}/scripts/judge.ts --help` for exact arguments and the JSON verdict shape (passed, gate nouls, dimension scores, failure kind, reasons). On script failure, report `unavailable`; never improvise a verdict and present it as a Jev judgment.
+Run `uv run {skill-root}/scripts/judge.py --help` for exact arguments and the JSON verdict shape (passed, gate nouls, dimension scores, failure kind, reasons). On script failure, report `unavailable`; never improvise a verdict and present it as a Jev judgment.
 
 11. Interpret the verdict:
    - `passed` → report the four dimension scores with confidences and note any soft spots; proceed to the next story or a walkthrough.

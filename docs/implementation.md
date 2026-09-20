@@ -315,10 +315,10 @@ Human labeling and review are replaced by Jev primitives wherever feasible. Huma
 **Exit Criteria**: End-to-end Jev call works; basic eval runner can execute a small golden set. ✅ **Met 2026-09-19** — live smoke test of all 3 primitives passed (model resolved: `typesafe/jev-1.13-20260917`); eval harness at `evals/` ran 3 golden sets (32 examples, 0 errors): routing 100% acc / ECE 0.0, guardrails 100% acc / Brier 0.015, complexity 90% acc / MAE 0.14 levels; p50 latency ~350–370 ms; ~$0.00002/example.
 
 ### Phase 1: Core Hybrid Loop + Initial Calibration & Evals (Weeks 2–3)
-- [x] Implement unified memory retrieval — `router/memory.ts` (Graft CLI live; Mem0 REST activates when `MEM0_API_KEY` is set)
-- [x] Implement System-1 router (Jev primitives + structured criteria) — `router/router.ts`; one batched call: intent (choice) + safe_auto (noul) + complexity (score); criteria reuse golden-set definitions (single source of truth)
+- [x] Implement unified memory retrieval — `router/memory.py` (Graft CLI live; Mem0 REST activates when `MEM0_API_KEY` is set)
+- [x] Implement System-1 router (Jev primitives + structured criteria) — `router/router.py`; one batched call: intent (choice) + safe_auto (noul) + complexity (score); criteria reuse golden-set definitions (single source of truth)
 - [x] Full decision logging (probabilities, confidence, model ID, outcome) — `evals/logs/decisions.jsonl` + `evals/logs/routing.jsonl`
-- [x] Build first version of offline evaluation harness — `evals/harness/` (+ per-record detail, threshold fitter `fit_thresholds.ts`)
+- [x] Build first version of offline evaluation harness — `evals/harness/` (+ per-record detail, threshold fitter `fit_thresholds.py`)
 - [x] Fit initial thresholds on golden sets — `router/thresholds.lockfile.json` (status: provisional at 78 examples; target ≥ 100)
 - [x] Establish baseline accuracy, calibration, latency, and cost metrics — see below
 
@@ -336,10 +336,10 @@ Latency p50 ≈ 360–380 ms; cost ≈ $0.00002/example. Fitted thresholds (0.5 
 **Phase 1 finding — `other` over-escalation**: docs/config-only requests (e.g. "fix typo in README") classify as `intent=other` → System 2 fallback per §3. Safe+trivial docs edits are escalated unnecessarily. Phase 2 candidate: add a `docs_config` label to the routing criteria and relabel the 4 affected golden examples (routing-008/017/022/027).
 
 ### Phase 2: BMAD Integration + End-to-End Evals (Weeks 4–5)
-- [x] Map hybrid routing onto BMAD phases — `router/bmad_gates.ts`: phase-transition gates (analysis→planning→solutioning→implementation) via batched noul gates + readiness Score + blocker-taxonomy Choice
-- [x] Create BMAD-specific skills and readiness gates — `router/judge.ts` implements the §7.7 System-2 rubric (3 Noul gates + 4 Score dims + failure-taxonomy Choice)
-- [x] Implement end-to-end BMAD evaluation (story success, first-pass rate) — `evals/harness/run_story_review.ts` over the `story_review` golden set
-- [x] Measure memory contribution (Mem0 + Graft) to success rates — `evals/harness/memory_ablation.ts` (Graft on/off)
+- [x] Map hybrid routing onto BMAD phases — `router/bmad_gates.py`: phase-transition gates (analysis→planning→solutioning→implementation) via batched noul gates + readiness Score + blocker-taxonomy Choice
+- [x] Create BMAD-specific skills and readiness gates — `router/judge.py` implements the §7.7 System-2 rubric (3 Noul gates + 4 Score dims + failure-taxonomy Choice)
+- [x] Implement end-to-end BMAD evaluation (story success, first-pass rate) — `evals/harness/run_story_review.py` over the `story_review` golden set
+- [x] Measure memory contribution (Mem0 + Graft) to success rates — `evals/harness/memory_ablation.py` (Graft on/off)
 - [x] Expand golden sets with real BMAD artifacts — `readiness` set uses real excerpts (implementation.md §9, brief.md); `story_review` set = 10 story/implementation pairs; routing criteria gained a `docs_config` label (Phase 1 finding resolved: `other` rate 16.7% → 3.3%, routing accuracy 100%)
 
 **Exit Criteria**: Full BMAD flow works; end-to-end metrics are tracked. ✅ **Met 2026-09-19** (provisional: readiness set needs ≥100 examples + label audit).
@@ -357,23 +357,23 @@ Latency p50 ≈ 360–380 ms; cost ≈ $0.00002/example. Fitted thresholds (0.5 
 
 **Phase 2 findings**
 1. **Polarity inversion (live anti-pattern confirmation)**: judge gates framed negatively in instructions ("does it break…?") with a positive proposition returned *inverted* probabilities (clean code 0.05, broken code 0.97). Fixing instruction/proposition alignment (§3 anti-patterns) + evidence-scoped phrasing restored clean separation. Lesson: instructions and proposition must agree in polarity, and gates must judge *the text's evidence*, not hidden reality.
-2. **Hardcoded thresholds were miscalibrated**: §7.7's aspirational 0.95/≥7 rejected every passing story. Data-fitted per-gate thresholds (spec 0.75, no-regression 0.65, security 0.85, dims ≥ 5.0 on the 2–10 scale) took verdict accuracy from 60% to 100%. Thresholds live in `thresholds.lockfile.json` `gates` section (`fit_gates.ts`).
+2. **Hardcoded thresholds were miscalibrated**: §7.7's aspirational 0.95/≥7 rejected every passing story. Data-fitted per-gate thresholds (spec 0.75, no-regression 0.65, security 0.85, dims ≥ 5.0 on the 2–10 scale) took verdict accuracy from 60% to 100%. Thresholds live in `thresholds.lockfile.json` `gates` section (`fit_gates.py`).
 3. **Golden-label audit matters**: one authoring error (story-006 security gate) was caught by gate-accuracy fitting. §7.6's Jev-assisted pre-labeling + human audit is the scalable path.
 4. **Memory contribution is a boundary effect**: Graft context adds ~nothing to mean confidence for self-contained requests but changes decisions near thresholds — measure with decision-flip rate, not mean deltas (§7.2 memory metric refined accordingly in Phase 3).
 
 ### Phase 3: Production Hardening, Continuous Evals & Calibration (Weeks 6–8)
-- [x] Formal continuous evaluation pipeline — `evals/harness/online_sample.ts`: 5% log sampling → Jev-as-judge hindsight review (§7.6) → ~3% human audit queue (`evals/audit/human_audit_queue.jsonl`) → `production_metrics.json` drift snapshots
-- [x] CI integration — `evals/harness/ci_gate.ts` + `.github/workflows/evals.yml`: fails on accuracy regression > 3 pts or model drift; ECE drift warns in CI and alerts on the dashboard (hard-fail via `--strict`); committed baseline `evals/results/baseline.json`; skips cleanly without `OPENROUTER_API_KEY`
-- [x] Dashboards and alerting — `evals/harness/dashboard.ts` → `results/dashboard.md` + `alerts.json` (accuracy vs baseline, ECE, System-1 share vs 70% target, p95 latency, cost, hindsight agreement, memory relevance vs 3.2/4 target, model drift)
+- [x] Formal continuous evaluation pipeline — `evals/harness/online_sample.py`: 5% log sampling → Jev-as-judge hindsight review (§7.6) → ~3% human audit queue (`evals/audit/human_audit_queue.jsonl`) → `production_metrics.json` drift snapshots
+- [x] CI integration — `evals/harness/ci_gate.py` + `.github/workflows/evals.yml`: fails on accuracy regression > 3 pts or model drift; ECE drift warns in CI and alerts on the dashboard (hard-fail via `--strict`); committed baseline `evals/results/baseline.json`; skips cleanly without `OPENROUTER_API_KEY`
+- [x] Dashboards and alerting — `evals/harness/dashboard.py` → `results/dashboard.md` + `alerts.json` (accuracy vs baseline, ECE, System-1 share vs 70% target, p95 latency, cost, hindsight agreement, memory relevance vs 3.2/4 target, model drift)
 - [x] Version-pinned models and threshold lockfiles — `thresholds.lockfile.json` carries `model_resolved` + fitted gates; CI gate fails on drift (§6 re-fit rule)
-- [x] Memory quality evaluation loop — relevance Score (0–4) on sampled memory-backed decisions in `online_sample.ts`; target ≥ 3.2 (80%, §7.5)
+- [x] Memory quality evaluation loop — relevance Score (0–4) on sampled memory-backed decisions in `online_sample.py`; target ≥ 3.2 (80%, §7.5)
 - [x] Multi-agent support — `agent_id` threaded through router/judge/gates logging (shared eval context per §7.3 asset 5)
-- [x] Scalable labeling (§7.6) — `evals/harness/prelabel.ts`: Jev proposes labels for candidate examples → human confirms → promote to golden set (demo: 4/4 correct proposals queued)
+- [x] Scalable labeling (§7.6) — `evals/harness/prelabel.py`: Jev proposes labels for candidate examples → human confirms → promote to golden set (demo: 4/4 correct proposals queued)
 
 **Exit Criteria**: System meets 3-month targets; continuous evaluation and re-calibration are operational.
 **Status 2026-09-19 (updated)**: continuous-evaluation and re-calibration infrastructure is **operational** (CI gate passing against committed baseline; dashboard + alerts generated; audit + prelabel queues live).
 
-**Golden sets scaled past 100** (prelabel pipeline at scale): 231 hand-authored candidates with author-intended labels were pre-labeled by Jev (`prelabel.ts --generate`), audited against intent (`audit_prelabel.ts` — routing 72/72 = 100% agreement, guardrails 76/77 = 98.7%, complexity 76/93 = 81.7%), and only agreeing rows promoted. Final sizes: **routing 102 (100% acc, ECE 0.006), guardrails 100 (98% acc, Brier 0.034), complexity 100 (96% acc, MAE 0.12)**. Disagreements (adjacent-level judgment calls + one ambiguous seed-data case) were dropped, not relabeled — ambiguity never enters the golden set. Threshold lockfile status: `candidate-final` (n=302). Readiness (8) and story_review (10) remain judgment-heavy sets growing via production artifacts.
+**Golden sets scaled past 100** (prelabel pipeline at scale): 231 hand-authored candidates with author-intended labels were pre-labeled by Jev (`prelabel.py --generate`), audited against intent (`audit_prelabel.py` — routing 72/72 = 100% agreement, guardrails 76/77 = 98.7%, complexity 76/93 = 81.7%), and only agreeing rows promoted. Final sizes: **routing 102 (100% acc, ECE 0.006), guardrails 100 (98% acc, Brier 0.034), complexity 100 (96% acc, MAE 0.12)**. Disagreements (adjacent-level judgment calls + one ambiguous seed-data case) were dropped, not relabeled — ambiguity never enters the golden set. Threshold lockfile status: `candidate-final` (n=302). Readiness (8) and story_review (10) remain judgment-heavy sets growing via production artifacts.
 
 **BMAD-METHOD fork wiring**: the hybrid router's gates are now wired into the fork's skill infrastructure as opt-in, advisory decision points following its conventions (adapter/policy separation, explicit statuses, disabled-by-default, serial prompt-injection gate, advisory-only doctrine):
 - `skills/bmad/scripts/jev_gates.py` — policy layer: readiness-gate questions/interpreter + story-review rubric/interpreter, thresholds seeded from the fitted lockfile
@@ -398,10 +398,10 @@ An adversarial self-audit of the completed phases. The baselines above should be
 ### 14.1 Methodology errors (partially corrected)
 
 1. **Selection bias in the scaled golden sets.** The prelabel pipeline promoted only candidates where Jev agreed with author intent and dropped disagreements — filtering the sets toward Jev's strengths and away from boundary cases. Routing/guardrails/complexity accuracies are *internal* estimates on an agreement-filtered distribution, not unbiased production estimates.
-2. **No held-out split** when fitting thresholds, tuning criteria, and calibrating the judge — violating the plan's own §6 rule. **Corrected 2026-09-19** via `evals/harness/holdout_validate.ts`: deterministic stratified 80/20 splits (written once to `golden-sets/*/splits/`, reused), train-only fitting, holdout reporting.
+2. **No held-out split** when fitting thresholds, tuning criteria, and calibrating the judge — violating the plan's own §6 rule. **Corrected 2026-09-19** via `evals/harness/holdout_validate.py`: deterministic stratified 80/20 splits (written once to `golden-sets/*/splits/`, reused), train-only fitting, holdout reporting.
 3. **Judge-judging-judge circularity.** Hindsight review, prelabeling, and judging all use the same pinned model; correlated errors are invisible. §7.6's human-audit gate has **zero human-labeled data behind it yet** — every current label is assistant-authored or assistant+Jev agreement.
-4. **System 2 (GLM-5.3) — CORRECTED 2026-09-19: minimal path now wired.** `router/system2.ts` (GLM-5.3 via OpenRouter chat completions, cost+latency logged to `evals/logs/system2.jsonl`, linked by `decision_id`) + `router/hybrid.ts` (route → escalate → execute; end-to-end ms + total cost per dispatch). First live data points: escalated call **105 s / $0.033** on `z-ai/glm-5.3`; auto path **1.1 s / $0.00005** with zero System-2 calls. Implication for §7.5: a System-2 call costs ~670x a System-1 decision, so the ≥40% cost-reduction target is met at escalation rates up to ~60% (and ~70% reduction at a 30% escalation rate). §7.5's end-to-end latency target applies to mixed traffic; deep System-2 calls dominate p95 by design. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
-5. **Router injection gate — CORRECTED 2026-09-19.** `router.ts` now runs a serial injection check on every `system1_auto` path (fork wording, live-calibrated 0.80 threshold), over the **full state** (request + retrieved memory — injection can arrive via context). Blatant injection verified live: noul 0.97 → escalate. Unavailable check → conservative escalation (unchecked requests never auto-execute). Observed: the safety gate frequently catches injections first (overlap = defense in depth; both fire independently). Escalated decisions skip the check — System 2 sees raw text with full scrutiny. Extra cost: one Jev call (~$0.00002) + ~350 ms per auto decision.
+4. **System 2 (GLM-5.3) — CORRECTED 2026-09-19: minimal path now wired.** `router/system2.py` (GLM-5.3 via OpenRouter chat completions, cost+latency logged to `evals/logs/system2.jsonl`, linked by `decision_id`) + `router/hybrid.py` (route → escalate → execute; end-to-end ms + total cost per dispatch). First live data points: escalated call **105 s / $0.033** on `z-ai/glm-5.3`; auto path **1.1 s / $0.00005** with zero System-2 calls. Implication for §7.5: a System-2 call costs ~670x a System-1 decision, so the ≥40% cost-reduction target is met at escalation rates up to ~60% (and ~70% reduction at a 30% escalation rate). §7.5's end-to-end latency target applies to mixed traffic; deep System-2 calls dominate p95 by design. Phase 1's "majority of simple decisions handled by Jev" exit was graded on golden-set accuracy, not measured decision share.
+5. **Router injection gate — CORRECTED 2026-09-19.** `router.py` now runs a serial injection check on every `system1_auto` path (fork wording, live-calibrated 0.80 threshold), over the **full state** (request + retrieved memory — injection can arrive via context). Blatant injection verified live: noul 0.97 → escalate. Unavailable check → conservative escalation (unchecked requests never auto-execute). Observed: the safety gate frequently catches injections first (overlap = defense in depth; both fire independently). Escalated decisions skip the check — System 2 sees raw text with full scrutiny. Extra cost: one Jev call (~$0.00002) + ~350 ms per auto decision.
 6. **Eval thresholds ≠ production thresholds.** `run_evals` scores noul at a fixed 0.5 while production gates fire at 0.40–0.90; holdout reporting now evaluates at both (14.2).
 
 ### 14.2 Holdout results (train-only fits vs locked production thresholds)
@@ -417,7 +417,7 @@ An adversarial self-audit of the completed phases. The baselines above should be
   (b) refit with an explicit auto-rate-maximizing constraint under a ≥95% accuracy floor.
 Readiness (n=8) and story_review (n=10) remain too small to split — provisional.
 
-**Decision 2026-09-19 — option (a) adopted (tiered safety gate).** The distribution is strongly bimodal (unsafe ≤ 0.17, safe ≥ 0.50, zero leaks at a 0.50 cut across n=100), so the 0.90 single lock misread the signal and blocked all auto-execution. Locked policy in `router.ts` + `thresholds.lockfile.json`:
+**Decision 2026-09-19 — option (a) adopted (tiered safety gate).** The distribution is strongly bimodal (unsafe ≤ 0.17, safe ≥ 0.50, zero leaks at a 0.50 cut across n=100), so the 0.90 single lock misread the signal and blocked all auto-execution. Locked policy in `router.py` + `thresholds.lockfile.json`:
 
   - `safe_noul < 0.50` → escalate to System 2 (3× margin over unsafe max 0.17)
   - `0.50 ≤ safe_noul < 0.75` → system1_auto + needs_review flag (feeds the §7.6 audit sampling pool; drift fails soft: clean→flagged before auto→escalate)
@@ -444,7 +444,7 @@ Live verification: typo fix → clean auto (0.88); "revert the last commit" → 
 ### 14.4 Priority next steps
 
 1. **Decide the safe_noul policy** (14.2 options) — largest single effect on System-1 share.
-2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.ts` + `router/hybrid.ts`; first cost/latency data points recorded in §14.1.4).
+2. ~~Wire a minimal System-2 path~~ ✅ done 2026-09-19 (`router/system2.py` + `router/hybrid.py`; first cost/latency data points recorded in §14.1.4).
 3. Run the §7.6 human audit for real (10–20 confirmed labels) to de-circularize judge calibration. — **specced 2026-09-19**: `_bmad-output/specs/spec-s76-independent-audit/` (blind-labeling protocol, stories; gate-agreement claim only this batch, ECE deferred to n≥50).
 4. ~~Preserve dropped disagreement candidates as a hard set~~ ✅ done 2026-09-19 — `evals/hard-sets/` (see §14.5).
 5. ~~Injection gate + prelabel state dedupe~~ ✅ done 2026-09-19 (see §14.1.5; promotion now skips duplicate states, verified 0 re-promoted).
@@ -490,7 +490,7 @@ commit log; decisions D13/D14 in `decisions.md`):
   choice boundaries where the docs recommend them; guardrails 0.990 → 1.000,
   readiness 0.750 → 0.781 (ECE 0.275 → 0.220); lockfile + baseline refreshed
   from the same structured run; live CI GATE PASS.
-- **Sync & shape enforcement** (`742947b`): `test_questions_golden_sync.ts` —
+- **Sync & shape enforcement** (`742947b`): `test_questions_golden_sync.py` —
   runtime `QUESTIONS` ≡ golden-set payloads, labels ⊆ choice option keys,
   documented EntryType shapes; harness suite 25 → 32 tests.
 

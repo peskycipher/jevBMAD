@@ -25,7 +25,7 @@ Growth path is the prelabel pipeline (Jev proposes, audit confirms, promote only
 
 ## Splits (holdout validation)
 
-Deterministic stratified 80/20 per set (seed 42, stratified by exact label signature), written **once** to `golden-sets/*/splits/` and never reshuffled — a reshuffled holdout is a leaked holdout. Thresholds fit on train only; results reported on holdout at both train-fitted and locked thresholds. Run: `npx tsx evals/harness/holdout_validate.ts`.
+Deterministic stratified 80/20 per set (seed 42, stratified by exact label signature), written **once** to `golden-sets/*/splits/` and never reshuffled — a reshuffled holdout is a leaked holdout. Thresholds fit on train only; results reported on holdout at both train-fitted and locked thresholds. Run: `python3 evals/harness/holdout_validate.py`.
 
 **Verified holdout numbers (2026-09-19):**
 
@@ -39,15 +39,15 @@ The complexity train→holdout gap (96→90) is the overfit that same-data repor
 
 ## Threshold fitting
 
-- `fit_thresholds.ts`: routing gates (intent confidence, safety noul, complexity cap) — swept to maximize auto-rate under a 95% auto-band-accuracy floor, then **locked at the strictest of (fitted, §10 default)**.
-- `fit_gates.ts`: per-gate judge and readiness thresholds from per-record eval detail.
+- `fit_thresholds.py`: routing gates (intent confidence, safety noul, complexity cap) — swept to maximize auto-rate under a 95% auto-band-accuracy floor, then **locked at the strictest of (fitted, §10 default)**.
+- `fit_gates.py`: per-gate judge and readiness thresholds from per-record eval detail.
 - Lockfile (`router/thresholds.lockfile.json`): fitted values, locked values, provenance (n, source run, resolved model), status (`candidate-final`).
-- **Coupling rule**: any criteria wording change invalidates fitted thresholds (only model-version changes trigger automated re-fit — manual awareness required on criteria edits). One drift class **is** now machine-checked: `evals/harness/tests/test_questions_golden_sync.ts` fails CI when runtime `QUESTIONS` (bmad_gates, judge) drift from the golden-set payloads, when a golden label is no longer a supplied Choice option key, or when any question violates the documented EntryType shapes.
+- **Coupling rule**: any criteria wording change invalidates fitted thresholds (only model-version changes trigger automated re-fit — manual awareness required on criteria edits). One drift class **is** now machine-checked: `evals/harness/tests/test_questions_golden_sync.py` fails CI when runtime `QUESTIONS` (bmad_gates, judge) drift from the golden-set payloads, when a golden label is no longer a supplied Choice option key, or when any question violates the documented EntryType shapes.
 
 ## The audit pipeline
 
-1. **Prelabel**: `prelabel.ts --generate` — Jev proposes labels for candidate examples into `evals/audit/prelabel_queue.jsonl`.
-2. **Audit**: `audit_prelabel.ts` — proposals checked against author intent. Agreement → promote; disagreement → drop (**the disagreement rule**: coin-flip labels never enter ground truth).
+1. **Prelabel**: `prelabel.py --generate` — Jev proposes labels for candidate examples into `evals/audit/prelabel_queue.jsonl`.
+2. **Audit**: `audit_prelabel.py` — proposals checked against author intent. Agreement → promote; disagreement → drop (**the disagreement rule**: coin-flip labels never enter ground truth).
 3. **Human audit queue** (`evals/audit/human_audit_queue.jsonl`): labeling disputes, hard-set settlements, online-sample hindsight confirmations.
 4. **Hard set** (`evals/hard-sets/`): dropped disagreement candidates preserved with both labels — the boundary-case signal, measured (Jev's calls were systematic: 17/17 stable), settled by audit (12 Jev-right, 5 author-right, 1 discard).
 
@@ -59,7 +59,7 @@ The complexity train→holdout gap (96→90) is the overfit that same-data repor
 
 ## CI gate
 
-`ci_gate.ts` against the committed `evals/results/baseline.json`:
+`ci_gate.py` against the committed `evals/results/baseline.json`:
 - **Hard-fail**: per-set accuracy drop > 3 pts; resolved-model drift vs lockfile (the lockfile records the logical pin, provider-independent — D13).
 - **Warn** (dashboard alerts): ECE > 0.05; provider echo neither the pinned snapshot nor its known alias (early repoint signal, D13).
 - Skips cleanly (exit 0) without `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY`; `--strict` promotes warnings to failures; `--update-baseline` refreshes after intentional changes. Unknown flags are silently ignored (manual argv checks) — typos don't error.

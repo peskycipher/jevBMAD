@@ -2,7 +2,7 @@
 
 Module-level reference for `router/`. All thresholds load from `router/thresholds.lockfile.json` (fallback defaults in code). All functions log unless disabled.
 
-## `router/router.ts`
+## `router/router.py`
 
 ```python
 route(request_text, project_root=".", use_memory=True,
@@ -18,15 +18,15 @@ Questions (single source of truth: the golden-set criteria in `evals/golden-sets
 - `safe_auto` — noul: "safe to auto-execute without deeper review" (proposition-based; polarity-aligned)
 - `complexity` — score 0–4: trivial / minor / moderate / major / critical
 
-## `router/hybrid.ts`
+## `router/hybrid.py`
 
 ```python
 dispatch(request_text, project_root=".", use_memory=True) -> dict
 ```
 
-Full loop. Returns the routing fields plus `system2` (model, text, latency, usage — or `{status: error}`), `end_to_end_ms`, `cost_usd` (routing + System-2). CLI: `npx tsx router/hybrid.ts "<request>"`.
+Full loop. Returns the routing fields plus `system2` (model, text, latency, usage — or `{status: error}`), `end_to_end_ms`, `cost_usd` (routing + System-2). CLI: `python3 router/hybrid.py "<request>"`.
 
-## `router/system2.ts`
+## `router/system2.py`
 
 ```python
 execute(request_text, context="", reasons=None, decision_id="", log=True) -> dict
@@ -34,7 +34,7 @@ execute(request_text, context="", reasons=None, decision_id="", log=True) -> dic
 
 GLM-5.3 (`z-ai/glm-5.3`, override via `SYSTEM2_MODEL`) via OpenRouter chat completions. Prompt = system role + request + context + escalation reasons. Bounded retry (429/5xx). Returns `status`, `model`, `text`, `usage`, `latency_ms`.
 
-## `router/bmad_gates.ts`
+## `router/bmad_gates.py`
 
 ```python
 check_readiness(artifact_text, transition="planning_to_solutioning",
@@ -43,7 +43,7 @@ check_readiness(artifact_text, transition="planning_to_solutioning",
 
 Transitions: `analysis_to_planning`, `planning_to_solutioning`, `solutioning_to_implementation`. Batched questions: `spec_specific` (noul ≥ 0.40), `requirements_testable` (noul ≥ 0.45), `no_blockers` (noul ≥ 0.55, with the "unfinished work ≠ blocker" instruction), `ready_score` (score ≥ 3.0), `blocker_kind` (choice taxonomy). Verdict: `proceed` only when all gates pass; otherwise `hold` + `blocker_kind`.
 
-## `router/judge.ts`
+## `router/judge.py`
 
 ```python
 judge(story_text, implementation_text, log=True, agent_id="default") -> dict
@@ -51,7 +51,7 @@ judge(story_text, implementation_text, log=True, agent_id="default") -> dict
 
 §7.7 rubric, one batched call: gates `gate_spec` (≥ 0.75), `gate_no_regression` (≥ 0.65), `gate_security` (≥ 0.85) — all noul, **evidence-scoped** propositions ("judging only from the implementation description…") with polarity-aligned instructions; dimensions `dim_correctness/quality/tests/bmad` (score, 2–10 scale rendered as 9-level rubric, pass ≥ 5.0); `failure_kind` (choice: spec-misread / partial-implementation / regression / architecture-violation / test-gap / environment / none_applicable / other). Verdict `first_pass` only when all gates and dimensions pass; else `rework` + taxonomy.
 
-## `router/memory.ts`
+## `router/memory.py`
 
 ```python
 retrieve_all(query, project_root=".") -> {"graft": str, "mem0": str, "mem0_active": bool}
@@ -80,9 +80,9 @@ Graft via local CLI (`graft ask --source`, ~1500 chars). Mem0 via platform REST 
 | Variable | Used by | Meaning |
 |---|---|---|
 | `TYPESAFE_API_KEY` | jev_client, jev_adapter | TypeSafe direct (`https://api.typesafe.ai/v1/systemone`); preferred over OpenRouter when set |
-| `OPENROUTER_API_KEY` | jev_client, jev_adapter, system2.ts | fallback Decisions path (`https://openrouter.ai/api/alpha/decisions`); absent both → clean skip |
-| `MEM0_API_KEY` | memory.ts | enables the Mem0 retriever (optional) |
-| `SYSTEM2_MODEL` | system2.ts | override the GLM model id |
+| `OPENROUTER_API_KEY` | jev_client, jev_adapter, system2.py | fallback Decisions path (`https://openrouter.ai/api/alpha/decisions`); absent both → clean skip |
+| `MEM0_API_KEY` | memory.py | enables the Mem0 retriever (optional) |
+| `SYSTEM2_MODEL` | system2.py | override the GLM model id |
 
 Provider resolution (both keys set → TypeSafe direct wins): TypeSafe direct
 **rejects** the dated snapshot ID — the client sends its alias (`jev-1.13.0`,
@@ -92,4 +92,4 @@ dated ID as-is. See D13 in `decisions.md`.
 
 ## Jev Decisions API contract (verified live)
 
-Decisions endpoints (TypeSafe direct or OpenRouter fallback, see env vars) take `{model, state, questions}`. Every question needs `type` (`noul`|`choice`|`score`) + `instructions`. Per [docs.typesafe.ai/primitives/advanced](https://docs.typesafe.ai/primitives/advanced), `instructions`, `criteria` values (choice), level entries (score), and `criteria.true/false` (noul) all accept `string | object | array | null` — the project uses **structured objects wherever a boundary is subtle** (guardrails and readiness noul boundaries: `{what, examples}`; readiness score levels: `{summary, signals, examples}`; judge `failure_kind` options: `{what, not_for}`). Golden sets and runtime `QUESTIONS` are kept byte-identical (enforced by `evals/harness/tests/test_questions_golden_sync.ts`). Noul questions stay polarity-aligned (D10). Answers: noul → probability only (no confidence); choice → pick + probabilities + confidence; score → fractional score + legend + probabilities + confidence. Log the resolved model string every call: `model_requested` (the pin) + the response echo (`model` — provider-normalized; `ci_gate` warns when the echo is neither the pin nor its known alias).
+Decisions endpoints (TypeSafe direct or OpenRouter fallback, see env vars) take `{model, state, questions}`. Every question needs `type` (`noul`|`choice`|`score`) + `instructions`. Per [docs.typesafe.ai/primitives/advanced](https://docs.typesafe.ai/primitives/advanced), `instructions`, `criteria` values (choice), level entries (score), and `criteria.true/false` (noul) all accept `string | object | array | null` — the project uses **structured objects wherever a boundary is subtle** (guardrails and readiness noul boundaries: `{what, examples}`; readiness score levels: `{summary, signals, examples}`; judge `failure_kind` options: `{what, not_for}`). Golden sets and runtime `QUESTIONS` are kept byte-identical (enforced by `evals/harness/tests/test_questions_golden_sync.py`). Noul questions stay polarity-aligned (D10). Answers: noul → probability only (no confidence); choice → pick + probabilities + confidence; score → fractional score + legend + probabilities + confidence. Log the resolved model string every call: `model_requested` (the pin) + the response echo (`model` — provider-normalized; `ci_gate` warns when the echo is neither the pin nor its known alias).

@@ -15,5 +15,5 @@ module_greeting: >
 post_install_message: >
   Next step: configure the Jev decision layer. Run the jev-setup skill
   (/jev-setup) to set your API key and verify the runtime, or manage
-  configuration directly with the jev_mode.ts helper / /jev-mode command
+  configuration directly with the jev_mode.py helper / /jev-mode command
   (mode defaults to "off" - zero network calls - until you change it).

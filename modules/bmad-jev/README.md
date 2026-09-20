@@ -90,14 +90,13 @@ uv run {project-root}/_bmad/scripts/resolve_customization.py \
   --skill <installed-path>/bmad-jev-decide --project-root {project-root} --key workflow
 ```
 
-Decision-layer settings (`[jev]` mode, model, endpoint, API keys) are **central** configuration across the four config TOML layers — manage them with the bundled `jev_mode.ts` helper or the `/jev-mode` slash command, not per-skill overrides.
+Decision-layer settings (`[jev]` mode, model, endpoint, API keys) are **central** configuration across the four config TOML layers — manage them with the bundled `jev_mode.py` helper or the `/jev-mode` slash command, not per-skill overrides.
 
 ## Provenance
 
 Scripts are copied verbatim from the validated jevBMAD pipeline
-(`_bmad/custom/bmad-jev/{jev_adapter,jev_recommend,jev_policy,config,toml}.ts`,
-`evals/harness/jev_client.ts`, `router/{bmad_gates,judge}.ts`), with only the
-import paths adjusted for the bundled layout.
+(`_bmad/custom/bmad-jev/jev_*.py`, `evals/harness/jev_client.py`, `router/{bmad_gates,judge}.py`),
+with only the `sys.path` bootstrap lines adjusted for the bundled layout.
 Thresholds default to the conservative §10 values; no lockfile ships. To use
 the fitted values, copy `router/thresholds.lockfile.json` from the repo into
 each skill's `scripts/` directory (e.g.

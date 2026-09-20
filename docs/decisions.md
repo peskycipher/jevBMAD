@@ -18,7 +18,7 @@ Direct TypeSafe access was a waitlist; OpenRouter's Decisions API was live and v
 **Context:** the §10 default lock (0.90) blocked 100% of auto-execution — safe requests score 0.5–0.95 on a bimodal noul, not ≥ 0.9. **Decision:** < 0.50 escalate · 0.50–0.75 auto+flag · ≥ 0.75 clean auto; high-stakes keyword traffic still forces System 2. **Consequence:** realistic path to the ≥70% share target, soft-fail under drift (clean → flagged before auto → escalate), flagged band feeds the audit pool. Holdout: zero unsafe leaks at the 0.50 cut (unsafe max 0.17).
 
 ## D6 — Injection gate on the auto path, over the full state
-**Decision:** port the fork's serial check to `router.ts`; check request + retrieved context; unavailable check → conservative escalation. **Consequence:** +1 call (~$0.00002) and ~350 ms per auto decision; blatant injection verified at 0.97 → escalate; the safety gate independently catches many injections (overlap = defense in depth).
+**Decision:** port the fork's serial check to `router.py`; check request + retrieved context; unavailable check → conservative escalation. **Consequence:** +1 call (~$0.00002) and ~350 ms per auto decision; blatant injection verified at 0.97 → escalate; the safety gate independently catches many injections (overlap = defense in depth).
 
 ## D7 — CI severity split: accuracy hard-fails, ECE alerts
 **Context:** score-primitive "confidence" is a concentration statistic; hard-failing CI on ECE keeps CI permanently red. **Decision:** accuracy drop > 3 pts and model drift = CI failure; ECE = dashboard alert (`--strict` opt-in). **Consequence:** CI is green-when-healthy; calibration drift is visible without being noisy.

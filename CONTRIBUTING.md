@@ -20,13 +20,13 @@ These are recorded in the README as lessons; here they are as rules:
   golden-set fitting → held-out validation → `router/thresholds.lockfile.json`.
   See `docs/operations.md` for the model-change re-fit runbook.
 - **Nothing ships without an eval.** Behavior changes need golden-set or
-  unit-test coverage; `npx tsx evals/harness/ci_gate.ts` is the gate
+  unit-test coverage; `python3 evals/harness/ci_gate.py` is the gate
   (unit tests run without an API key; golden sets need
   `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY`).
 - **Opt-in everywhere.** Zero network calls without one of those keys;
   every CLI must degrade to explicit JSON statuses, never a traceback.
   The contract is enforced by `evals/harness/tests/` — run it:
-  `npm run test:unit`
+  `python3 -m unittest discover -s evals/harness/tests`
 - **Audit etiquette.** Golden-set labels are data. If you believe a label
   is wrong, don't edit it silently — open an issue with the example ID
   and reasoning; disputes go through the audit workflow in
@@ -35,8 +35,8 @@ These are recorded in the README as lessons; here they are as rules:
 ## Local checks before a PR
 
 ```bash
-npm run test:unit                                     # TS unit tests — fast, no API key
-npx tsx evals/harness/ci_gate.ts                      # full gate (needs key)
+python3 -m unittest discover -s evals/harness/tests   # fast, no API key
+python3 evals/harness/ci_gate.py                      # full gate (needs key)
 ```
 
 CI runs the same gate on push for `evals/`, `router/`, `modules/`, and
