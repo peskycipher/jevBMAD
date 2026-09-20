@@ -119,7 +119,11 @@ export function pyDumps(value: Json | PyFloat): string {
     return Number.isInteger(value.v) ? `${value.v}.0` : String(value.v);
   }
   if (value === null) return "null";
-  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "string") {
+    // json.dumps defaults to ensure_ascii: escape all non-ASCII (astral
+    // characters escape per UTF-16 code unit, like CPython).
+    return JSON.stringify(value).replace(/[\u0080-\uffff]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, "0")}`);
+  }
   if (typeof value === "boolean" || typeof value === "number") {
     return serializeNumber(value);
   }
