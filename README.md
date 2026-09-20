@@ -1,85 +1,110 @@
-# model-wizard
+# Jev-BMAD — Hybrid System-1 / System-2 Agentic Architecture
 
-model-wizard is an AI deployment agent that turns a Hugging Face model repository into a cost-conscious, validated RunPod service. It investigates the model, recommends suitable quantization and infrastructure, explains the options, and automates setup after explicit user approval — from artifact staging and image build through to a workload-validated endpoint and full lifecycle control (start, stop, update, rollback, destroy, cleanup).
+Kahneman's dual-process theory, operationalized:
 
-The product ships as a **pi.dev extension + skill bundle** with a standalone **`mw`** command. Both interfaces share the same deployments, approvals, and state:
+- **System 1 (fast)**: [Jev](https://openrouter.ai) via the OpenRouter Decisions API — typed, probabilistic, calibrated decisions in ~350 ms at ~$0.00002/call, using all three primitives (`choice`, `score`, `noul`)
+- **System 2 (slow)**: GLM-5.3 via OpenRouter chat completions — deep reasoning for escalated work (~105 s, ~$0.03/call)
+- **Harness**: pi.dev · **Memory**: Graft (code, live) + Mem0 (semantic, pluggable) · **Process**: BMAD-Method
+- **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
-```bash
-mw <name> <hf-repo>
-```
+**Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
 
 ## How it works
 
-- **Agent**: pi.dev running GLM-5.3-flash via Ollama Cloud investigates the repository (README, metadata, exact artifact inventory), establishes workload requirements, and checks compatibility with SGLang, vLLM, and llama.cpp.
-- **Jev decision primitives**: `choice` resolves configuration trade-offs, `score` evaluates scoped qualitative evidence, `noul` flags statements that warrant investigation.
-- **Service skills** teach the agent to drive existing CLIs — `hf`, `runpodctl`, Wrangler (R2), Docker/Buildx — with documented SDK/API fallbacks.
-- **Execution backend / supervisor** validates operations, enforces approvals, calculates resources and costs, tracks state in SQLite, and manages deadlines and cleanup. The agent can never approve its own spending or deletions.
-- **Deployment path**: private Cloudflare R2 artifact staging → Dockerfile generation → image build and validation → publication to the user's Docker Hub → RunPod provisioning by verified digest → authenticated inference and workload validation, with explicit qualification levels (`Provisioned` → `Healthy` → `Smoke-tested` → `Workload-validated` → `Performance-qualified`).
-
-When three distinct GPU allocations qualify, the user always sees at least three options — lowest cost, recommended balance, and a higher-capability upgrade — all meeting the same mandatory requirements, with the exact execution plan presented for approval before anything changes.
-
-**Status:** Proposed product — the consolidated [product brief](docs/product-brief.md) and [implementation plan](docs/model-wizard-implementation-plan.md) are complete; implementation and integration validation are pending. The predecessor Jev-BMAD System-1/System-2 router work (phases 0–3, holdout-validated, `v0.1.0`) is retained in [`router/`](router/), [`evals/`](evals/), and [`jevBMAD-Documentation/`](jevBMAD-Documentation/).
-
-## Installation
-
-### Prerequisites
-
-- **Python 3.11+** — runtime for the `mw` CLI and backend supervisor
-- **Node.js + [pi.dev](https://pi.dev/)** — only needed for the in-Pi extension entry point
-- **Service CLIs**, authenticated against your own accounts:
-  - [`hf`](https://huggingface.co/docs/huggingface_hub/guides/cli) — Hugging Face Hub access (model inspection, artifact transfer)
-  - [`runpodctl`](https://docs.runpod.io/runpodctl/overview) — RunPod Pods/Serverless management
-  - [`wrangler`](https://developers.cloudflare.com/r2/reference/wrangler-commands/) — private Cloudflare R2 bucket configuration
-  - **Docker + Buildx** — image build and Docker Hub publication
-- **API credentials** (kept out of model-visible content by the backend):
-  - `OPENROUTER_API_KEY` — Jev decision primitives
-  - Ollama Cloud key — GLM-5.3-flash agent model
-
-### Install `mw`
-
-The `mw` CLI is not yet released. Once Phase 1 of the [implementation plan](docs/model-wizard-implementation-plan.md) lands, installation will be from source:
-
-```bash
-git clone https://github.com/peskycipher/model-wizard.git
-cd model-wizard
-pip install -e .          # installs the `mw` entry point
+```
+request ──▶ router.py: ONE batched Jev call
+            intent (choice) + safety (noul) + complexity (score)
+            │  + retrieved memory (Graft) in state
+            │  + injection gate on the auto path
+            ▼
+   ┌── system1_auto ──┬── clean band ──────────▶ host executes      ~1.1 s   $0.00005
+   │                  └── flagged band ─────────▶ execute + audit flag
+   └── system2 ───────▶ GLM-5.3 with context ──▶ deep work           ~105 s   $0.033
 ```
 
-Install the pi extension and skills bundle alongside it for the in-Pi entry point — both attach to the same backend, state database, and approval store.
+## Repo map
 
-### Verify the environment
-
-```bash
-mw doctor                        # Pi/Node/extension versions, model access,
-                                 # tool-call round trip, cancellation, output parsing
-mw doctor --service runpod       # per-service auth + CLI contract probes
-mw auth                          # credential status across services
-```
-
-`mw doctor` checks authenticated model access, a tool-call round trip, cancellation, and output parsing. If the supported installation cannot enforce the declared tool/path boundary, autonomous mutation preflight fails and the product stays in read-only planning mode.
-
-### Try it
-
-```bash
-mw plan <name> <hf-repo>         # reviewable deployment plan only — no changes
-mw <name> <hf-repo>              # full agent workflow: inspect → compare → approve → deploy → verify
-mw status <name>                 # qualification level, endpoint, costs
-mw verify <name>                 # run authorized validation gates
-mw destroy <name>                # tear down (storage retained unless --purge-storage)
-```
-
-Planning commands are safe to run any time; every infrastructure mutation requires explicit approval of the exact execution plan.
-
-## Documentation
+### Router core
 
 | Path | What it is |
 |---|---|
-| [`docs/product-brief.md`](docs/product-brief.md) | Consolidated product brief: vision, UX, architecture, trust model, success measures |
-| [`docs/model-wizard-implementation-plan.md`](docs/model-wizard-implementation-plan.md) | Implementation specification: command surface, records, workflows, phases, evaluation gates |
-| [`jevBMAD-Documentation/`](jevBMAD-Documentation/) | Predecessor Jev-BMAD system: architecture, evaluation methodology, runbooks, decision log |
-| [`router/`](router/) · [`evals/`](evals/) | Predecessor router code and golden-set evaluation harness |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contribution guidelines |
+| `router/router.py` | System-1 router: batched gates, tiered safety bands, injection gate, full logging |
+| `router/hybrid.py` | End-to-end dispatcher (route → auto or GLM-5.3), end-to-end latency + cost |
+| `router/system2.py` | GLM-5.3 consumer, cost/latency log, `decision_id` linkage |
+| `router/bmad_gates.py` | BMAD phase-transition readiness gates (noul gates + score + blocker taxonomy) |
+| `router/judge.py` | §7.7 story-review rubric (3 gates + 4 dims + failure taxonomy), Jev-as-judge |
+| `router/memory.py` | Unified retrieval: Graft CLI (live) + Mem0 REST (activates with `MEM0_API_KEY`) |
+| `router/thresholds.lockfile.json` | Fitted thresholds + model pin; fitted on train splits only |
 
-## License
+### Evaluation
 
-See [`LICENSE`](LICENSE).
+| Path | What it is |
+|---|---|
+| `evals/` | Golden sets, harness, results, audit queues — see [`evals/README.md`](evals/README.md) |
+| `docs/` | Expanded documentation: architecture, evaluation methodology, reference, runbooks, decision log — see [`docs/index.md`](docs/index.md) |
+| `docs/implementation.md` | The plan, phase records, baselines, findings, §14 limitations |
+| `.github/workflows/evals.yml` | CI regression gate (accuracy drop > 3 pts or model drift fails) |
+
+### BMad integration
+
+| Path | What it is |
+|---|---|
+| `modules/bmad-jev/` | Installable BMad module — `jev-setup`, `bmad-jev-decide`, `bmad-jev-gates`, `bmad-jev-review` skills ([README](modules/bmad-jev/README.md)) |
+| `_bmad/` | BMad Method config (TOML-based), manifests, and the canonical Jev adapter scripts (`jev_adapter.py`, `jev_recommend.py`, `jev_policy.py`) |
+| `.agents/skills/` | All installed BMad skills, rendered for the pi harness (BMM plan/ship pipeline + BMad Builder factory + the jev module) |
+
+## Quickstart
+
+```bash
+export OPENROUTER_API_KEY=sk-...          # required for everything live
+python3 -m unittest discover -s evals/harness/tests   # contract tests — no key needed
+
+python3 router/hybrid.py "What does the router do?"       # full loop demo
+python3 router/router.py "Drop the users table"           # routing decision only
+python3 evals/harness/run_evals.py evals/golden-sets       # full eval sweep (~$0.006)
+python3 evals/harness/ci_gate.py                           # regression gate vs baseline
+python3 evals/harness/dashboard.py                         # metrics + alerts vs §7.5 targets
+python3 evals/harness/holdout_validate.py                  # honest held-out numbers
+python3 evals/harness/online_sample.py                     # hindsight sampling + audit queue
+python3 evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale a golden set
+```
+
+## Verified state (2026-09-19, model `typesafe/jev-1.13-20260917`)
+
+| Component | Metric |
+|---|---|
+| Routing (choice, n=103) | 100% holdout acc (n=21), ECE 0.006, `other` rate 3.3% |
+| Guardrails (noul, n=100) | 100% holdout acc (n=20), Brier 0.034; unsafe ≤ 0.17, safe ≥ 0.50 (bimodal) |
+| Complexity (score, n=117) | 93.2% acc, MAE 0.15; audited hard stratum 13/17 (76%) |
+| Story judge (§7.7, n=10) | 100% verdict accuracy (fitted; provisional — set too small to split) |
+| Readiness gates (n=8) | 75–78% — provisional, needs growth |
+| Tiered safety bands | < 0.50 escalate · 0.50–0.75 auto+flag · ≥ 0.75 clean auto |
+| Injection gate | clean 0.41 passes · blatant injection 0.97 escalates |
+| System-2 economics | GLM call ≈ 670× System-1 cost; ≥40% cost reduction holds at ≤60% escalation |
+
+## Safety design
+
+- **Opt-in everywhere**: zero network calls unless `OPENROUTER_API_KEY` is set; CI skips cleanly without it
+- **Tiered bands** instead of a single cliff (drift fails soft: clean → flagged before auto → escalate)
+- **Serial injection gate** on every auto path — checks the full state including retrieved context; unavailable check = conservative escalation; unchecked requests never auto-execute
+- **Advisory doctrine in the fork**: `proceed` is one vote, never an approval; `hold` surfaces reasons, never an automatic block
+- **Explicit failure statuses** everywhere: `disabled` / `unavailable` with machine-readable reasons, bounded retries, never silent success
+
+## Honest limitations (summary — full list in §14)
+
+1. **Selection bias**: scaled golden sets were filtered to author+Jev agreement; numbers are internal estimates, not production forecasts
+2. **Partial circularity**: 12 of 17 audit-settled labels match Jev's own calls (excluded from splits/fitting; a fully independent human-labeled batch is still the open §7.6 gate)
+3. **System-1 share target unmeasured**: ≥70% needs real production traffic (demo traffic skews hard)
+4. Readiness/story_review sets too small to split — provisional
+
+## Related repo
+
+The BMAD-METHOD integration lives in a companion fork carrying the skill-side wiring:
+`feature/jev-decision-assist` = recommendation pilot (unchanged) · `feature/jev-gates` = readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile. Both opt-in, disabled by default, advisory-only. Public fork URL to be added when the fork is pushed.
+
+## Key lessons (encode these into future Jev work)
+
+1. **Polarity alignment**: noul `instructions` and `proposition` must agree — misalignment returns inverted probabilities (found live, fixed, tested)
+2. **Thresholds are data, not aspirations**: §7.7's hardcoded 0.95 rejected every passing story; fitted thresholds took verdict accuracy 60% → 100%
+3. **Jev's noul is bimodal on safety**: treat mid-range as a signal (bands), not as "probably unsafe" (single high cut)
+4. **The audit loop catches author errors**: guard-022 and the hard-set stratum were both author-labeling mistakes Jev caught first
