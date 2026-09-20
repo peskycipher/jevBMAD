@@ -1,0 +1,35 @@
+{
+  "name": "jev-bmad-hybrid",
+  "owner": {
+    "name": "jevBMAD"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/peskycipher/jevBMAD",
+  "repository": "https://github.com/peskycipher/jevBMAD",
+  "keywords": [
+    "bmad",
+    "jev",
+    "decisions",
+    "system1-system2",
+    "phase-gates",
+    "jev-as-judge",
+    "ai-agents"
+  ],
+  "plugins": [
+    {
+      "name": "jev-bmad-hybrid",
+      "source": "./modules/bmad-jev",
+      "description": "System-1/System-2 decision layer for BMad: typed, calibrated Jev decisions (choice/score/noul) with conservative escalation, batched phase-readiness gates, and Jev-as-judge story review.",
+      "version": "1.0.0",
+      "author": {
+        "name": "jevBMAD"
+      },
+      "skills": [
+        "./modules/bmad-jev/jev-setup",
+        "./modules/bmad-jev/bmad-jev-decide",
+        "./modules/bmad-jev/bmad-jev-gates",
+        "./modules/bmad-jev/bmad-jev-review"
+      ]
+    }
+  ]
+}

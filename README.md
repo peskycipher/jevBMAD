@@ -54,7 +54,11 @@ The decision layer is also packaged as an installable BMad module in
 `bmad-jev-decide`, `bmad-jev-gates`, `bmad-jev-review`):
 
 ```bash
-# Via the BMad installer, from a Git host or local path:
+# One-liner via the BMad installer (pulls the module straight from this repo):
+npx bmad-method install --custom-source https://github.com/peskycipher/jevBMAD \
+  --tools claude-code --yes
+
+# Or, from a local clone:
 bmad install modules/bmad-jev
 
 # Or run the jev-setup skill in-project after copying the folder to the

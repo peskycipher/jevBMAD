@@ -36,9 +36,16 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
 
 ## Install
 
-Install via the BMad installer from any Git host or local path, or run the
-`jev-setup` skill in-project after copying this folder to the host's skill
-directory (`.claude/skills/` for Claude Code, `.agents/skills/` for pi).
+```bash
+# From this repo (one command, non-interactive; drop --tools/--yes for prompts):
+npx bmad-method install --custom-source https://github.com/peskycipher/jevBMAD \
+  --tools claude-code --yes
+```
+
+Or install via the BMad installer from a local clone (`bmad install
+modules/bmad-jev`), or run the `jev-setup` skill in-project after copying this
+folder to the host's skill directory (`.claude/skills/` for Claude Code,
+`.agents/skills/` for pi).
 
 ## Provenance
 
