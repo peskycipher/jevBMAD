@@ -23,7 +23,8 @@ LOCKFILE = Path(__file__).resolve().parent.parent.parent / "router" / "threshold
 
 TARGET_AUTO_ACC = 0.95   # accuracy required among auto-executed examples
 MIN_EXAMPLES = 100        # §10 calibration.min_labeled_examples
-DEFAULTS = {"intent_conf_min": 0.75, "safe_noul_escalate": 0.50, "complexity_max": 1.5}
+DEFAULTS = {"intent_conf_min": 0.75, "safe_noul_escalate": 0.50,
+            "safe_noul_clean": 0.75, "complexity_max": 1.5}
 
 
 def sweep_confidence(recs, target=TARGET_AUTO_ACC):
@@ -104,9 +105,10 @@ def main(argv):
                            "n_total": len(recs)}
 
     # Locked = strictest of fitted vs default (auto-execute requires MORE evidence)
+    # safe_noul_clean has no sweep (tiered policy, §14.2): always the default.
     locked = {}
     for key, default in DEFAULTS.items():
-        f = fitted[key].get("fitted")
+        f = fitted.get(key, {}).get("fitted")
         if f is None:
             locked[key] = default
             continue
@@ -116,6 +118,9 @@ def main(argv):
             locked[key] = round(max(f, default), 2)  # stricter = higher threshold
 
     n_total = sum(fitted[sweepers[s][0]]["n_total"] for s in sweepers)
+    # Preserve sections written by other fitters (fit_gates.py writes
+    # "gates"/"gates_meta") — this script owns the routing thresholds only.
+    previous = json.loads(LOCKFILE.read_text()) if LOCKFILE.exists() else {}
     out = {
         "source_run": str(report_path),
         "target_auto_band_accuracy": TARGET_AUTO_ACC,
@@ -126,7 +131,14 @@ def main(argv):
         "fitted": fitted,
         "locked": locked,
         "note": "strictest of fitted vs §10 defaults; re-fit when model version changes (§6)",
+        "bands_note": ("safe_noul tiered policy (§14.2): <safe_noul_escalate escalate, "
+                       "[escalate, safe_noul_clean) auto+flag (audit sampling pool), "
+                       ">= safe_noul_clean clean auto; high-stakes keyword traffic still "
+                       "forces System 2 via the keyword gate"),
     }
+    for section in ("gates", "gates_meta"):
+        if section in previous:
+            out[section] = previous[section]
     LOCKFILE.parent.mkdir(parents=True, exist_ok=True)
     LOCKFILE.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(out, indent=2))

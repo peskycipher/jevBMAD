@@ -57,6 +57,21 @@ class JevError(RuntimeError):
     pass
 
 
+def usage_cost(usage: dict | None) -> float | None:
+    """Provider-reported cost for one call, or None when the provider does
+    not report one. The Jev decisions API reports only token counts — never
+    invent a price here; callers must surface None as "n/a", not $0.00."""
+    if not isinstance(usage, dict):
+        return None
+    cost = usage.get("cost")
+    if isinstance(cost, str):
+        try:
+            cost = float(cost)
+        except ValueError:
+            return None
+    return cost if isinstance(cost, (int, float)) and not isinstance(cost, bool) else None
+
+
 _ENV_LOADED = False
 
 

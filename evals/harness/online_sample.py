@@ -7,7 +7,8 @@ Continuously evaluates production routing decisions from the decision logs:
   2. Jev-as-judge hindsight review (§7.6 "routing overrides" row): a fresh
      Noul question — "was the System-1 decision correct in hindsight?" —
      judged from the request, decision, and reasons.
-  3. Route ~3% (min 1) of samples to the human audit queue (§10 judging config).
+  3. Route ~3% (min 1) of the judged samples to the human audit queue
+     (§10 judging config), deduplicated across runs.
   4. Memory relevance loop (§7.2/§7.5): Score the Graft context relevance of
      sampled memory-backed decisions (target >= 80% => >= 3.2 on a 0-4 scale).
   5. Append a dated snapshot to production_metrics.json for drift tracking.
@@ -90,11 +91,15 @@ def main(argv):
     rate = 0.05
     if "--rate" in argv:
         rate = float(argv[argv.index("--rate") + 1])
+    # Sampling seed: random per run so continuous sampling eventually covers the
+    # whole log; pass --seed 42 for a reproducible sample. Recorded in the snapshot.
+    seed_arg = int(argv[argv.index("--seed") + 1]) if "--seed" in argv else None
+    seed = seed_arg if seed_arg is not None else int(time.time())
 
     entries = [json.loads(l) for l in log_path.read_text().splitlines() if l.strip()]
-    sample = random.Random(42).sample(entries, max(1, int(len(entries) * rate))) if entries else []
+    sample = random.Random(seed).sample(entries, max(1, int(len(entries) * rate))) if entries else []
 
-    judged, audit_selected = [], []
+    judged = []
     for e in sample:
         review = (f"Request: {e['request']}\nDecision: {e['decision']}\n"
                   f"Needs review flag: {e.get('needs_review')}\n"
@@ -106,8 +111,6 @@ def main(argv):
         row = {"ts": e["ts"], "request": e["request"], "decision": e["decision"],
                "jev_hindsight_correct": h["correct"], "hindsight_noul": h["noul"],
                "failure_kind": h["failure_kind"]}
-        # human audit selection: ~3% of the log, min 1 (§10 judging config)
-        audit_selected.append(row)
         judged.append(row)
 
     # memory relevance on memory-backed samples
@@ -120,24 +123,38 @@ def main(argv):
             except Exception:  # noqa: BLE001
                 pass
 
-    human_audit_n = max(1, int(len(entries) * 0.03)) if entries else 0
-    audit_rows = judged[:human_audit_n]
+    # ~3% of the SAMPLE (not the log — the sample is what was judged), min 1
+    # (§10 judging config); drawn randomly, not the first N.
+    human_audit_n = max(1, round(len(sample) * 0.03)) if sample else 0
+    audit_rows = (random.Random(seed).sample(judged, min(human_audit_n, len(judged)))
+                  if judged and human_audit_n else [])
 
     AUDIT.mkdir(parents=True, exist_ok=True)
     q = AUDIT / "human_audit_queue.jsonl"
+    existing_audit = set()
+    if q.exists():
+        for l in q.read_text().splitlines():
+            if l.strip():
+                prev = json.loads(l)
+                existing_audit.add((prev.get("ts"), prev.get("request")))
     with open(q, "a", encoding="utf-8") as f:
+        n_queued = 0
         for r in audit_rows:
+            if (r.get("ts"), r.get("request")) in existing_audit:
+                continue  # already queued by a previous run — never duplicate
             f.write(json.dumps({**r, "audit": "confirm_or_reject_routing"}) + "\n")
+            n_queued += 1
 
     snapshot = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "log": str(log_path),
         "log_size": len(entries),
         "sample_rate": rate,
+        "sample_seed": seed,
         "n_sampled": len(sample),
         "hindsight_agreement": (sum(r["jev_hindsight_correct"] for r in judged) / len(judged))
                                if judged else None,
-        "human_audit_queued": len(audit_rows),
+        "human_audit_queued": n_queued,
         "memory_relevance_mean": (sum(relevance_scores) / len(relevance_scores))
                                   if relevance_scores else None,
         "memory_relevance_target": 3.2,  # 80% of 0-4 scale (§7.5)
@@ -150,7 +167,7 @@ def main(argv):
     metrics_path.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
 
     print(json.dumps(snapshot, indent=2))
-    print(f"audit queue: {q} (+{len(audit_rows)} rows)")
+    print(f"audit queue: {q} (+{n_queued} rows, {len(audit_rows)} selected)")
 
 
 if __name__ == "__main__":

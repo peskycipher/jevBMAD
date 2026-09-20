@@ -73,6 +73,24 @@ USAGE_CASES = [
 
 
 class UsageDegradationTest(unittest.TestCase):
+    def test_recommend_too_many_candidates_bad_request_exit_2(self):
+        """Regression: build_recommend_questions raised an uncaught PolicyError
+        (>MAX_CANDIDATES) after the degrade handlers — raw traceback instead of
+        JSON. All three copies must degrade to bad_request / exit 2."""
+        for label, script in [("canonical", "_bmad/scripts/jev_recommend.py"),
+                              ("module", "modules/bmad-jev/bmad-jev-decide/scripts/jev_recommend.py")]:
+            with self.subTest(entrypoint=label):
+                env = {**os.environ, "BMAD_DECISION_ASSIST_MODE": "suggest", "TYPESAFE_API_KEY": "test"}
+                proc = subprocess.run(
+                    [sys.executable, script, "--request", "t", "--candidates", "a,b,c,d,e,f,g,h,i"],
+                    capture_output=True, text=True, env=env, cwd=str(ROOT), timeout=60)
+                self.assertNotIn("Traceback", proc.stderr)
+                data = json.loads(proc.stdout)
+                self.assertEqual(data["status"], "bad_request")
+                self.assertEqual(data["reason_kind"], "usage")
+                self.assertEqual(proc.returncode, 2)
+                self.assertEqual(data["calls_made"], 0)
+
     def test_usage_errors_report_bad_request_exit_2(self):
         for label, argv, stdin_text in USAGE_CASES:
             with self.subTest(entrypoint=label):

@@ -14,10 +14,14 @@ Usage:
 from __future__ import annotations
 
 import json
+import sys
 import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+from jev_client import usage_cost  # noqa: E402
+
 RESULTS = HERE.parent / "results"
 LOGS = HERE.parent / "logs"
 BASELINE = RESULTS / "baseline.json"
@@ -58,7 +62,7 @@ def main():
         lines += ["## System-2 judge (story review)", "",
                   f"- verdict accuracy: {sr['verdict_accuracy']:.1%}",
                   f"- gate agreement: {sr['gate_agreement']:.1%}",
-                  f"- taxonomy accuracy: {sr['taxonomy_accuracy']:.1%}" if sr["taxonomy_accuracy"] else "- taxonomy accuracy: n/a"]
+                  f"- taxonomy accuracy: {sr['taxonomy_accuracy']:.1%}" if sr["taxonomy_accuracy"] is not None else "- taxonomy accuracy: n/a"]
         lines.append("")
 
     # --- production routing metrics from logs (Jev decision share, §7.5) ---
@@ -68,13 +72,17 @@ def main():
         auto = sum(r["decision"] == "system1_auto" for r in rows)
         lat = sorted(r["latency_ms"] for r in rows)
         p95 = lat[int(len(lat) * 0.95)] if lat else 0
-        cost = sum(r.get("usage", {}).get("cost", 0) for r in rows)
+        routing_costs = [usage_cost(r.get("usage")) for r in rows]
+        cost_known = [c for c in routing_costs if c is not None]
+        tokens = sum((r.get("usage") or {}).get("input_tokens", 0) for r in rows)
         share = auto / len(rows) if rows else 0
         lines += ["## Production routing (decision log)", "",
                   f"- decisions: {len(rows)}",
                   f"- System-1 auto-execute share: {share:.1%} (target >= 70%, §7.5)",
                   f"- p95 routing latency: {p95:.0f} ms",
-                  f"- total decision cost: ${cost:.4f}"]
+                  (f"- total decision cost: ${sum(cost_known):.4f}"
+                   if cost_known else
+                   f"- decision cost: n/a (provider reports tokens only; {tokens} input tokens logged)")]
         if p95 > 2500:
             alerts.append({"severity": "warn", "check": "latency", "detail": f"p95 {p95:.0f}ms > 2500ms"})
         lines.append("")
@@ -85,7 +93,8 @@ def main():
         rows = [json.loads(l) for l in s2_log.read_text().splitlines() if l.strip()]
         if rows:
             lat = sorted(r["latency_ms"] for r in rows)
-            cost = sum((r.get("usage") or {}).get("cost", 0) for r in rows)
+            costs = [usage_cost(r.get("usage")) for r in rows]
+            cost = sum(c for c in costs if c is not None)
             lines += ["## System-2 escalations (GLM)", "",
                       f"- calls: {len(rows)}",
                       f"- p50 / max latency: {lat[len(lat)//2]:.0f} / {lat[-1]:.0f} ms",

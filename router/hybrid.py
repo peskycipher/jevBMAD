@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROUTER_DIR.parent / "evals" / "harness"))
 from router import route  # noqa: E402
 import memory  # noqa: E402
 from system2 import System2Error, execute  # noqa: E402
-from jev_client import JevError  # noqa: E402
+from jev_client import JevError, usage_cost  # noqa: E402
 
 
 def dispatch(request_text: str, project_root: str = ".", use_memory: bool = True) -> dict:
@@ -68,9 +68,11 @@ def dispatch(request_text: str, project_root: str = ".", use_memory: bool = True
         except System2Error as e:
             out["system2"] = {"status": "error", "error": str(e)}
 
-    routing_cost = routing.get("usage", {}).get("cost", 0)
-    s2_cost = (out["system2"] or {}).get("usage", {}).get("cost", 0) if out["system2"] else 0
-    out["cost_usd"] = round(routing_cost + s2_cost, 8)
+    routing_cost = usage_cost(routing.get("usage"))
+    s2_usage = (out["system2"] or {}).get("usage") if out["system2"] else None
+    s2_cost = usage_cost(s2_usage)
+    known = [c for c in (routing_cost, s2_cost) if c is not None]
+    out["cost_usd"] = round(sum(known), 8) if known else None
     out["end_to_end_ms"] = round((time.monotonic() - t0) * 1000, 1)
     return out
 

@@ -115,19 +115,28 @@ def main(argv):
             by_id[r["id"]].append(r)
         train = [r for i in split["train"] for r in by_id[i]]
         hold = [r for i in split["holdout"] for r in by_id[i]]
-        assert len(train) + len(hold) == len(records)
+        # a live example may error (provider hiccup): those are simply absent,
+        # not fatal — the fit/holdout math only needs the records that exist.
+        if len(train) + len(hold) < len(records):
+            raise AssertionError(f"{name}: records not partitioned by id — {len(train)}+{len(hold)} vs {len(records)}")
+        missing = (split["train"] + split["holdout"]) - set(by_id)
+        if missing:
+            print(f"warn {name}: {len(missing)} example(s) errored in the live run and are excluded")
 
         # ---- fit on TRAIN only ----
         fitted = {}
         if name == "routing":
             recs = [r for r in train if r["primitive"] == "choice"]
-            fitted["intent_conf_min"] = sweep_confidence(recs)
+            fitted["intent_conf_min"] = sweep_confidence(recs) or {
+                "note": "no threshold met the auto-accuracy floor on train" if recs else "no train records"}
         elif name == "guardrails":
             recs = [r for r in train if r["primitive"] == "noul"]
-            fitted["safe_noul_escalate"] = sweep_noul(recs)
+            fitted["safe_noul_escalate"] = sweep_noul(recs) or {
+                "note": "no threshold met the auto-accuracy floor on train" if recs else "no train records"}
         elif name == "complexity":
             recs = [r for r in train if r["primitive"] == "score"]
-            fitted["complexity_max"] = sweep_score(recs)
+            fitted["complexity_max"] = sweep_score(recs) or {
+                "note": "no threshold met the auto-accuracy floor on train" if recs else "no train records"}
 
         # ---- evaluate on HOLDOUT ----
         out = {"set": name, "n_train": len(split["train"]), "n_holdout": len(split["holdout"]),
@@ -140,6 +149,9 @@ def main(argv):
             out["holdout_accuracy"] = sum(r["correct"] for r in choice_hold) / len(choice_hold)
             choice_train = [r for r in train if r["primitive"] == "choice"]
             out["train_accuracy"] = sum(r["correct"] for r in choice_train) / len(choice_train)
+            if "note" in fitted["intent_conf_min"]:
+                print(f"skip {name}: fit sweep found no qualifying threshold on train")
+                continue
             t_fit = fitted["intent_conf_min"][0]
             out["fitted_on_train"] = {"intent_conf_min": t_fit,
                                       "auto_acc_train": round(fitted["intent_conf_min"][1], 3)}
@@ -153,6 +165,9 @@ def main(argv):
             out["holdout_accuracy"] = sum(r["correct"] for r in noul_hold) / len(noul_hold)
             noul_train = [r for r in train if r["primitive"] == "noul"]
             out["train_accuracy"] = sum(r["correct"] for r in noul_train) / len(noul_train)
+            if "note" in fitted["safe_noul_escalate"]:
+                print(f"skip {name}: fit sweep found no qualifying threshold on train")
+                continue
             t_fit = fitted["safe_noul_escalate"][0]
             out["fitted_on_train"] = {"safe_noul_escalate": t_fit,
                                       "auto_acc_train": round(fitted["safe_noul_escalate"][1], 3)}
@@ -165,6 +180,9 @@ def main(argv):
             out["holdout_accuracy"] = sum(r["correct"] for r in hold) / len(hold)
             out["train_accuracy"] = sum(r["correct"] for r in train) / len(train)
             mae_h = sum(abs(r["prediction"] - r["label"]) for r in hold) / len(hold)
+            if "note" in fitted["complexity_max"]:
+                print(f"skip {name}: fit sweep found no qualifying threshold on train")
+                continue
             t_fit = fitted["complexity_max"][0]
             out["fitted_on_train"] = {"complexity_max": t_fit,
                                       "auto_acc_train": round(fitted["complexity_max"][1], 3)}

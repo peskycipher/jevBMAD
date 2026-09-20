@@ -11,13 +11,14 @@ Decisions API, scores against labels, writes a report to evals/results/.
 from __future__ import annotations
 
 import json
+import math
 import sys
 import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import metrics as M  # noqa: E402
-from jev_client import call_jev  # noqa: E402
+from jev_client import call_jev, usage_cost  # noqa: E402
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results"
 
@@ -42,9 +43,9 @@ def score_record(qid: str, qdef: dict, answer: dict, label, ex_id: str = ""):
         pred = answer["choice"]
         correct = pred == label
     else:  # score: nearest legend level vs integer label
-        n_levels = len(qdef["criteria"])
-        pred = answer["score"] / (n_levels - 1) * (n_levels - 1)  # already 0..n-1
-        correct = round(pred) == label
+        pred = answer["score"]  # already 0..n_levels-1
+        # half-up (Python's round() would send .5 ties to the even level)
+        correct = math.floor(pred + 0.5) == label
     return {
         "id": ex_id, "qid": qid, "primitive": p, "label": label,
         "prediction": pred, "confidence": answer.get("confidence"),
@@ -65,7 +66,7 @@ def run_set(set_dir: Path) -> dict:
             print(f"  [error] {ex['id']}: {e}", file=sys.stderr)
             continue
         latencies.append((time.monotonic() - t0) * 1000)
-        costs.append(resp.get("usage", {}).get("cost", 0))
+        costs.append(usage_cost(resp.get("usage")))
         for qid, label in ex["labels"].items():
             if qid not in resp.get("answers", {}):
                 n_err += 1
@@ -87,8 +88,12 @@ def run_set(set_dir: Path) -> dict:
         "other_rate": M.other_rate(records),
         "bands": M.band_report(records),
         "latency_ms": M.latency_stats(latencies),
-        "cost_total_usd": round(sum(costs), 8) if costs else 0,
-        "cost_per_example_usd": round(sum(costs) / max(len(costs), 1), 8),
+        # Provider-reported cost only; None (never 0.0) when the provider
+        # reports token counts without a price (the Jev API does not).
+        "cost_total_usd": (round(sum(c for c in costs if c is not None), 8)
+                           if any(c is not None for c in costs) else None),
+        "cost_per_example_usd": (round(sum(c for c in costs if c is not None) / len(costs), 8)
+                                 if any(c is not None for c in costs) else None),
     }
     return report
 

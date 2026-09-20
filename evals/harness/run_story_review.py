@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "router"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from judge import GATE_THRESHOLD, judge  # noqa: E402
+from judge import GATE_THRESHOLDS, judge  # noqa: E402
 
 GOLDEN = Path(__file__).resolve().parent.parent / "golden-sets" / "story_review" / "story_review.golden.jsonl"
 RESULTS = Path(__file__).resolve().parent.parent / "results"
@@ -39,7 +39,7 @@ def main():
             taxonomy_ok += res["failure_kind"] == ex["labels"]["failure_kind"]
         for g in ("gate_spec", "gate_no_regression", "gate_security"):
             gate_n += 1
-            pred_safe = res["gate_nouls"][g] >= GATE_THRESHOLD
+            pred_safe = res["gate_nouls"][g] >= GATE_THRESHOLDS[g]
             gate_hits += pred_safe == bool(ex["labels"][g])
         per_example.append({"id": ex["id"], "expected": ex["expected_verdict"],
                             "got": res["verdict"], "ok": v_ok,

@@ -1,5 +1,5 @@
 {
-  "source_run": "/home/loki/projects.io/jev-BMAD/evals/results/run-20260919-230654.json",
+  "source_run": "evals/results/run-20260919-230654.json",
   "target_auto_band_accuracy": 0.95,
   "status": "candidate-final",
   "min_examples_required": 100,
@@ -27,10 +27,28 @@
   },
   "locked": {
     "intent_conf_min": 0.75,
-    "complexity_max": 1.5,
     "safe_noul_escalate": 0.5,
-    "safe_noul_clean": 0.75
+    "safe_noul_clean": 0.75,
+    "complexity_max": 1.5
   },
   "note": "strictest of fitted vs \u00a710 defaults; re-fit when model version changes (\u00a76)",
-  "bands_note": "safe_noul tiered policy (\u00a714.2 decision, 2026-09-19): <0.50 escalate (unsafe max 0.17 on n=100), 0.50-0.75 auto+flag (audit sampling pool), >=0.75 clean auto; high-stakes keyword traffic still forces System 2 via the keyword gate"
+  "bands_note": "safe_noul tiered policy (\u00a714.2): <safe_noul_escalate escalate, [escalate, safe_noul_clean) auto+flag (audit sampling pool), >= safe_noul_clean clean auto; high-stakes keyword traffic still forces System 2 via the keyword gate",
+  "gates": {},
+  "gates_meta": {
+    "readiness": {
+      "spec_specific": {
+        "note": "only 8 examples < 20; keeping \u00a79 default 0.90"
+      },
+      "requirements_testable": {
+        "note": "only 8 examples < 20; keeping \u00a79 default 0.90"
+      },
+      "no_blockers": {
+        "note": "only 8 examples < 20; keeping \u00a79 default 0.90"
+      },
+      "ready_score": {
+        "score_mae_levels": 0.45,
+        "note": "only 8 examples < 20; keeping \u00a79 default 3.0"
+      }
+    }
+  }
 }

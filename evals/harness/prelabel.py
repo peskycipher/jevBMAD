@@ -48,7 +48,8 @@ def generate(set_name: str, candidates_path: Path) -> None:
                     labels[qid] = ans["choice"]
                 else:  # score: nearest level
                     labels[qid] = round(ans["score"])
-            row = {"set": set_name, "id": f"{set_name}-pre-{int(__import__('time').strftime('%s'))}-{i}",
+            # ns-precision: second-resolution IDs collided across runs in the same second
+            row = {"set": set_name, "id": f"{set_name}-pre-{__import__('time').time_ns()}-{i}",
                    "state": cand["state"], "proposed_labels": labels,
                    "answers": resp["answers"], "approved": False,
                    "final_labels": None}
