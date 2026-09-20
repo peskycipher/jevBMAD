@@ -1,4 +1,4 @@
-code: bmad-jev
+code: custom/bmad-jev
 name: "Jev BMad Hybrid"
 description: "System-1/System-2 decision layer for BMad: typed, calibrated Jev decisions (choice/score/noul) with conservative escalation, batched phase-readiness gates, and Jev-as-judge story review"
 module_version: 1.0.0

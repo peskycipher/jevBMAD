@@ -21,7 +21,7 @@ Both config scripts use an anti-zombie pattern — existing entries for this mod
 
 1. Read `./assets/module.yaml` for module metadata and variable definitions (the `code` field is the module identifier)
 2. Check if `{project-root}/_bmad/config.yaml` exists — if a section matching the module's code is already present, inform the user this is an update
-3. Check for per-module configuration at `{project-root}/_bmad/bmad-jev/config.yaml` and `{project-root}/_bmad/core/config.yaml`. If either file exists:
+3. Check for per-module configuration at `{project-root}/_bmad/custom/bmad-jev/config.yaml` and `{project-root}/_bmad/core/config.yaml`. If either file exists:
    - If `{project-root}/_bmad/config.yaml` does **not** yet have a section for this module: this is a **fresh install**. Inform the user that installer config was detected and values will be consolidated into the new format.
    - If `{project-root}/_bmad/config.yaml` **already** has a section for this module: this is a **legacy migration**. Inform the user that legacy per-module config was found alongside existing config, and legacy values will be used as fallback defaults.
    - In both cases, per-module config files and directories will be cleaned up after setup.
@@ -49,7 +49,7 @@ In the commands below, replace `{project-root}` in every path argument with the 
 
 ```bash
 uv run ./scripts/merge-config.py --config-path "{project-root}/_bmad/config.yaml" --user-config-path "{project-root}/_bmad/config.user.yaml" --module-yaml ./assets/module.yaml --answers {temp-file} --legacy-dir "{project-root}/_bmad"
-uv run ./scripts/merge-help-csv.py --target "{project-root}/_bmad/module-help.csv" --source ./assets/module-help.csv --legacy-dir "{project-root}/_bmad" --module-code bmad-jev
+uv run ./scripts/merge-help-csv.py --target "{project-root}/_bmad/module-help.csv" --source ./assets/module-help.csv --legacy-dir "{project-root}/_bmad" --module-code custom/bmad-jev
 ```
 
 Both scripts output JSON to stdout with results. If either exits non-zero, surface the error and stop. The scripts automatically read legacy config values as fallback defaults, then delete the legacy files after a successful merge. Check `legacy_configs_deleted` and `legacy_csvs_deleted` in the output to confirm cleanup.
@@ -76,10 +76,10 @@ After both merge scripts complete successfully, remove the installer's package d
 As with the merge scripts, replace `{project-root}` in the `--bmad-dir` and `--skills-dir` path arguments with the actual project root before running.
 
 ```bash
-uv run ./scripts/cleanup-legacy.py --bmad-dir "{project-root}/_bmad" --module-code bmad-jev --also-remove _config --also-remove jev --skills-dir "{project-root}/.claude/skills"
+uv run ./scripts/cleanup-legacy.py --bmad-dir "{project-root}/_bmad" --module-code custom/bmad-jev --also-remove _config --also-remove jev --also-remove bmad-jev --skills-dir "{project-root}/.claude/skills"
 ```
 
-The `jev` entry in `--also-remove` cleans up installs made before the module was renamed from `jev` to `bmad-jev` (it holds only config files, no skills, so it is removed directly). The script verifies that every skill in the legacy directories exists at `.claude/skills/` before removing anything. Directories without skills (like `_config/`) are removed directly. If the script exits non-zero, surface the error and stop. Missing directories (already cleaned by a prior run) are not errors — the script is idempotent.
+The `jev` and `bmad-jev` entries in `--also-remove` clean up installs made under earlier module folder names (`_bmad/jev/`, `_bmad/bmad-jev/`); each holds only config files, no skills, so they are removed directly. The script verifies that every skill in the legacy directories exists at `.claude/skills/` before removing anything. Directories without skills (like `_config/`) are removed directly. If the script exits non-zero, surface the error and stop. Missing directories (already cleaned by a prior run) are not errors — the script is idempotent.
 
 Check `directories_removed` and `files_removed_count` in the JSON output for the confirmation step. Run `./scripts/cleanup-legacy.py --help` for full usage.
 
