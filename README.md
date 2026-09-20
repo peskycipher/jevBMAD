@@ -29,9 +29,9 @@ git clone https://github.com/peskycipher/jevBMAD.git
 cd jevBMAD
 
 # Requirements: Python 3.11+ (scripts are stdlib-first / PEP 723)
-# Optional but recommended for any live call:
-export TYPESAFE_API_KEY=...    # TypeSafe direct (preferred)
-# or: export OPENROUTER_API_KEY=sk-...   (fallback Decisions path)
+# API keys: copy the example env file and fill in your keys
+cp .env.example .env
+# then edit .env and set TYPESAFE_API_KEY (preferred) and/or OPENROUTER_API_KEY
 
 # Verify the install — 32 contract/sync tests pass with no API key:
 python3 -m unittest discover -s evals/harness/tests
@@ -115,7 +115,7 @@ request ──▶ router.py: ONE batched Jev call
 ## Quickstart
 
 ```bash
-export TYPESAFE_API_KEY=...               # preferred; or OPENROUTER_API_KEY=sk-... as fallback
+# requires keys in .env — see [Installation](#1-clone-and-set-up-the-repo) above
 python3 -m unittest discover -s evals/harness/tests   # contract tests — no key needed
 
 python3 router/hybrid.py "What does the router do?"       # full loop demo
