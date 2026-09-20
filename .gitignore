@@ -12,3 +12,6 @@ modules/bmad-jev/**/evals/logs/
 
 # party-mode session memories — runtime state, per-machine
 _bmad-output/party-mode/
+
+# local credentials (template: .env.example)
+.env
