@@ -57,6 +57,7 @@ def run_set(set_dir: Path) -> dict:
     criteria, golden = load_set(set_dir)
     records, latencies, costs = [], [], []
     n_err = 0
+    resp = None  # bound only after a successful call (all-errors case: §4 degrade)
     for ex in golden:
         t0 = time.monotonic()
         try:
@@ -84,7 +85,7 @@ def run_set(set_dir: Path) -> dict:
         # independent); model_echo = what the provider actually served
         # (drift-detection signal, alerted by ci_gate).
         "model_resolved": (resp.get("model_requested") or resp.get("model")) if records else None,
-        "model_echo": resp.get("model"),
+        "model_echo": resp.get("model") if resp is not None else None,
         "accuracy": M.accuracy(records),
         "ece": M.ece(records),
         "brier": M.brier_score(records),

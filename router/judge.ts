@@ -29,8 +29,8 @@ import { callJev, JevError, tsStamp, pythonRound } from "../evals/harness/jev_cl
 import { pyDumps, pyDumpsIndent, tagPythonFloats, PyFloat, type Json, type JsonTable } from "../evals/harness/jev_policy.ts";
 
 const THIS_DIR = fileURLToPath(new URL(".", import.meta.url));
-// jev_client.py ships beside this script (module copies); canonical router
-// pulls it from the evals harness.
+// jev_client.ts ships beside this script (module copies); the canonical
+// router pulls it from the evals harness.
 const LOCKFILE = `${THIS_DIR}thresholds.lockfile.json`;
 
 /** Threshold from the fitted lockfile, falling back to §7.7 defaults. */
@@ -48,7 +48,7 @@ function loadLocked(key: string, defaultPyFloat: number, floatify: boolean): PyF
   return floatify ? new PyFloat(defaultPyFloat) : defaultPyFloat; // Python default keeps its own type
 }
 
-const GATE_THRESHOLDS: Record<string, PyFloat> = {
+export const GATE_THRESHOLDS: Record<string, PyFloat> = {
   gate_spec: loadLocked("judge_gate_spec", 0.95, true) as PyFloat,
   gate_no_regression: loadLocked("judge_gate_no_regression", 0.95, true) as PyFloat,
   gate_security: loadLocked("judge_gate_security", 0.95, true) as PyFloat,
@@ -287,5 +287,7 @@ async function main(): Promise<number> {
   }
 }
 
-const code = await main();
-process.exitCode = code;
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const code = await main();
+  process.exitCode = code;
+}

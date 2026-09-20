@@ -32,8 +32,8 @@ class ValueError extends Error {
 }
 
 const THIS_DIR = fileURLToPath(new URL(".", import.meta.url));
-// jev_client.py ships beside this script (module copies); canonical router
-// pulls it from the evals harness.
+// jev_client.ts ships beside this script (module copies); the canonical
+// router pulls it from the evals harness.
 const LOCKFILE = `${THIS_DIR}thresholds.lockfile.json`;
 
 function loadLocked(key: string, defaultPyFloat: number): PyFloat {
@@ -313,5 +313,7 @@ async function main(): Promise<number> {
   }
 }
 
-const code = await main();
-process.exitCode = code;
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const code = await main();
+  process.exitCode = code;
+}

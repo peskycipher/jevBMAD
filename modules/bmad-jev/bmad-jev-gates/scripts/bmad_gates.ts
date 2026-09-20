@@ -313,5 +313,7 @@ async function main(): Promise<number> {
   }
 }
 
-const code = await main();
-process.exitCode = code;
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const code = await main();
+  process.exitCode = code;
+}

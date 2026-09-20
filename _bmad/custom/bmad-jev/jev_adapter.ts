@@ -197,7 +197,7 @@ export function loadSettings(projectRoot: string | null): JevSettings {
 export const RETRY_AFTER_CAP_SECONDS = 30.0;
 
 /** Seconds to wait per a numeric `Retry-After` header, or null. */
-function retryAfterSeconds(headers: Record<string, string> | null): number | null {
+export function retryAfterSeconds(headers: Record<string, string> | null): number | null {
   if (!headers) return null;
   let value: string | undefined;
   for (const key of ["Retry-After", "retry-after"]) {
@@ -269,6 +269,17 @@ function isNumObject(v: unknown): v is JsonTable {
 }
 
 /** Validate the answers map against the questions. Returns (answers, error). */
+/** Python `==` deep equality for plain JSON values (dict/list semantics). */
+function deepEq(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (typeof a !== "object" || typeof b !== "object" || a === null || b === null) return false;
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+  const ka = Object.keys(a as JsonTable);
+  const kb = Object.keys(b as JsonTable);
+  if (ka.length !== kb.length) return false;
+  return ka.every((k) => deepEq((a as JsonTable)[k], (b as JsonTable)[k]));
+}
+
 export function validateAnswers(
   questions: { [id: string]: JsonTable },
   answers: unknown,
@@ -368,7 +379,7 @@ export function validateAnswers(
         if (typeof entry === "string") return value === entry;
         // Structured (object) level: the API may echo the object or a
         // flattened string rendering of it; both count as a match.
-        return value === entry || typeof value === "string";
+        return deepEq(value, entry) || typeof value === "string";
       };
       const legend = answer["legend"];
       if (legend !== undefined && legend !== null) {

@@ -44,7 +44,9 @@ def main():
     lines += ["## Golden sets", "", "| Set | Accuracy | ECE | vs baseline |", "|---|---|---|---|"]
     for rep in (run or []):
         b = base_by_set.get(rep["set"], {})
-        delta = (rep["accuracy"] - b["accuracy"]) if b else None
+        b_acc = b.get("accuracy")
+        delta = ((rep["accuracy"] - b_acc)
+                 if (b and rep["accuracy"] is not None and b_acc is not None) else None)
         if delta is not None and delta < -0.03:
             alerts.append({"severity": "fail", "check": "accuracy_regression",
                            "set": rep["set"], "detail": f"delta {delta:+.3f}"})
@@ -53,7 +55,8 @@ def main():
                            "set": rep["set"], "detail": f"ECE {rep['ece']:.3f}"})
         d = f"{delta:+.3f}" if delta is not None else "n/a"
         ece = f"{rep['ece']:.3f}" if rep.get("ece") is not None else "-"
-        lines.append(f"| {rep['set']} | {rep['accuracy']:.3f} | {ece} | {d} |")
+        acc_s = f"{rep['accuracy']:.3f}" if rep["accuracy"] is not None else "-"
+        lines.append(f"| {rep['set']} | {acc_s} | {ece} | {d} |")
     lines.append("")
 
     # --- story review (first-pass rate, §7.5) ---

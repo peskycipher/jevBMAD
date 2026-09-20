@@ -119,7 +119,7 @@ def main(argv):
         # not fatal — the fit/holdout math only needs the records that exist.
         if len(train) + len(hold) < len(records):
             raise AssertionError(f"{name}: records not partitioned by id — {len(train)}+{len(hold)} vs {len(records)}")
-        missing = (split["train"] + split["holdout"]) - set(by_id)
+        missing = (split["train"] | split["holdout"]) - set(by_id)
         if missing:
             print(f"warn {name}: {len(missing)} example(s) errored in the live run and are excluded")
 

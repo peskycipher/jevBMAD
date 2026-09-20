@@ -21,13 +21,20 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync, appendFileSync } fr
 import { fileURLToPath } from "node:url";
 import { pyDumps, tagPythonFloats, type Json, type JsonTable } from "./jev_policy.ts";
 
-export const ENDPOINT_TYPESAFE = "https://api.typesafe.ai/v1/systemone";
-export const ENDPOINT_OPENROUTER = "https://openrouter.ai/api/alpha/decisions";
+export let ENDPOINT_TYPESAFE = "https://api.typesafe.ai/v1/systemone";
+export let ENDPOINT_OPENROUTER = "https://openrouter.ai/api/alpha/decisions";
 export const MODEL_TYPESAFE = "jev-1.13.0"; // TypeSafe direct alias of DEFAULT_MODEL (the dated snapshot)
 export const DEFAULT_MODEL = "typesafe/jev-1.13-20260917"; // pinned dated snapshot (reproducible eval); re-fit thresholds if this changes (§6)
 export const ENDPOINT = ENDPOINT_OPENROUTER; // legacy alias: OpenRouter fallback endpoint
+
+/** Test hook: redirect provider endpoints (mirrors Python's module-attribute
+ * patchability in jev_client.py; parity harnesses use it for fake providers). */
+export function setEndpoints(typesafe: string, openrouter: string): void {
+  ENDPOINT_TYPESAFE = typesafe;
+  ENDPOINT_OPENROUTER = openrouter;
+}
 const THIS_DIR = fileURLToPath(new URL(".", import.meta.url));
-export const LOG_PATH = `${THIS_DIR}../../logs/decisions.jsonl`;
+export const LOG_PATH = `${THIS_DIR}../logs/decisions.jsonl`;
 
 export const RETRY_AFTER_CAP_SECONDS = 30.0; // cap a numeric Retry-After so a huge value cannot stall a CLI run
 
@@ -137,6 +144,23 @@ export function resolveProvider(): [string, string, string] | null {
 }
 
 /** Python time.strftime("%Y-%m-%dT%H:%M:%S%z") equivalent (local time). */
+/** Python time.strftime subset (used by the eval harness for stamped files). */
+export function pyStamp(fmt: string): string {
+  const now = new Date();
+  const pad = (n: number, w = 2) => String(n).padStart(w, "0");
+  const off = -now.getTimezoneOffset();
+  const sign = off >= 0 ? "+" : "-";
+  const abs = Math.abs(off);
+  return fmt
+    .replace("%Y", String(now.getFullYear()))
+    .replace("%m", pad(now.getMonth() + 1))
+    .replace("%d", pad(now.getDate()))
+    .replace("%H", pad(now.getHours()))
+    .replace("%M", pad(now.getMinutes()))
+    .replace("%S", pad(now.getSeconds()))
+    .replace("%z", `${sign}${pad(Math.floor(abs / 60))}${pad(abs % 60)}`);
+}
+
 export function tsStamp(): string {
   const now = new Date();
   const pad = (n: number, w = 2) => String(n).padStart(w, "0");

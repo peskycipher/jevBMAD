@@ -85,21 +85,22 @@ const FLOAT_KEYS = new Set(["match", "fit", "confidence", "request_integrity", "
 
 /** Recursively wrap Python-float-valued fields so pyDumps renders them like
  * json.dumps would (integral floats keep a ".0"). Call on outbound JSON. */
-export function tagPythonFloats(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(tagPythonFloats);
+export function tagPythonFloats(value: unknown, exclude?: Set<string>, include?: Set<string>): unknown {
+  if (Array.isArray(value)) return value.map((v) => tagPythonFloats(v, exclude, include));
   if (typeof value === "object" && value !== null) {
     const out: Record<string, unknown> = {};
     for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
-      if (FLOAT_KEYS.has(key) && typeof v === "object" && v !== null && !Array.isArray(v)) {
+      if (FLOAT_KEYS.has(key) && !(exclude && exclude.has(key)) && typeof v === "object" && v !== null && !Array.isArray(v)) {
         // float-valued map fields (probabilities, gate_nouls, dimensions):
         // every number Python would hold as float renders with ".0"
         out[key] = tagProbabilities(v as unknown as number);
       } else if (typeof v === "number" && Number.isFinite(v)) {
         if (key === "probabilities") out[key] = tagProbabilities(v);
-        else if (FLOAT_KEYS.has(key)) out[key] = new PyFloat(v);
+        else if (FLOAT_KEYS.has(key) && !(exclude && exclude.has(key))) out[key] = new PyFloat(v);
+        else if (include && include.has(key)) out[key] = new PyFloat(v);
         else out[key] = v;
       } else {
-        out[key] = tagPythonFloats(v);
+        out[key] = tagPythonFloats(v, exclude, include);
       }
     }
     return out;
@@ -376,4 +377,19 @@ export function interpretRecommend(result: JevResultLike | null, candidates: str
     recommendation: { id: choice, confidence, probabilities },
     ...signals,
   };
+}
+
+/** CPython 3.12+ builtin sum() over floats — Neumaier compensated summation.
+ * Python's sum() is MORE accurate than a plain += loop; TS reduce() must
+ * use this wherever the Python original calls sum() on floats, or the last
+ * ulp of aggregates (Brier, MAE, means) drifts. */
+export function neumaierSum(values: number[]): number {
+  let total = 0, c = 0;
+  for (const x of values) {
+    const t = total + x;
+    if (Math.abs(total) >= Math.abs(x)) c += (total - t) + x;
+    else c += (x - t) + total;
+    total = t;
+  }
+  return total + c;
 }

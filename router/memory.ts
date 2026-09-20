@@ -15,7 +15,7 @@ import type { JsonTable } from "../evals/harness/jev_policy.ts";
 export function graftRetrieve(query: string, projectRoot = ".", maxChars = 1500): string {
   let out;
   try {
-    out = spawnSync("graft", [query.slice(0, 400), "--source"], {
+    out = spawnSync("graft", ["ask", query.slice(0, 400), "--source"], {
       cwd: projectRoot,
       encoding: "utf8",
       timeout: 30_000,
