@@ -18,6 +18,8 @@ At a glance:
 
 **Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
 
+> **Template note:** this repo is a GitHub template — click **"Use this template"** to start your own copy. The release link above, commit history, and evaluation results all document *this* repository's provenance; they do not describe your fork's state until you re-run the evaluation pipeline yourself (see [Quickstart](#quickstart)).
+
 ## Installation
 
 ### 1. Clone and set up the repo
@@ -152,8 +154,12 @@ python3 evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale 
 
 ## Related repo
 
-The BMAD-METHOD integration lives in a companion fork carrying the skill-side wiring:
-`feature/jev-decision-assist` = recommendation pilot (unchanged) · `feature/jev-gates` = readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile. Both opt-in, disabled by default, advisory-only. Public fork URL to be added when the fork is pushed.
+The BMAD-METHOD integration lives in a companion fork: [`peskycipher/BMAD-METHOD`](https://github.com/peskycipher/BMAD-METHOD).
+
+- `feature/jev-decision-assist` — recommendation pilot (adapter, policy, `jev_recommend.py` CLI), pushed and public
+- `feature/jev-gates` — readiness-gate + story-review CLIs (`jev_gates.py`, `jev_readiness.py`, `jev_review.py`), thresholds seeded from this repo's fitted lockfile — **validated locally (167 tests), not yet pushed to the public fork**
+
+Both opt-in, disabled by default, advisory-only. Details: [`docs/bmad-integration.md`](docs/bmad-integration.md).
 
 ## Key lessons (encode these into future Jev work)
 
