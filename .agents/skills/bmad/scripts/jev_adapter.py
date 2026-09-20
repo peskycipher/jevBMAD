@@ -423,10 +423,15 @@ class JevClient:
 
         if isinstance(state, str) and len(state) > settings.max_state_chars:
             state = state[: settings.max_state_chars]
-        elif not isinstance(state, str) and len(json.dumps(state)) > settings.max_state_chars:
-            # Structured state that outgrew its budget degrades to a bounded
-            # string rather than shipping an unbounded payload.
-            state = json.dumps(state)[: settings.max_state_chars]
+        elif not isinstance(state, str):
+            # Structured state that outgrew its budget (or is not JSON-
+            # serializable) degrades to a bounded string rather than shipping
+            # an unbounded/invalid payload — post_decision never raises (§5).
+            try:
+                state = json.dumps(state)
+            except (TypeError, ValueError):
+                state = str(state)
+            state = state[: settings.max_state_chars]
         payload: dict[str, Any] = {"model": settings.model, "state": state, "questions": questions}
 
         started = time.monotonic()
@@ -441,6 +446,11 @@ class JevClient:
                 # An injected transport may raise; treat every transport
                 # failure uniformly as an unavailable outcome.
                 status_code, body, headers = 0, b"", None
+                # A refused/timed-out connection is transient like a 5xx:
+                # ride the same retry ladder instead of failing on attempt 1.
+                if attempt < attempts - 1 and self._budget_left():
+                    time.sleep(0.25 * (attempt + 1))
+                    continue
             if status_code == 200:
                 result = self._parse_success(body, questions)
                 break

@@ -46,6 +46,13 @@ except ModuleNotFoundError as error:
     raise SystemExit(3) from None
 
 
+def _fail_usage(reason: str) -> int:
+    """Caller-input errors are bad_request, not outages: JSON on stdout, exit 2."""
+    print(json.dumps({"status": "bad_request", "reason_kind": "usage",
+                      "reason": reason, "calls_made": 0}))
+    return 2
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Advisory Jev workflow recommendation")
     parser.add_argument("--request", required=True, help="the user's request text")
@@ -87,8 +94,7 @@ def main() -> int:
         try:
             chosen = sanitize_candidate_id(args.chosen)
         except PolicyError as error:
-            sys.stderr.write(f"error: {error}\n")
-            return 2
+            return _fail_usage(str(error))
         # An explicit user choice outranks any model result: echo it and
         # skip the provider entirely (zero network calls).
         print(
@@ -101,8 +107,7 @@ def main() -> int:
     try:
         candidates = [sanitize_candidate_id(raw) for raw in args.candidates.split(",") if raw.strip()]
     except PolicyError as error:
-        sys.stderr.write(f"error: {error}\n")
-        return 2
+        return _fail_usage(str(error))
     # Dedupe, preserving order, and cap the option count via policy checks.
     candidates = list(dict.fromkeys(candidates))
 
@@ -114,17 +119,19 @@ def main() -> int:
         )
         return 0
     if len(candidates) == 0:
-        print(json.dumps({"status": "unavailable", "reason_kind": "usage", "reason": "no_candidates", "calls_made": 0}))
-        return 0
+        return _fail_usage("no_candidates")
 
     try:
         evidence = parse_evidence(args.evidence)
     except PolicyError as error:
-        sys.stderr.write(f"error: {error}\n")
-        return 2
+        return _fail_usage(str(error))
 
-    questions = build_recommend_questions(candidates)
-    state = build_state(args.request, evidence, max_chars=settings.max_state_chars)
+    try:
+        questions = build_recommend_questions(candidates)
+        state = build_state(args.request, evidence, max_chars=settings.max_state_chars)
+    except PolicyError as error:
+        # e.g. >MAX_CANDIDATES: a caller error, not an outage — never a traceback
+        return _fail_usage(str(error))
     client = JevClient(settings)
     result = client.post_decision(
         operation="workflow_recommendation",

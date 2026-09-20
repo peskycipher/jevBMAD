@@ -120,6 +120,22 @@ def touch(meta: dict) -> None:
     meta["updated"] = now()
 
 
+def create_exclusive(path: Path, text: str) -> None:
+    """Atomic create-fail-if-exists: closes cmd_init's TOCTOU window
+    (exists() check -> os.replace would silently clobber a concurrent init)."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write(text)
+        f.flush()
+        os.fsync(f.fileno())
+    try:
+        os.link(tmp, path)  # atomic: fails with FileExistsError if it appeared
+    except FileExistsError:
+        raise
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 def write_atomic(path: Path, text: str) -> None:
     """Temp + flush + fsync + atomic rename, so a crash never half-writes an entry."""
     tmp = path.with_suffix(path.suffix + ".tmp")
@@ -149,9 +165,6 @@ def ack(path: Path, body: str) -> None:
 
 def cmd_init(args) -> int:
     path = resolve(args)
-    if path.exists():
-        print(f"error: {path} already exists; use append/set to update it", file=sys.stderr)
-        return 2
     path.parent.mkdir(parents=True, exist_ok=True)
     meta: dict[str, str] = {}
     for pair in args.field or []:
@@ -161,7 +174,11 @@ def cmd_init(args) -> int:
         k, v = pair.split("=", 1)
         meta[k.strip()] = v.strip()
     touch(meta)
-    write_atomic(path, render(meta, ""))
+    try:
+        create_exclusive(path, render(meta, ""))
+    except FileExistsError:
+        print(f"error: {path} already exists; use append/set to update it", file=sys.stderr)
+        return 2
     ack(path, "")
     return 0
 

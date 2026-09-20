@@ -21,7 +21,6 @@ OPENROUTER_API_KEY is set (CI without secrets); unit tests still run.
 from __future__ import annotations
 
 import json
-import os
 import sys
 import unittest
 from pathlib import Path
@@ -30,7 +29,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import run_evals  # noqa: E402
-from jev_client import env_has_provider_key  # noqa: E402
+from jev_client import JevError, env_has_provider_key  # noqa: E402
 
 RESULTS = HERE.parent / "results"
 BASELINE = RESULTS / "baseline.json"
@@ -67,7 +66,12 @@ def main(argv):
         print("CI GATE: SKIP (no TYPESAFE_API_KEY or OPENROUTER_API_KEY set)")
         return 0
 
-    reports = run_all()
+    try:
+        reports = run_all()
+    except JevError as error:
+        # provider outage is a FAIL with a message, not a traceback (degrade contract)
+        print(f"CI GATE: FAIL (provider unavailable: {error})")
+        return 1
     RESULTS.mkdir(parents=True, exist_ok=True)
 
     if "--update-baseline" in argv:
@@ -89,10 +93,17 @@ def main(argv):
         if not base:
             warnings.append(f"{name}: not in baseline (new set)")
             continue
-        acc_drop = base["accuracy"] - rep["accuracy"]
+        base_acc, rep_acc = base.get("accuracy"), rep.get("accuracy")
+        if base_acc is None or rep_acc is None:
+            # None accuracy means the set produced no comparable records
+            # (e.g. every live call errored): fail loudly, never TypeError.
+            failures.append(f"{name}: accuracy unavailable "
+                            f"(baseline={base_acc}, current={rep_acc})")
+            continue
+        acc_drop = base_acc - rep_acc
         if acc_drop > CI_REGRESSION_THRESHOLD:
             failures.append(f"{name}: accuracy dropped {acc_drop:.3f} "
-                            f"({base['accuracy']:.3f} -> {rep['accuracy']:.3f})")
+                            f"({base_acc:.3f} -> {rep_acc:.3f})")
         if rep.get("ece") is not None and rep["ece"] > ECE_ALERT_THRESHOLD:
             (failures if "--strict" in argv else warnings).append(
                 f"{name}: ECE {rep['ece']:.3f} > {ECE_ALERT_THRESHOLD}"

@@ -20,7 +20,16 @@ from datetime import date, time
 from pathlib import Path
 from typing import Any
 
-import jinja2
+try:
+    import jinja2
+except ModuleNotFoundError:  # pragma: no cover - depends on install method
+    # Build-time tool: a short actionable message beats an ImportError dump.
+    # PEP 723 header above makes `uv run render_skill.py` auto-install it.
+    sys.stderr.write(
+        "error: jinja2 is required to render skills; run via "
+        "`uv run render_skill.py ...` (deps auto-install), or "
+        "`pip install 'jinja2>=3.1'`\n")
+    raise SystemExit(3)
 
 # Installed scripts are consumer files, not a location for interpreter caches.
 sys.dont_write_bytecode = True

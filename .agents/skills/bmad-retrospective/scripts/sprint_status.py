@@ -23,8 +23,19 @@ from collections import Counter
 from collections.abc import Mapping
 from datetime import datetime
 
-from ruamel.yaml import YAML
-from ruamel.yaml.scalarstring import DoubleQuotedScalarString
+try:
+    from ruamel.yaml import YAML
+    from ruamel.yaml.scalarstring import DoubleQuotedScalarString
+except ModuleNotFoundError:  # pragma: no cover - depends on install mode
+    # stdout is JSON-only (see module docstring): degrade with an actionable
+    # message instead of an ImportError traceback. PEP 723 header above makes
+    # `uv run sprint_status.py` install it automatically.
+    print(json.dumps({
+        "status": "error", "reason_kind": "missing_dependency",
+        "reason": "ruamel.yaml is required for comment-preserving YAML edits; "
+                  "run via `uv run sprint_status.py ...` (deps auto-install), "
+                  "or `pip install 'ruamel.yaml>=0.18'`"}))
+    raise SystemExit(3)
 
 STORY_RE = re.compile(r"^(\d+)-\d+[a-z]?-")  # trailing [a-z]? matches split-story keys like 2-6a-...
 DATE_FORMAT = "%m-%d-%Y %H:%M"

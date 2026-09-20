@@ -38,8 +38,19 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ruamel.yaml import YAML
-from ruamel.yaml.comments import CommentedMap
+try:
+    from ruamel.yaml import YAML
+    from ruamel.yaml.comments import CommentedMap
+except ModuleNotFoundError:  # pragma: no cover - depends on install method
+    # stdout is JSON-only (see module docstring): degrade with an actionable
+    # message instead of an ImportError traceback. `uv run sprint_plan.py`
+    # auto-installs via the PEP 723 header above.
+    print(json.dumps({
+        "status": "error", "reason_kind": "missing_dependency",
+        "reason": "ruamel.yaml is required for comment-preserving YAML edits; "
+                  "run via `uv run sprint_plan.py ...` (deps auto-install), "
+                  "or `pip install 'ruamel.yaml>=0.18'`"}))
+    raise SystemExit(3)
 
 EPIC_RE = re.compile(r"^#{1,3}\s*Epic\s+(\d+)\s*:?\s*(.*?)\s*#*\s*$", re.IGNORECASE)
 STORY_RE = re.compile(
