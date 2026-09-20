@@ -38,7 +38,7 @@ Ask the user for values. Show defaults in brackets. Present all values together 
 
 **Module config — Jev runtime**: the module has no installer-managed module variables. Instead, confirm these two runtime settings with the user (defaults in brackets):
 
-- `OPENROUTER_API_KEY` environment variable — required for any live Jev call. Do **not** ask the user to paste the key into chat; instruct them to export it in their shell. Without it, every skill still runs and returns explicit `unavailable` statuses.
+- Provider credentials — required for any live Jev call (`TYPESAFE_API_KEY` preferred, `OPENROUTER_API_KEY` as fallback). Do **not** ask the user to paste the key into chat. A template ships with this skill at `./assets/env.example`: copy it to `{project-root}/.env` if no `.env` exists there yet (`cp ./assets/env.example {project-root}/.env`), then have the user fill in the key in that file or export it in their shell. Without credentials, every skill still runs and returns explicit `unavailable` statuses.
 - `BMAD_DECISION_ASSIST_MODE` — `off` (default), `shadow`, or `suggest`. The decision-support skill makes zero network calls in `off`; `shadow` behaves like `suggest` but its output is evaluation-only. Optionally persisted durably in `{project-root}/_bmad/custom/config.toml` under `[jev]` → `mode`.
 
 ## Write Files
@@ -65,8 +65,9 @@ After writing config, create any output directories that were configured. For fi
 After registration, verify the runtime environment so the user knows what to expect:
 
 1. `uv run ./scripts/merge-config.py --help` — confirms `uv` and PEP 723 resolution work (no output means `uv` is missing; tell the user, but do not fail the install).
-2. `echo ${OPENROUTER_API_KEY:+set}` — if unset, warn: the skills still work and abstain conservatively, but every decision returns `status: unavailable` until the key is exported.
-3. Optional: persist `[jev] mode = "suggest"` in `{project-root}/_bmad/custom/config.toml` if the user chose a durable mode.
+2. `cp -n ./assets/env.example "{project-root}/.env"` — seed the env template if the project has no `.env` yet; the user still has to fill in `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY` before any live call succeeds.
+3. `echo ${TYPESAFE_API_KEY:+set} ${OPENROUTER_API_KEY:+set}` — if neither is set, warn: the skills still work and abstain conservatively, but every decision returns `status: unavailable` until a key is exported or written to `.env`.
+4. Optional: persist `[jev] mode = "suggest"` in `{project-root}/_bmad/custom/config.toml` if the user chose a durable mode.
 
 ## Cleanup Legacy Directories
 

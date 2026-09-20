@@ -22,10 +22,12 @@ System-1/System-2 decision layer for the BMad Method, packaged per the
 
 - Python 3.11+ with `uv` (scripts are PEP 723 / stdlib-first)
 - `TYPESAFE_API_KEY` (TypeSafe direct) or `OPENROUTER_API_KEY` (OpenRouter
-  fallback) in the environment — or in a `.env` file (copy `.env.example`)
-  in the working directory or any parent; real environment variables win —
-  for any live call. Without one of them every skill still runs and returns
-  explicit `unavailable` statuses
+  fallback) in the environment — or in a `.env` file (copy `.env.example`
+  from the repo, or the bundled `jev-setup` skill template
+  `.claude/skills/jev-setup/assets/env.example` after an npx install) in the
+  working directory or any parent; real environment variables win — for any
+  live call. Without one of them every skill still runs and returns explicit
+  `unavailable` statuses
 - Optional: mode via the `BMAD_DECISION_ASSIST_MODE` environment variable, or
   the `[jev] mode` key in the central BMad config — the four TOML layers
   `_bmad/{config,config.user}.toml` then `_bmad/custom/{config,config.user}.toml`

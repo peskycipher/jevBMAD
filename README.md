@@ -58,6 +58,10 @@ The decision layer is also packaged as an installable BMad module in
 npx bmad-method install --custom-source https://github.com/peskycipher/jevBMAD \
   --tools claude-code --yes
 
+# The install bundles an env template at
+# .claude/skills/jev-setup/assets/env.example — copy it to .env in your
+# project and fill in TYPESAFE_API_KEY (preferred) and/or OPENROUTER_API_KEY
+
 # Or, from a local clone:
 bmad install modules/bmad-jev
 
