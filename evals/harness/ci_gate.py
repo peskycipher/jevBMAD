@@ -15,8 +15,8 @@ the gate fails there before touching the golden sets.
 Usage:
   python3 evals/harness/ci_gate.py                 # run + gate
   python3 evals/harness/ci_gate.py --update-baseline   # refresh baseline
-Skips golden sets with exit 0 + notice when OPENROUTER_API_KEY is unset
-(CI without secrets); unit tests still run.
+Skips golden sets with exit 0 + notice when neither TYPESAFE_API_KEY nor
+OPENROUTER_API_KEY is set (CI without secrets); unit tests still run.
 """
 from __future__ import annotations
 
@@ -62,8 +62,8 @@ def main(argv):
         print("CI GATE: FAIL (unit tests)")
         return 1
 
-    if not os.environ.get("OPENROUTER_API_KEY"):
-        print("CI GATE: SKIP (OPENROUTER_API_KEY not set)")
+    if not (os.environ.get("TYPESAFE_API_KEY") or os.environ.get("OPENROUTER_API_KEY")):
+        print("CI GATE: SKIP (no TYPESAFE_API_KEY or OPENROUTER_API_KEY set)")
         return 0
 
     reports = run_all()

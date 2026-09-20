@@ -44,7 +44,7 @@ either hand-seeded or Jev-as-judge pre-labeled with ~3% human audit (§7.6).
 ## Usage
 
 ```bash
-export OPENROUTER_API_KEY=sk-...
+export TYPESAFE_API_KEY=ts-...   # TypeSafe direct; or OPENROUTER_API_KEY=sk-or-... as fallback
 
 # Run one golden set
 python3 evals/harness/run_evals.py evals/golden-sets/routing

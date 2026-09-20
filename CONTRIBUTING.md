@@ -22,8 +22,8 @@ These are recorded in the README as lessons; here they are as rules:
 - **Nothing ships without an eval.** Behavior changes need golden-set or
   unit-test coverage; `python3 evals/harness/ci_gate.py` is the gate
   (unit tests run without an API key; golden sets need
-  `OPENROUTER_API_KEY`).
-- **Opt-in everywhere.** Zero network calls without `OPENROUTER_API_KEY`;
+  `TYPESAFE_API_KEY` or `OPENROUTER_API_KEY`).
+- **Opt-in everywhere.** Zero network calls without one of those keys;
   every CLI must degrade to explicit JSON statuses, never a traceback.
   The contract is enforced by `evals/harness/tests/` — run it:
   `python3 -m unittest discover -s evals/harness/tests`

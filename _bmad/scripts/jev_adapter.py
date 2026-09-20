@@ -4,11 +4,14 @@
 # ///
 """Shared provider adapter for optional Jev decision support.
 
-Calls TypeSafe's Jev decision model through OpenRouter's decisions endpoint
-(``https://openrouter.ai/api/alpha/decisions``) using the native TypeSafe
-request/response contract ({state, questions} -> {answers, usage}). The only
-credential source is the ``OPENROUTER_API_KEY`` environment variable; no
-TypeSafe-direct endpoint is ever contacted.
+Calls TypeSafe's Jev decision model using the native TypeSafe request/response
+contract ({state, questions} -> {answers, usage}). The credential source is
+resolved from the environment: ``TYPESAFE_API_KEY`` contacts TypeSafe's direct
+endpoint (``https://api.typesafe.ai/v1/systemone``, model ``jev-1.13.0``);
+otherwise ``OPENROUTER_API_KEY`` falls back to OpenRouter's decisions endpoint
+(``https://openrouter.ai/api/alpha/decisions``, pinned dated snapshot). An
+explicit ``endpoint`` or ``model`` setting (env or ``[jev]`` config) wins over
+both provider defaults.
 
 The adapter is strictly opt-in: it runs network calls only when the
 decision-assist mode is ``suggest`` or ``shadow``, set via
@@ -47,6 +50,10 @@ except ModuleNotFoundError as error:  # pragma: no cover - sibling import only
     sys.stderr.write("error: Python 3.11+ is required (stdlib `tomllib` not found).\n")
     raise SystemExit(3) from None
 
+# TypeSafe direct (recommended when TYPESAFE_API_KEY is present)
+TYPESAFE_ENDPOINT = "https://api.typesafe.ai/v1/systemone"
+TYPESAFE_MODEL = "jev-1.13.0"  # pinned versioned ID per docs.typesafe.ai/models
+# OpenRouter fallback (the thresholds lockfile was fitted on this snapshot)
 DEFAULT_ENDPOINT = "https://openrouter.ai/api/alpha/decisions"
 DEFAULT_MODEL = "typesafe/jev-1.13-20260917"  # pinned dated snapshot: reproducible evaluation
 VALID_MODES = ("off", "shadow", "suggest")
@@ -58,7 +65,7 @@ DEFAULT_TIMEOUT_SECONDS = 8.0
 DEFAULT_MAX_RETRIES = 1
 DEFAULT_MAX_STATE_CHARS = 4000
 
-Transport = Callable[[str, dict[str, Any], float], tuple[int, bytes]]
+Transport = Callable[[str, dict[str, Any], float], tuple[int, bytes, dict[str, str] | None]]
 
 
 class JevAdapterError(RuntimeError):
@@ -103,8 +110,10 @@ def load_settings(project_root: Path | None) -> JevSettings:
     ``BMAD_DECISION_ASSIST_MODE``, ``BMAD_DECISION_ASSIST_MODEL`` and
     ``BMAD_DECISION_ASSIST_ENDPOINT``. The
     mode defaults to ``off``; an unknown mode value is treated as ``off``
-    with a one-line warning. The API key comes only from
-    ``OPENROUTER_API_KEY``.
+    with a one-line warning. The API key comes from ``TYPESAFE_API_KEY``
+    (TypeSafe direct) or ``OPENROUTER_API_KEY`` (fallback); provider defaults
+    for endpoint and model follow the resolved credential unless explicitly
+    configured.
     """
     table: dict[str, Any] = {}
     if project_root is not None:
@@ -134,8 +143,16 @@ def load_settings(project_root: Path | None) -> JevSettings:
             sys.stderr.write(f"warning: unknown decision assist mode {mode!r}; treating as off\n")
         mode = "off"
 
-    model = os.environ.get("BMAD_DECISION_ASSIST_MODEL", "").strip() or _table_str("model") or DEFAULT_MODEL
-    endpoint = os.environ.get("BMAD_DECISION_ASSIST_ENDPOINT", "").strip() or _table_str("endpoint") or DEFAULT_ENDPOINT
+    typesafe_key = os.environ.get("TYPESAFE_API_KEY") or None
+    openrouter_key = os.environ.get("OPENROUTER_API_KEY") or None
+    api_key = typesafe_key or openrouter_key
+
+    model = os.environ.get("BMAD_DECISION_ASSIST_MODEL", "").strip() or _table_str("model")
+    endpoint = os.environ.get("BMAD_DECISION_ASSIST_ENDPOINT", "").strip() or _table_str("endpoint")
+    if not endpoint:
+        endpoint = TYPESAFE_ENDPOINT if typesafe_key else DEFAULT_ENDPOINT
+    if not model:
+        model = TYPESAFE_MODEL if "typesafe.ai" in endpoint else DEFAULT_MODEL
     timeout_seconds = _table_float("timeout_seconds") or DEFAULT_TIMEOUT_SECONDS
     max_state_chars = _table_float("max_state_chars") or DEFAULT_MAX_STATE_CHARS
 
@@ -143,7 +160,7 @@ def load_settings(project_root: Path | None) -> JevSettings:
         mode=mode,
         model=model,
         endpoint=endpoint,
-        api_key=os.environ.get("OPENROUTER_API_KEY") or None,
+        api_key=api_key,
         timeout_seconds=timeout_seconds,
         max_retries=DEFAULT_MAX_RETRIES,
         max_calls=DEFAULT_MAX_CALLS,
@@ -151,8 +168,34 @@ def load_settings(project_root: Path | None) -> JevSettings:
     )
 
 
+RETRY_AFTER_CAP_SECONDS = 30.0
+
+
+def _retry_after_seconds(headers: dict[str, str] | None) -> float | None:
+    """Seconds to wait per a numeric ``Retry-After`` header, or None.
+
+    Per docs.typesafe.ai, 429 responses may carry ``Retry-After``; honor it
+    when numeric. The HTTP-date form is not handled (falls back to the fixed
+    backoff) and the value is capped at RETRY_AFTER_CAP_SECONDS so a huge or
+    hostile value cannot stall a CLI run.
+    """
+    if not headers:
+        return None
+    value = None
+    for key in ("Retry-After", "retry-after"):
+        if key in headers:
+            value = headers[key]
+            break
+    if not value:
+        return None
+    try:
+        return max(0.0, min(float(value), RETRY_AFTER_CAP_SECONDS))
+    except (TypeError, ValueError):
+        return None
+
+
 def _make_transport(api_key: str) -> Transport:
-    def transport(url: str, payload: dict[str, Any], timeout: float) -> tuple[int, bytes]:
+    def transport(url: str, payload: dict[str, Any], timeout: float) -> tuple[int, bytes, dict[str, str] | None]:
         request = urllib.request.Request(
             url,
             data=json.dumps(payload).encode("utf-8"),
@@ -164,11 +207,11 @@ def _make_transport(api_key: str) -> Transport:
         )
         try:
             with urllib.request.urlopen(request, timeout=timeout) as response:
-                return response.status, response.read()
+                return response.status, response.read(), dict(response.headers.items())
         except urllib.error.HTTPError as error:
-            return error.code, error.read()
+            return error.code, error.read(), dict(error.headers.items()) if error.headers else None
         except (urllib.error.URLError, TimeoutError, OSError):
-            return 0, b""
+            return 0, b"", None
 
     return transport
 
@@ -242,9 +285,9 @@ def _validate_answers(questions: dict[str, dict[str, Any]], answers: Any) -> tup
             if (
                 not isinstance(criteria, list)
                 or len(criteria) < 2
-                or not all(isinstance(entry, str) for entry in criteria)
+                or not all(isinstance(entry, (str, dict)) for entry in criteria)
             ):
-                return {}, f"question `{question_id}` score criteria must be a list of at least 2 strings"
+                return {}, f"question `{question_id}` score criteria must be a list of at least 2 strings or objects"
             score = answer.get("score")
             if (
                 not isinstance(score, (int, float))
@@ -271,13 +314,20 @@ def _validate_answers(questions: dict[str, dict[str, Any]], answers: Any) -> tup
             confidence = answer.get("confidence")
             if not isinstance(confidence, (int, float)) or isinstance(confidence, bool) or not 0.0 <= confidence <= 1.0:
                 return {}, f"answer `{question_id}` confidence out of range or missing"
+            def _legend_matches(entry: Any, value: Any) -> bool:
+                if isinstance(entry, str):
+                    return value == entry
+                # Structured (object) level: the API may echo the object or a
+                # flattened string rendering of it; both count as a match.
+                return value == entry or isinstance(value, str)
+
             legend = answer.get("legend")
             if legend is not None:
                 if not isinstance(legend, dict) or any(
                     not isinstance(key, str)
                     or not key.isdigit()
                     or int(key) >= len(criteria)
-                    or legend.get(key) != criteria[int(key)]
+                    or not _legend_matches(criteria[int(key)], legend.get(key))
                     for key in legend
                 ):
                     return {}, f"answer `{question_id}` legend does not match the supplied rubric"
@@ -293,7 +343,7 @@ def _validate_answers(questions: dict[str, dict[str, Any]], answers: Any) -> tup
 
 
 class JevClient:
-    """Bounded, budgeted client for the OpenRouter decisions endpoint."""
+    """Bounded, budgeted client for the configured Jev decisions endpoint."""
 
     def __init__(self, settings: JevSettings, transport: Transport | None = None) -> None:
         self.settings = settings
@@ -318,7 +368,7 @@ class JevClient:
         if settings.mode == "off":
             return JevResult(status="disabled", reason="disabled_by_config")
         if not settings.api_key or self._transport is None:
-            return JevResult(status="unavailable", reason="missing_openrouter_api_key")
+            return JevResult(status="unavailable", reason="missing_api_key")
         if not questions:
             return JevResult(status="unavailable", reason="no_questions")
         if not self._budget_left():
@@ -333,23 +383,25 @@ class JevClient:
         payload: dict[str, Any] = {"model": settings.model, "state": state, "questions": questions}
 
         started = time.monotonic()
-        status_code, body = b"", 0
+        status_code, body, headers = 0, b"", None
         result: JevResult | None = None
         attempts = settings.max_retries + 1
         for attempt in range(attempts):
             self._calls_used += 1
             try:
-                status_code, body = self._transport(settings.endpoint, payload, settings.timeout_seconds)
+                status_code, body, headers = self._transport(settings.endpoint, payload, settings.timeout_seconds)
             except (OSError, TimeoutError, ValueError):
                 # An injected transport may raise; treat every transport
                 # failure uniformly as an unavailable outcome.
-                status_code, body = 0, b""
+                status_code, body, headers = 0, b"", None
             if status_code == 200:
                 result = self._parse_success(body, questions)
                 break
-            # Retry once on rate limiting or transient upstream errors.
+            # Retry once on rate limiting or transient upstream errors,
+            # honoring a numeric Retry-After header when present.
             if status_code in (429, 500, 502, 503, 504) and attempt < attempts - 1 and self._budget_left():
-                time.sleep(0.25 * (attempt + 1))
+                delay = _retry_after_seconds(headers)
+                time.sleep(0.25 * (attempt + 1) if delay is None else delay)
                 continue
             result = JevResult(status="unavailable", reason=f"http_{status_code}")
             break
@@ -383,6 +435,9 @@ class JevClient:
 __all__ = [
     "DEFAULT_ENDPOINT",
     "DEFAULT_MODEL",
+    "TYPESAFE_ENDPOINT",
+    "TYPESAFE_MODEL",
+    "RETRY_AFTER_CAP_SECONDS",
     "JevAdapterError",
     "JevClient",
     "JevResult",

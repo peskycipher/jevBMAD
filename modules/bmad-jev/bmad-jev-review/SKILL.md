@@ -18,7 +18,7 @@ Doctrine: the judge is Jev (fast, calibrated, logged with full distributions); y
 ## On Activation
 
 1. Locate the story text and the implementation output (diff, files, or transcript). Both are required; a review without the implementation text is not a review.
-2. The runner needs `OPENROUTER_API_KEY` in the environment. If it is missing or the call fails, return `status: unavailable` — do not hand-wave a pass/fail yourself.
+2. The runner needs `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) in the environment. If it is missing or the call fails, return `status: unavailable` — do not hand-wave a pass/fail yourself.
 
 ## Operation
 

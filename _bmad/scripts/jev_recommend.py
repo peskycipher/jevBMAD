@@ -77,7 +77,7 @@ def main() -> int:
 
     if not settings.callable:
         status = "disabled" if settings.mode == "off" else "unavailable"
-        reason = "disabled_by_config" if status == "disabled" else "missing_openrouter_api_key"
+        reason = "disabled_by_config" if status == "disabled" else "missing_api_key"
         kind = "disabled" if status == "disabled" else "missing_api_key"
         print(json.dumps({"status": status, "reason_kind": kind, "reason": reason, "calls_made": 0}))
         return 0

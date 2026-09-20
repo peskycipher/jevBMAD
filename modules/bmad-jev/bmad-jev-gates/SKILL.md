@@ -22,7 +22,7 @@ Thresholds default to the conservative values above and may be tightened via a l
 ## On Activation
 
 1. Confirm the artifact to evaluate (spec, PRD, solution doc, or phase plan) and the source→target transition.
-2. The runner needs `OPENROUTER_API_KEY` in the environment. If it is missing or the call fails, return `status: unavailable` — never assume readiness when the gate could not run. An unchecked transition must not proceed.
+2. The runner needs `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) in the environment. If it is missing or the call fails, return `status: unavailable` — never assume readiness when the gate could not run. An unchecked transition must not proceed.
 
 ## Operation
 

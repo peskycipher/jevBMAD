@@ -30,12 +30,12 @@ compatibility review.
 - The primary agent (conversation, reasoning, planning, code generation)
   runs on the host's configured model. That configuration belongs to the
   host, not to BMad; no host or model is required or changed by this feature.
-- Jev decisions go through OpenRouter's decisions endpoint,
-  `https://openrouter.ai/api/alpha/decisions`, using the native TypeSafe
-  request/response contract. The only credential is the
-  `OPENROUTER_API_KEY` environment variable. No TypeSafe-direct endpoint
-  (`api.typesafe.ai`) is ever contacted and no separate TypeSafe key is
-  needed.
+- Jev decisions use the native TypeSafe request/response contract against
+  whichever credential is present: `TYPESAFE_API_KEY` contacts TypeSafe's
+  direct endpoint (`https://api.typesafe.ai/v1/systemone`, model
+  `jev-1.13.0`); otherwise `OPENROUTER_API_KEY` falls back to OpenRouter's
+  decisions endpoint (`https://openrouter.ai/api/alpha/decisions`, pinned
+  dated snapshot). An explicit `endpoint`/`model` setting wins over both.
 - The adapter validates all three Jev answer primitives — `noul` (yes/no
   probability), `choice` (option pick with distribution), and `score`
   (ordered rubric position with distribution and confidence). The wired
@@ -142,7 +142,8 @@ OpenRouter's.
 Any of these returns an explicit non-`ok` status and the flow continues with
 its ordinary reasoning — no partial state, no retries by the agent:
 
-- disabled (`disabled_by_config`), missing key (`missing_openrouter_api_key`)
+- disabled (`disabled_by_config`), missing key (`missing_api_key` — neither
+  `TYPESAFE_API_KEY` nor `OPENROUTER_API_KEY` is set)
 - timeouts, rate limits, outages (`http_<code>`), invalid responses
   (`invalid_json_response`, per-field validation reasons)
 - exhausted per-process call budget (`call_budget_exhausted`, default 4)

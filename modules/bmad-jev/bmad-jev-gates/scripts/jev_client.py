@@ -1,6 +1,8 @@
-"""Minimal client for the Jev Decisions API (OpenRouter).
+"""Minimal client for the Jev Decisions API.
 
-POST https://openrouter.ai/api/alpha/decisions
+TypeSafe direct (TYPESAFE_API_KEY): POST https://api.typesafe.ai/v1/systemone
+OpenRouter fallback (OPENROUTER_API_KEY): POST https://openrouter.ai/api/alpha/decisions
+TYPESAFE_API_KEY wins when both are set; see resolve_provider().
 Schema (validated live 2026-09-19):
   { "model": "typesafe/jev-1.13-20260917",
     "state": str | dict | list,
@@ -22,32 +24,74 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-ENDPOINT = "https://openrouter.ai/api/alpha/decisions"
+ENDPOINT_TYPESAFE = "https://api.typesafe.ai/v1/systemone"
+ENDPOINT_OPENROUTER = "https://openrouter.ai/api/alpha/decisions"
+MODEL_TYPESAFE = "jev-1.13.0"  # pinned versioned ID per docs.typesafe.ai/models
 DEFAULT_MODEL = "typesafe/jev-1.13-20260917"  # pinned dated snapshot (reproducible eval); re-fit thresholds if this changes (§6)
+ENDPOINT = ENDPOINT_OPENROUTER  # legacy alias: OpenRouter fallback endpoint
 LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "decisions.jsonl"
+
+
+RETRY_AFTER_CAP_SECONDS = 30.0  # cap a numeric Retry-After so a huge value cannot stall a CLI run
+
+
+def _retry_after_seconds(headers) -> float | None:
+    """Seconds to wait per a numeric ``Retry-After`` header, or None.
+
+    Per docs.typesafe.ai, 429 responses may carry ``Retry-After``; honor it
+    when numeric. HTTP-date form is not handled; values are capped at
+    RETRY_AFTER_CAP_SECONDS.
+    """
+    if headers is None:
+        return None
+    value = headers.get("Retry-After")  # http.client headers are case-insensitive
+    if not value:
+        return None
+    try:
+        return max(0.0, min(float(value), RETRY_AFTER_CAP_SECONDS))
+    except (TypeError, ValueError):
+        return None
 
 
 class JevError(RuntimeError):
     pass
 
 
+def resolve_provider() -> tuple[str, str, str] | None:
+    """Return (endpoint, api_key, default_model) for the first credential set.
+
+    TYPESAFE_API_KEY (TypeSafe direct) wins over OPENROUTER_API_KEY
+    (OpenRouter fallback). Returns None when no key is set.
+    """
+    typesafe = os.environ.get("TYPESAFE_API_KEY") or None
+    if typesafe:
+        return ENDPOINT_TYPESAFE, typesafe, MODEL_TYPESAFE
+    openrouter = os.environ.get("OPENROUTER_API_KEY") or None
+    if openrouter:
+        return ENDPOINT_OPENROUTER, openrouter, DEFAULT_MODEL
+    return None
+
+
 def call_jev(
     questions: dict,
     state,
-    model: str = DEFAULT_MODEL,
+    model: str | None = None,
     retries: int = 3,
     log: bool = True,
 ) -> dict:
     """Call the Decisions API. Returns the full response dict (answers + usage)."""
-    api_key = os.environ.get("OPENROUTER_API_KEY")
-    if not api_key:
-        raise JevError("OPENROUTER_API_KEY not set")
+    provider = resolve_provider()
+    if provider is None:
+        raise JevError("set TYPESAFE_API_KEY (TypeSafe direct) or OPENROUTER_API_KEY (fallback)")
+    endpoint, api_key, provider_model = provider
+    if model is None or model == DEFAULT_MODEL:
+        model = provider_model
 
     payload = json.dumps({"model": model, "state": state, "questions": questions}).encode()
     last_err = None
     for attempt in range(retries):
         req = urllib.request.Request(
-            ENDPOINT,
+            endpoint,
             data=payload,
             headers={
                 "Authorization": f"Bearer {api_key}",
@@ -67,7 +111,8 @@ def call_jev(
             # 4xx = our payload is wrong; do not retry blindly except 429
             if e.code == 429 or e.code >= 500:
                 last_err = JevError(f"HTTP {e.code}: {detail[:500]}")
-                time.sleep(2**attempt)
+                delay = _retry_after_seconds(e.headers)
+                time.sleep(2**attempt if delay is None else min(delay, RETRY_AFTER_CAP_SECONDS))
                 continue
             raise JevError(f"HTTP {e.code}: {detail[:500]}") from e
         except (urllib.error.URLError, TimeoutError) as e:

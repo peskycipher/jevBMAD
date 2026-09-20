@@ -19,7 +19,7 @@ Doctrine (do not skip):
 
 ## On Activation
 
-1. Resolve settings: `uv run {skill-root}/scripts/jev_recommend.py --help` for usage; the runner resolves `OPENROUTER_API_KEY` from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `custom/config.toml` → `custom/config.user.toml`).
+1. Resolve settings: `uv run {skill-root}/scripts/jev_recommend.py --help` for usage; the runner resolves `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `custom/config.toml` → `custom/config.user.toml`).
 2. Mode check: `off` (default) → report "decision assist is off" and stop without any network call. `shadow` → run everything, but label the output **evaluation-only — do not act on it**. `suggest` → normal operation.
 3. No API key or provider error → return `status: unavailable` with the reason and fall back to your own judgment. Never retry more than the adapter's built-in budget (4 calls per process, bounded state).
 
