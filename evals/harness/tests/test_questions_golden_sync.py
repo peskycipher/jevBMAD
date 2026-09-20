@@ -31,6 +31,19 @@ def questions_of(set_name: str) -> dict:
         encoding="utf-8"))["questions"]
 
 
+def _normalized(path: Path) -> str:
+    """Module copies differ from router copies only in the sys.path
+    bootstrap (bundled layout) and an except-line comment — normalize both."""
+    lines = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip().startswith("sys.path.insert") or "ships beside this script" in line:
+            continue
+        if "# noqa: BLE001" in line:
+            line = line.split("# noqa: BLE001")[0].rstrip() + "  # noqa: BLE001"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def golden_labels(set_name: str, key: str) -> set:
     labels = set()
     for line in (SET_DIR / set_name / f"{set_name}.golden.jsonl").read_text(
@@ -43,11 +56,35 @@ def golden_labels(set_name: str, key: str) -> set:
 
 class RuntimeGoldenSync(unittest.TestCase):
     def test_bmad_gates_questions_match_readiness_golden(self):
+        """Golden readiness questions must appear in runtime QUESTIONS
+        (subset — the runtime additionally asks blocker_kind)."""
         golden = questions_of("readiness")
-        self.assertEqual(set(golden), set(bmad_gates.QUESTIONS))
+        self.assertTrue(set(golden) <= set(bmad_gates.QUESTIONS),
+                        f"runtime QUESTIONS missing golden questions: "
+                        f"{set(golden) - set(bmad_gates.QUESTIONS)}")
         for qid, q in golden.items():
             self.assertEqual(bmad_gates.QUESTIONS[qid], q,
                              f"runtime QUESTIONS[{qid}] drifted from readiness golden")
+
+    def test_bmad_gates_questions_cover_all_gate_questions(self):
+        """Regression: b67e9fb silently dropped blocker_kind from QUESTIONS —
+        the readiness gate must ask every question its verdict path reads."""
+        expected = set(questions_of("readiness")) | {"blocker_kind"}
+        self.assertEqual(set(bmad_gates.QUESTIONS), expected)
+
+    def test_bmad_gates_copies_are_identical(self):
+        router_path = ROOT / "router" / "bmad_gates.py"
+        module_path = (ROOT / "modules" / "bmad-jev" / "bmad-jev-gates" / "scripts"
+                       / "bmad_gates.py")
+        self.assertEqual(_normalized(router_path), _normalized(module_path),
+                         "router/bmad_gates.py and the module copy diverged")
+
+    def test_bmad_judge_copies_are_identical(self):
+        router_path = ROOT / "router" / "judge.py"
+        module_path = (ROOT / "modules" / "bmad-jev" / "bmad-jev-review" / "scripts"
+                       / "judge.py")
+        self.assertEqual(_normalized(router_path), _normalized(module_path),
+                         "router/judge.py and the module copy diverged")
 
     def test_judge_failure_kind_options_cover_golden_labels(self):
         options = set(judge.QUESTIONS["failure_kind"]["criteria"])

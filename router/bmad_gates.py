@@ -162,7 +162,18 @@ QUESTIONS = {
                 }
         ]
 },
-}
+    "blocker_kind": {
+        "type": "choice",
+        "instructions": "If any readiness gate failed, classify the primary blocker. If all gates passed, choose none_applicable.",
+        "criteria": {
+            "scope_vague": "Requirements are vague, generic, or missing scope boundaries",
+            "criteria_untestable": "Acceptance criteria cannot be objectively verified",
+            "open_questions": "Unresolved blocking decisions or TODOs remain",
+            "missing_artifact": "The artifact itself is empty, missing, or not provided",
+            "none_applicable": "No gate failed; the artifact is ready to proceed",
+            "other": "None of the listed categories fit"
+        }
+    }}
 
 
 def _log(entry: dict) -> None:
