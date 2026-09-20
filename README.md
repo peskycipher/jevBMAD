@@ -25,19 +25,23 @@ At a glance:
 ### 1. Clone and set up the repo
 
 ```bash
+# Install uv (https://docs.astral.sh/uv/):
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 git clone https://github.com/peskycipher/jevBMAD.git
 cd jevBMAD
 
-# Requirements: Python 3.11+ (scripts are stdlib-first / PEP 723)
+# uv manages Python 3.11+ automatically (scripts are stdlib-first / PEP 723)
 # API keys: copy the example env file and fill in your keys
 cp .env.example .env
 # then edit .env and set TYPESAFE_API_KEY (preferred) and/or OPENROUTER_API_KEY
 
-# Verify the install — 32 contract/sync tests pass with no API key:
-python3 -m unittest discover -s evals/harness/tests
+# Verify the install — 35 contract/sync tests pass with no API key:
+uv run python -m unittest discover -s evals/harness/tests
 
-# Optional: run the skill-script test suites too (they need pytest):
-pip install -r requirements-dev.txt && pytest .agents/skills modules/bmad-jev
+# Optional: run the skill-script test suites too (they need pytest; the dev
+# requirements are injected ephemerally — nothing is installed into a venv):
+uv run --with-requirements requirements-dev.txt pytest .agents/skills modules/bmad-jev
 ```
 
 Without either key nothing makes network calls — every CLI and skill
@@ -63,7 +67,7 @@ requirements and configuration (`off` / `shadow` / `suggest` modes).
 ### 3. Try it
 
 ```bash
-python3 router/hybrid.py "What does the router do?"   # full loop demo (needs key)
+uv run python router/hybrid.py "What does the router do?"   # full loop demo (needs key)
 ```
 
 More commands: [Quickstart](#quickstart) below.
@@ -116,16 +120,16 @@ request ──▶ router.py: ONE batched Jev call
 
 ```bash
 # requires keys in .env — see [Installation](#1-clone-and-set-up-the-repo) above
-python3 -m unittest discover -s evals/harness/tests   # contract tests — no key needed
+uv run python -m unittest discover -s evals/harness/tests   # contract tests — no key needed
 
-python3 router/hybrid.py "What does the router do?"       # full loop demo
-python3 router/router.py "Drop the users table"           # routing decision only
-python3 evals/harness/run_evals.py evals/golden-sets       # full eval sweep (~$0.006)
-python3 evals/harness/ci_gate.py                           # regression gate vs baseline
-python3 evals/harness/dashboard.py                         # metrics + alerts vs §7.5 targets
-python3 evals/harness/holdout_validate.py                  # honest held-out numbers
-python3 evals/harness/online_sample.py                     # hindsight sampling + audit queue
-python3 evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale a golden set
+uv run python router/hybrid.py "What does the router do?"       # full loop demo
+uv run python router/router.py "Drop the users table"           # routing decision only
+uv run python evals/harness/run_evals.py evals/golden-sets       # full eval sweep (~$0.006)
+uv run python evals/harness/ci_gate.py                           # regression gate vs baseline
+uv run python evals/harness/dashboard.py                         # metrics + alerts vs §7.5 targets
+uv run python evals/harness/holdout_validate.py                  # honest held-out numbers
+uv run python evals/harness/online_sample.py                     # hindsight sampling + audit queue
+uv run python evals/harness/prelabel.py --generate <set> <candidates.jsonl>   # scale a golden set
 ```
 
 ## Verified state (2026-09-20, model `typesafe/jev-1.13-20260917`)
