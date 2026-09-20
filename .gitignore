@@ -8,7 +8,7 @@ __pycache__/
 modules/bmad-jev/**/__pycache__/
 
 # module-copy runtime decision logs (written by skills at call time)
-modules/bmad-jev/**/evals/logs/
+modules/bmad-jev/**/logs/
 
 # party-mode session memories — runtime state, per-machine
 _bmad-output/party-mode/

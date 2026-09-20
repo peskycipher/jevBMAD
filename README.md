@@ -34,6 +34,9 @@ export OPENROUTER_API_KEY=sk-...
 
 # Verify the install — contract tests pass with no API key:
 python3 -m unittest discover -s evals/harness/tests
+
+# Optional: run the skill-script test suites too (they need pytest):
+pip install -r requirements-dev.txt && pytest .agents/skills modules/bmad-jev
 ```
 
 Without `OPENROUTER_API_KEY` nothing makes network calls — every CLI and skill

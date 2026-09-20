@@ -1,0 +1,13 @@
+# Optional test dependencies for this repo.
+#
+# The eval-harness tests (evals/harness/tests/) need nothing beyond the
+# Python standard library:  python3 -m unittest discover -s evals/harness/tests
+#
+# Skill-script test suites declare their deps via PEP 723 headers, so each
+# runs standalone with `uv run <test>.py`. Running them all under one pytest
+# needs the deps below; suites whose deps are missing are SKIPPED with a
+# reason (see conftest.py), never collection errors.
+pytest>=8
+# sprint-status / sprint-plan suites (and the scripts they cover) parse YAML
+# with ruamel.yaml — comment-preserving edits are a hard requirement there.
+ruamel.yaml>=0.18
