@@ -31,7 +31,7 @@ CASES = [
                            "/dev/null", "/dev/null"], "passed"),
     ("module recommend copy", [sys.executable, "modules/bmad-jev/bmad-jev-decide/scripts/jev_recommend.py",
                                "--request", "test", "--candidates", "a,b"], "status"),
-    ("canonical recommend", [sys.executable, "_bmad/scripts/jev_recommend.py",
+    ("canonical recommend", [sys.executable, "_bmad/custom/bmad-jev/jev_recommend.py",
                              "--request", "test", "--candidates", "a,b"], "status"),
 ]
 
@@ -77,7 +77,7 @@ class UsageDegradationTest(unittest.TestCase):
         """Regression: build_recommend_questions raised an uncaught PolicyError
         (>MAX_CANDIDATES) after the degrade handlers — raw traceback instead of
         JSON. All three copies must degrade to bad_request / exit 2."""
-        for label, script in [("canonical", "_bmad/scripts/jev_recommend.py"),
+        for label, script in [("canonical", "_bmad/custom/bmad-jev/jev_recommend.py"),
                               ("module", "modules/bmad-jev/bmad-jev-decide/scripts/jev_recommend.py")]:
             with self.subTest(entrypoint=label):
                 env = {**os.environ, "BMAD_DECISION_ASSIST_MODE": "suggest", "TYPESAFE_API_KEY": "test"}

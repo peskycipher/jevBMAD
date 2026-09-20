@@ -58,7 +58,7 @@ folder to the host's skill directory (`.claude/skills/` for Claude Code,
 ## Provenance
 
 Scripts are copied verbatim from the validated jevBMAD pipeline
-(`_bmad/scripts/jev_*.py`, `evals/harness/jev_client.py`, `router/{bmad_gates,judge}.py`),
+(`_bmad/custom/bmad-jev/jev_*.py`, `evals/harness/jev_client.py`, `router/{bmad_gates,judge}.py`),
 with only the `sys.path` bootstrap lines adjusted for the bundled layout.
 Thresholds default to the conservative §10 values; no lockfile ships. To use
 the fitted values, copy `router/thresholds.lockfile.json` from the repo into

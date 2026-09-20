@@ -24,7 +24,7 @@ CLIENTS = [
     "modules/bmad-jev/bmad-jev-review/scripts/jev_client.py",
     "modules/bmad-jev/bmad-jev-gates/scripts/jev_client.py",
     "modules/bmad-jev/bmad-jev-decide/scripts/jev_adapter.py",
-    "_bmad/scripts/jev_adapter.py",
+    "_bmad/custom/bmad-jev/jev_adapter.py",
 ]
 
 DATED = re.compile(r"^typesafe/jev-[\w.]+-\d{8}$")

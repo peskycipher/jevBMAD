@@ -22,10 +22,19 @@ ROOT = Path(__file__).resolve().parents[3]
 
 ADAPTER_COPIES = [
     ROOT / "modules/bmad-jev/bmad-jev-decide/scripts/jev_adapter.py",
-    ROOT / "_bmad/scripts/jev_adapter.py",
+    ROOT / "_bmad/custom/bmad-jev/jev_adapter.py",
     ROOT / ".agents/skills/bmad/scripts/jev_adapter.py",
 ]
 CLIENT_COPY = ROOT / "evals/harness/jev_client.py"
+
+# config_utils travels with every jev_adapter deployment (sibling import);
+# all copies must stay byte-identical.
+CONFIG_COPIES = [
+    ROOT / "modules/bmad-jev/bmad-jev-decide/scripts/config_utils.py",
+    ROOT / "_bmad/scripts/config_utils.py",
+    ROOT / "_bmad/custom/bmad-jev/config_utils.py",
+    ROOT / ".agents/skills/bmad/scripts/config_utils.py",
+]
 
 
 def load_module(path: Path, name: str):
@@ -190,6 +199,16 @@ class ClientRetryAfterTest(unittest.TestCase):
             with self.assertRaises(self.mod.JevError) as ctx:
                 self.mod.call_jev({"q": {"type": "noul", "instructions": "x"}}, "state")
             self.assertIn("TYPESAFE_API_KEY", str(ctx.exception))
+
+
+
+class ConfigUtilsSyncTest(unittest.TestCase):
+    def test_config_utils_copies_are_identical(self):
+        """config_utils.py is deployed as a sibling of each jev_adapter copy;
+        all live copies must stay byte-identical."""
+        contents = {p.read_text(encoding="utf-8") for p in CONFIG_COPIES}
+        self.assertEqual(len(contents), 1,
+                         "config_utils.py copies drifted: %s" % sorted(CONFIG_COPIES))
 
 
 if __name__ == "__main__":

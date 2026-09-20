@@ -1,13 +1,13 @@
 ---
 description: Show or change Jev decision-assist config (mode, model, endpoint) and API keys
 argument-hint: "[status|suggest|shadow|off|clear|set <mode|model|endpoint> <value>|key <typesafe|openrouter> <api-key>]"
-allowed-tools: Bash(uv run _bmad/scripts/jev_mode.py:*)
+allowed-tools: Bash(uv run _bmad/custom/bmad-jev/jev_mode.py:*)
 ---
 
 # Jev Config Control
 
 Manage the Jev decision layer's runtime configuration via the canonical script
-`_bmad/scripts/jev_mode.py` (stdlib-only, PEP 723 — always invoke through
+`_bmad/custom/bmad-jev/jev_mode.py` (stdlib-only, PEP 723 — always invoke through
 `uv run`). All script output is JSON; report the relevant fields to the user
 concisely and never print API key values (the script masks them — keep it that
 way).
@@ -20,7 +20,7 @@ $ARGUMENTS
 
 Parse the user's arguments and map them to exactly ONE script invocation:
 
-- No arguments, or "status" / "show" / "what mode" → `uv run _bmad/scripts/jev_mode.py`
+- No arguments, or "status" / "show" / "what mode" → `uv run _bmad/custom/bmad-jev/jev_mode.py`
 - "suggest" / "on" (advisory recommendations) → `... suggest`
 - "shadow" (evaluate only) → `... shadow`
 - "off" / "disable" → `... off`
