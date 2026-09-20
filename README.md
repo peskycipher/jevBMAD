@@ -1,6 +1,15 @@
 # Jev-BMAD — Hybrid System-1 / System-2 Agentic Architecture
 
-Kahneman's dual-process theory, operationalized:
+**Jev-BMAD** is an evaluation-first decision layer for agentic workflows that
+operationalizes Kahneman's dual-process theory. A fast, cheap, calibrated
+System-1 model (Jev) routes and gates every request — intent, safety, and
+complexity in a single batched call — and conservatively escalates anything it
+cannot clear to a slow, deep-reasoning System-2 model. It ships as a standalone
+router pipeline and as an installable [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD)
+module, with golden sets, held-out validation, fitted thresholds, and an audit
+trail backing every behavior change.
+
+At a glance:
 
 - **System 1 (fast)**: [Jev](https://openrouter.ai) via the OpenRouter Decisions API — typed, probabilistic, calibrated decisions in ~350 ms at ~$0.00002/call, using all three primitives (`choice`, `score`, `noul`)
 - **System 2 (slow)**: GLM-5.3 via OpenRouter chat completions — deep reasoning for escalated work (~105 s, ~$0.03/call)
@@ -8,6 +17,50 @@ Kahneman's dual-process theory, operationalized:
 - **Doctrine**: evaluation-first — nothing ships without golden sets, held-out validation, fitted thresholds, and an audit trail
 
 **Status (2026-09-19):** Phases 0–3 complete, holdout-validated, audit pass done. Released as [`v0.1.0`](https://github.com/peskycipher/jevBMAD/releases/tag/v0.1.0) — experimental; evaluation methodology and known limitations are published, not hidden. Full history and methodology: [`docs/implementation.md`](docs/implementation.md) (v1.5.3, incl. §14 known limitations).
+
+## Installation
+
+### 1. Clone and set up the repo
+
+```bash
+git clone https://github.com/peskycipher/jevBMAD.git
+cd jevBMAD
+
+# Requirements: Python 3.11+ (scripts are stdlib-first / PEP 723)
+# Optional but recommended for any live call:
+export OPENROUTER_API_KEY=sk-...
+
+# Verify the install — contract tests pass with no API key:
+python3 -m unittest discover -s evals/harness/tests
+```
+
+Without `OPENROUTER_API_KEY` nothing makes network calls — every CLI and skill
+degrades to explicit `disabled` / `unavailable` statuses instead.
+
+### 2. Install as a BMad module (optional)
+
+The decision layer is also packaged as an installable BMad module in
+[`modules/bmad-jev/`](modules/bmad-jev/README.md) (skills: `jev-setup`,
+`bmad-jev-decide`, `bmad-jev-gates`, `bmad-jev-review`):
+
+```bash
+# Via the BMad installer, from a Git host or local path:
+bmad install modules/bmad-jev
+
+# Or run the jev-setup skill in-project after copying the folder to the
+# host's skill directory (.claude/skills/ for Claude Code, .agents/skills/ for pi)
+```
+
+See [`modules/bmad-jev/README.md`](modules/bmad-jev/README.md) for runtime
+requirements and configuration (`off` / `shadow` / `suggest` modes).
+
+### 3. Try it
+
+```bash
+python3 router/hybrid.py "What does the router do?"   # full loop demo (needs key)
+```
+
+More commands: [Quickstart](#quickstart) below.
 
 ## How it works
 
