@@ -51,7 +51,7 @@ const KEY_NAMES: Record<string, string> = {
 };
 
 const ENV_TEMPLATE = `# JevBMAD credentials and provider configuration.
-# Copy of .env.example — created by \`jev_mode.py key\`. Never commit this file.
+# Copy of .env.example — created by \`jev_mode.ts key\`. Never commit this file.
 
 # TypeSafe direct (recommended): https://console.typesafe.ai/settings/keys
 TYPESAFE_API_KEY=
@@ -60,9 +60,9 @@ OPENROUTER_API_KEY=
 `;
 
 const USAGE_HINT =
-  "usage: jev_mode.py [status|suggest|shadow|off|clear] [--layer user|team] [--project-root DIR]\n" +
-  "       jev_mode.py set <mode|model|endpoint> <value> [--layer user|team]\n" +
-  "       jev_mode.py key <typesafe|openrouter> <api-key> [--env-file PATH]";
+  "usage: jev_mode.ts [status|suggest|shadow|off|clear] [--layer user|team] [--project-root DIR]\n" +
+  "       jev_mode.ts set <mode|model|endpoint> <value> [--layer user|team]\n" +
+  "       jev_mode.ts key <typesafe|openrouter> <api-key> [--env-file PATH]";
 
 const MASKED_KEYS = ["TYPESAFE_API_KEY", "OPENROUTER_API_KEY"] as const;
 

@@ -3,7 +3,8 @@ name: evals
 # CI regression gate (implementation.md §10): every push touching the golden
 # sets, criteria, thresholds, or runtime modules re-runs the evals and fails
 # on accuracy regression, calibration drift, or model drift.
-# Skips cleanly when no OPENROUTER_API_KEY secret is available.
+# Skips the golden-set gate cleanly when no OPENROUTER_API_KEY secret is
+# available (the no-key unit tests still run).
 
 on:
   push:
@@ -25,10 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: 24
+      - name: Install dependencies
+        run: npm ci
       - name: CI eval gate
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: python3 evals/harness/ci_gate.py
+        run: npx tsx evals/harness/ci_gate.ts

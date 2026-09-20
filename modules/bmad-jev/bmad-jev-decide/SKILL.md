@@ -46,7 +46,7 @@ Treat each `{workflow.persistent_facts}` entry as standing context: literal sent
 ### 4. Continue
 
 
-5. Resolve settings: `uv run {skill-root}/scripts/jev_recommend.py --help` for usage; the runner resolves `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `config.user.toml` → `custom/config.toml` → `custom/config.user.toml`).
+5. Resolve settings: `npx tsx {skill-root}/scripts/jev_recommend.ts --help` for usage; the runner resolves `TYPESAFE_API_KEY` (or `OPENROUTER_API_KEY` fallback) from the environment and `[jev] mode` from `{project-root}/_bmad/config.toml` (layers: `config.toml` → `config.user.toml` → `custom/config.toml` → `custom/config.user.toml`).
 6. Mode check: `off` (default) → report "decision assist is off" and stop without any network call. `shadow` → run everything, but label the output **evaluation-only — do not act on it**. `suggest` → normal operation.
 7. No API key or provider error → return `status: unavailable` with the reason and fall back to your own judgment. Never retry more than the adapter's built-in budget (4 calls per process, bounded state).
 
@@ -57,10 +57,10 @@ Treat each `{workflow.persistent_facts}` entry as standing context: literal sent
 13. Run the batched decision (one API call, three questions — workflow choice, match noul, fit score):
 
 ```bash
-uv run {skill-root}/scripts/jev_recommend.py --request "<user request text>" --candidates "bmad-spec,bmad-prd,bmad-architecture" [--evidence key=value ...] [--chosen <explicit-id>]
+npx tsx {skill-root}/scripts/jev_recommend.ts --request "<user request text>" --candidates "bmad-spec,bmad-prd,bmad-architecture" [--evidence key=value ...] [--chosen <explicit-id>]
 ```
 
-Run `uv run {skill-root}/scripts/jev_recommend.py --help` for exact arguments and JSON output shape. On script failure, perform the equivalent judgment yourself and label it as your own reasoning, not a Jev outcome.
+Run `npx tsx {skill-root}/scripts/jev_recommend.ts --help` for exact arguments and JSON output shape. On script failure, perform the equivalent judgment yourself and label it as your own reasoning, not a Jev outcome.
 
 14. Interpret the JSON outcome:
    - `status: ok` → recommend `{recommendation.id}`, show confidence and the three signals (match, fit, integrity).

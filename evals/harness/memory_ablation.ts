@@ -18,7 +18,7 @@ const ROOT = path.resolve(HERE, "..", "..");
 const REQUESTS = [
   "What does the fit_thresholds script do?",
   "Fix the typo in the eval harness metrics module if there is one.",
-  "Add a CLI flag to run_evals.py to filter by priority.",
+  "Add a CLI flag to run_evals.ts to filter by priority.",
   "Where is the routing policy implemented and how does escalation work?",
   "Refactor the golden sets into a database.",
   "Update the evals README with the new gate fitter.",

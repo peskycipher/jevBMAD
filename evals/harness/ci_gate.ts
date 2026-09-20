@@ -42,9 +42,9 @@ function runUnitTests(): boolean {
   const tests = fs.readdirSync(testsDir).filter((f) => f.endsWith(".test.ts")).sort();
   let ok = true;
   for (const t of tests) {
-    const tsxBin = path.resolve(HERE, "..", "..", "..", "node_modules", ".bin", "tsx");
+    const tsxBin = path.resolve(HERE, "..", "..", "node_modules", ".bin", "tsx");
     const r = spawnSync(process.execPath, [tsxBin, path.join(testsDir, t)],
-      { encoding: "utf8", cwd: path.resolve(HERE, "..", "..", "..") });
+      { encoding: "utf8", cwd: path.resolve(HERE, "..", "..") });
     const passed = r.status === 0;
     if (!passed) ok = false;
   }

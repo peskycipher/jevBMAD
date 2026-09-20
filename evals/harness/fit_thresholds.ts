@@ -78,7 +78,7 @@ function main(argv: string[]): void {
     const runs = fs.readdirSync(RESULTS_DIR).sort()
       .filter((f) => /^run-.*\.json$/.test(f)).map((f) => path.join(RESULTS_DIR, f));
     if (!runs.length) {
-      process.stderr.write("no eval runs found in evals/results/ — run run_evals.py first\n");
+      process.stderr.write("no eval runs found in evals/results/ — run run_evals.ts first\n");
       process.exit(1);
     }
     reportPath = runs[runs.length - 1];
@@ -92,7 +92,7 @@ function main(argv: string[]): void {
   }
 
   if (!Object.values(bySet).some((v) => v.length)) {
-    process.stderr.write(`${reportPath} has no per-record details — re-run run_evals.py\n`);
+    process.stderr.write(`${reportPath} has no per-record details — re-run run_evals.ts\n`);
     process.exit(1);
   }
 
@@ -128,7 +128,7 @@ function main(argv: string[]): void {
   }
 
   const nTotal = neumaierSum(sweepers.map(([, key]) => (fitted[key] as any).n_total));
-  // Preserve sections written by other fitters (fit_gates.py writes
+  // Preserve sections written by other fitters (fit_gates.ts writes
   // "gates"/"gates_meta") — this script owns the routing thresholds only.
   const previous = fs.existsSync(LOCKFILE) ? JSON.parse(fs.readFileSync(LOCKFILE, "utf-8")) : {};
   const out: Record<string, Json> = {

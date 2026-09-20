@@ -57,12 +57,12 @@ Treat each `{workflow.persistent_facts}` entry as standing context: literal sent
 11. Run one batched evaluation:
 
 ```bash
-uv run {skill-root}/scripts/bmad_gates.py <transition> < artifact.md
+npx tsx {skill-root}/scripts/bmad_gates.ts <transition> < artifact.md
 ```
 
 The artifact text is read from stdin; the transition (e.g. `analysis_to_planning`, `planning_to_solutioning`, `solutioning_to_implementation`) is the first argument.
 
-Run `uv run {skill-root}/scripts/bmad_gates.py --help` for exact arguments and the JSON output shape (decision, gate nouls, ready score, reasons). On script failure, do not eyeball a verdict — report `unavailable` and let the user decide.
+Run `npx tsx {skill-root}/scripts/bmad_gates.ts --help` for exact arguments and the JSON output shape (decision, gate nouls, ready score, reasons). On script failure, do not eyeball a verdict — report `unavailable` and let the user decide.
 
 12. Interpret the JSON:
    - `decision: proceed` → state which gates cleared and the score; transition may proceed.

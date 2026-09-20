@@ -4,15 +4,15 @@ Two layers of integration exist: this repo's runtime modules (used by the hybrid
 
 ## This repo (runtime layer)
 
-- `router/bmad_gates.py` — BMAD phase-transition readiness gates, callable from any skill or agent that follows the BMAD workflow (Analysis → Planning → Solutioning → Implementation).
-- `router/judge.py` — the §7.7 story-review rubric for post-implementation review (System-2 output quality, Jev-as-judge).
+- `router/bmad_gates.ts` — BMAD phase-transition readiness gates, callable from any skill or agent that follows the BMAD workflow (Analysis → Planning → Solutioning → Implementation).
+- `router/judge.ts` — the §7.7 story-review rubric for post-implementation review (System-2 output quality, Jev-as-judge).
 - Both load thresholds from the fitted lockfile and log every decision with `agent_id` for multi-agent attribution.
 
 ## The BMAD-METHOD fork ([`peskycipher/BMAD-METHOD`](https://github.com/peskycipher/BMAD-METHOD))
 
 | Branch | Contents | Status |
 |---|---|---|
-| `feature/jev-decision-assist` | Recommendation pilot only: adapter (`jev_adapter.py`), policy (`jev_policy.py`), CLI (`jev_recommend.py`) — skill recommendation in the help flow, three agreeing primitives, serial injection gate | pushed to the public fork; 146 tests |
+| `feature/jev-decision-assist` | Recommendation pilot only: adapter (`jev_adapter.ts`), policy (`jev_policy.ts`), CLI (`jev_recommend.ts`) — skill recommendation in the help flow, three agreeing primitives, serial injection gate | pushed to the public fork; 146 tests |
 | `feature/jev-gates` | `jev_gates.py` (readiness/review policy layer + 21 tests), `jev_readiness.py` and `jev_review.py` (CLIs), docs updates | validated locally (167 tests passing, live-verified) — **not yet pushed to the public fork** |
 
 The fork wiring follows its own conventions exactly: adapter/policy separation, disabled-by-default (`off` | `shadow` | `suggest` modes via `BMAD_DECISION_ASSIST_MODE` or the `[jev]` config table), explicit statuses, bounded call budgets, and the serial prompt-injection gate on passing verdicts.

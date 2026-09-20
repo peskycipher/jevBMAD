@@ -1,7 +1,7 @@
 /**
  * Hybrid dispatcher (implementation.md §2 Core Routing Policy, steps 4-6).
  *
- * TypeScript port of hybrid.py. Full end-to-end path: route with Jev
+ * TypeScript port of the original hybrid.py. Full end-to-end path: route with Jev
  * (System 1), then
  *   - system1_auto  -> return the routing decision; the host harness executes
  *                      (System-1 execution is the harness's normal flow)

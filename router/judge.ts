@@ -1,7 +1,7 @@
 /**
  * System-2 output judge — §7.7 rubric via Jev-as-judge (implementation.md v1.5).
  *
- * TypeScript port of judge.py. Reviews a story implementation with one
+ * TypeScript port of the original judge.py. Reviews a story implementation with one
  * batched Jev call:
  *
  *   Gates (Noul, all must pass >= 0.95):
@@ -269,7 +269,7 @@ async function main(): Promise<number> {
     emitIndent({
       status: "bad_request",
       reason_kind: "usage",
-      reason: "usage: judge.py <story_text> <implementation_text>",
+      reason: "usage: judge.ts <story_text> <implementation_text>",
       passed: null,
     });
     return 2;

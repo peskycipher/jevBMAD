@@ -5,7 +5,8 @@
   "type": "module",
   "description": "System-1/System-2 decision layer for BMad (TypeScript core)",
   "scripts": {
-    "typecheck": "npx tsc --noEmit"
+    "typecheck": "npx tsc --noEmit",
+    "test:unit": "for f in evals/harness/tests/*.test.ts; do npx tsx \"$f\" || exit 1; done"
   },
   "devDependencies": {
     "tsx": "^4.20.0",

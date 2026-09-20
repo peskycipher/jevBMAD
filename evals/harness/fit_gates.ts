@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Fit per-gate thresholds for judge.py and bmad_gates.py (§6 methodology).
+// Fit per-gate thresholds for judge.ts and bmad_gates.ts (§6 methodology).
 //
 // Reads the latest story-review report (gate nouls + dimensions per example)
 // and the latest eval run (readiness records), sweeps thresholds, and merges

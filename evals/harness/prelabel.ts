@@ -37,8 +37,8 @@ Jev, queue for human confirmation (~audit), then promote approved rows.
      \`source: "jev-prelabel+human-confirm"\` provenance field.
 
 Usage:
-  python3 evals/harness/prelabel.py --generate routing candidates.jsonl
-  python3 evals/harness/prelabel.py --promote routing
+  npx tsx evals/harness/prelabel.ts --generate routing candidates.jsonl
+  npx tsx evals/harness/prelabel.ts --promote routing
 
 `;
 

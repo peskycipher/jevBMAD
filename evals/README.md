@@ -14,10 +14,10 @@ evals/
     guardrails/          # Noul: binary safety/correctness gates
     complexity/          # Score: implementation complexity 0-4
   harness/
-    jev_client.py        # Decisions API client (TypeSafe direct / OpenRouter fallback) + JSONL logging
+    jev_client.ts        # Decisions API client (TypeSafe direct / OpenRouter fallback) + JSONL logging
                          #   records model_requested (the dated-snapshot pin) + the provider echo on every call
-    metrics.py           # accuracy, ECE, Brier, per-band reports
-    run_evals.py        # CLI runner over a golden set
+    metrics.ts           # accuracy, ECE, Brier, per-band reports
+    run_evals.ts        # CLI runner over a golden set
     tests/               # unit tests (entrypoint degradation, model/lockfile consistency,
                          #   golden<->runtime question sync, EntryType shapes) — run keyless
   results/               # eval run reports (versioned JSON)
@@ -51,10 +51,10 @@ export TYPESAFE_API_KEY=ts-...   # TypeSafe direct; or OPENROUTER_API_KEY=sk-or-
 # or: cp .env.example .env  — the harness reads the nearest .env; real env vars win
 
 # Run one golden set
-python3 evals/harness/run_evals.py evals/golden-sets/routing
+npx tsx evals/harness/run_evals.ts evals/golden-sets/routing
 
 # Run all sets
-python3 evals/harness/run_evals.py evals/golden-sets
+npx tsx evals/harness/run_evals.ts evals/golden-sets
 ```
 
 Each run writes `evals/results/<set>-<timestamp>.json` and appends every raw
@@ -81,24 +81,24 @@ Run reports also record `model_resolved` (the pinned dated snapshot, provider-in
 Golden sets:
 - `readiness/` — BMAD phase-transition gate questions (noul gates + readiness score),
   including real artifacts from implementation.md and brief.md
-- `story_review/` — story/implementation pairs judged by `router/judge.py` (§7.7 rubric);
-  run with `python3 evals/harness/run_story_review.py` (no criteria.json — questions
+- `story_review/` — story/implementation pairs judged by `router/judge.ts` (§7.7 rubric);
+  run with `npx tsx evals/harness/run_story_review.ts` (no criteria.json — questions
   live in the judge module)
 
 Harness scripts:
-- `fit_gates.py` — fits per-gate thresholds (judge + readiness) into
+- `fit_gates.ts` — fits per-gate thresholds (judge + readiness) into
   `router/thresholds.lockfile.json` (`gates` section; meta in `gates_meta`)
-- `memory_ablation.py` — Graft-context on/off comparison through the live router
+- `memory_ablation.ts` — Graft-context on/off comparison through the live router
 
-Runtime modules (in `../router/`): `router.py` (System-1 routing),
-`bmad_gates.py` (BMAD readiness gates), `judge.py` (System-2 output rubric),
-`memory.py` (Graft + optional Mem0 retrieval). All load thresholds from the
+Runtime modules (in `../router/`): `router.ts` (System-1 routing),
+`bmad_gates.ts` (BMAD readiness gates), `judge.ts` (System-2 output rubric),
+`memory.ts` (Graft + optional Mem0 retrieval). All load thresholds from the
 lockfile; all calls logged to `evals/logs/`.
 
 ## Phase 3 additions
 
-- `ci_gate.py` — CI regression gate (accuracy drop > 3 pts or model drift = fail; ECE and provider-echo drift = warn unless `--strict`); `--update-baseline` refreshes `results/baseline.json`; wired to `.github/workflows/evals.yml`
-- `online_sample.py` — ~3% log sampling (`--seed` for reproducibility), Jev hindsight review, ~3% human audit queue, memory-relevance scoring, `production_metrics.json` snapshots
-- `dashboard.py` — `results/dashboard.md` + `alerts.json` vs §7.5 targets
-- `prelabel.py` — Jev-assisted golden-set growth: `--generate <set> <candidates.jsonl>` proposes labels into `audit/prelabel_queue.jsonl`; human approves; `--promote <set>` appends to the golden set
+- `ci_gate.ts` — CI regression gate (accuracy drop > 3 pts or model drift = fail; ECE and provider-echo drift = warn unless `--strict`); `--update-baseline` refreshes `results/baseline.json`; wired to `.github/workflows/evals.yml`
+- `online_sample.ts` — ~3% log sampling (`--seed` for reproducibility), Jev hindsight review, ~3% human audit queue, memory-relevance scoring, `production_metrics.json` snapshots
+- `dashboard.ts` — `results/dashboard.md` + `alerts.json` vs §7.5 targets
+- `prelabel.ts` — Jev-assisted golden-set growth: `--generate <set> <candidates.jsonl>` proposes labels into `audit/prelabel_queue.jsonl`; human approves; `--promote <set>` appends to the golden set
 - `agent_id` parameter on router/judge/gates for multi-agent logging
